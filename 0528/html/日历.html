@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       //一个月的一号周几
+        function getMonthDateWeek(year,month){
+            var d =new Date();
+
+            d.setFullYear(year);//设置年
+            d.setMonth(month-1);//设置到下个月 月从0开始
+            d.setDate(1);
+            return d.getDay();
+        }
+        var a=getMonthDateWeek(2002,4);
+            console.log('星期'+a);
+
+            //一个月有多少天
+        function getMonthDate(year,month){
+            //需要把月推到下一个月，把date为0就可以了
+            var d1 =new Date();
+            d1.setFullYear(year);//设置年
+            d1.setMonth(month-1+1);//设置到下个月 月从0开始
+            d1.setDate(0);//推到了上个月的最后一天
+            return d1.getDate();
+        }
+        console.log(getMonthDate(2020,2))
+    </script>
+</body>
+</html>

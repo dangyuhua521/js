@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        ul,
+        p {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            font-family: '微软雅黑';
+        }
+
+        .box {
+            width: 746px;
+            height: 600px;
+            background: url(../img/bg.png) center center;
+            margin: 0 auto;
+        }
+
+        .mian {
+            width: 480px;
+            height: 500px;
+            background-color: #000;
+            margin: auto;
+        }
+
+        .list {
+            padding: 25px 0 0 44px;
+        }
+
+        li {
+            margin-bottom: 18px;
+            font-size: 16px;
+            line-height: 36px;
+            color: #919191;
+        }
+
+        .btn {
+            width: 44px;
+            height: 36px;
+            border-radius: 6px;
+            outline: none;
+            border: 1px solid #d4d5d4;
+            background: #000;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        strong {
+            display: inline-block;
+            width: 44px;
+            height: 36px;
+            font-size: 16px;
+            line-height: 36px;
+            border: 1px solid #d4d5d4;
+            border-radius: 6px;
+            text-align: center;
+            background: #fff;
+            color: #000;
+            vertical-align: top;
+            margin-right: 6px;
+        }
+
+        li>em {
+            padding: 6px;
+        }
+
+        li>span {
+            padding: 6px;
+        }
+
+        p {
+
+            font-size: 16px;
+            line-height: 36px;
+            color: #919191;
+            margin-left: 42px;
+        }
+
+        span {
+            width: 44px;
+            height: 36px;
+        }
+
+        em {
+            font-size: 16px;
+            line-height: 36px;
+            color: #919191;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <section class="mian">
+            <ul class="list">
+                <li>
+                    <input type="button" class="btn" value="-">
+                    <strong class="str">0</strong>
+                    <input type="button" class="btn" value="+"> 单价：
+                    <em>12.5元</em>
+                    小计:
+                    <span>0元</span>
+                </li>
+                <li>
+                    <input type="button" class="btn" value="-">
+                    <strong class="str">0</strong>
+                    <input type="button" class="btn" value="+"> 单价：
+                    <em>10.5元</em>
+                    小计:
+                    <span>0元</span>
+                </li>
+                <li>
+                    <input type="button" class="btn" value="-">
+                    <strong class="str">0</strong>
+                    <input type="button" class="btn" value="+"> 单价：
+                    <em>8.5元</em>
+                    小计:
+                    <span>0元</span>
+                </li>
+                <li>
+                    <input type="button" class="btn" value="-">
+                    <strong class="str">0</strong>
+                    <input type="button" class="btn" value="+"> 单价：
+                    <em>8元</em>
+                    小计:
+                    <span>0元</span>
+                </li>
+                <li>
+                    <input type="button" class="btn" value="-">
+                    <strong class="str">0</strong>
+                    <input type="button" class="btn" value="+"> 单价：
+                    <em>14.5元</em>
+                    小计:
+                    <span>0元</span>
+                </li>
+            </ul>
+            <p>商品合计共：
+                <strong class="total">0</strong>件 共花费了：
+                <strong class="total">0</strong>元</p>
+            <br>
+            <p>其中最贵的商品单价是：
+                <strong class="total">0</strong>元</p>
+        </section>
+    </div>
+    <script>
+        //获取input的父级元素
+        var list = document.querySelector('.list');
+        var li = document.querySelectorAll('.list li');
+        //遍历每个li的值
+        for (i = 0; i < li.length; i++) {
+            fn(li[i]);
+        }
+
+        function fn(parent) {
+            var btn = parent.querySelectorAll('input');//获取input的按钮
+            var str = parent.querySelectorAll('strong');//获取
+            var spans = parent.querySelectorAll('span');
+            var ems = parent.querySelector('em');
+            var n = 0; //0
+            //当点击+时，件数+1
+            btn[1].onclick = function () {
+                n++;
+                str[0].innerHTML = n;
+                spans[0].innerHTML = parseFloat(ems.innerHTML) * n + '元';
+                fn1();
+                maxPrice();
+            }
+             //当点击-时，件数-1
+            btn[0].onclick = function () {
+                if (n > 0) {
+                    n--;
+                    str[0].innerHTML = n;
+                    spans[0].innerHTML = parseFloat(ems.innerHTML) * n + '元';
+
+                fn1();
+                maxPrice();
+                }
+            }
+
+        }
+        
+        function fn1() {
+            //获取所有商品合计、共花费、其中最贵商品的单价的元素
+            var totals = document.querySelectorAll('.total');
+            //获取所有商品合计件数
+            var strong = document.querySelectorAll('.str');
+            //获取每个li下面的span小计的元素
+            var spanl = document.querySelectorAll('li span');
+            //变量商品合计的值
+            var a = 0;
+            //变量共花费的值
+            var b = 0;
+            //遍历所有商品合计件数
+            for (var i = 0; i < strong.length; i++) {
+                a += parseInt(strong[i].innerHTML);
+                 //返回共花费了多少的值，相加
+                b += parseInt(spanl[i].innerHTML);
+            
+            }
+            totals[0].innerHTML = a;
+            totals[1].innerHTML = b;
+        }
+        //对象的点击事件
+        document.onclick = function(){
+            maxPrice();//最大价格
+        }
+        function maxPrice(){
+            //变量大价格的值
+            var maxPrice = 0;
+            var list = document.querySelector('.list');
+            var str = list.querySelectorAll('strong');
+            var ems = list.querySelectorAll('em');
+            var tot = document.querySelectorAll('.total')[2];
+            //遍历每个单价
+            for (var i = 0; i < ems.length; i++){
+                //如果str商品个数大于0
+                if(str[i].innerHTML>0){
+                    var price = parseFloat(ems[i].innerHTML);
+                    //最大的单价=最大的单价>当前的单价？最大的单价:当前的单价
+                    maxPrice = maxPrice>price?maxPrice:price;
+                }
+            }
+            tot.innerHTML= maxPrice;
+        }
+    </script>
+</body>
+
+</html>

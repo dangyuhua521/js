@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <div id="miaov"></div>
+   <input type="" id="message"> 
+   <input type="button" value="提交" id="send">
+   <ul id="list">
+        <li>123</li>
+   </ul>
+   <script>
+       var miaov = document.getElementById('miaov');
+        console.dir('页面中存在的div');
+        console.dir(miaov);
+        //生成的div，没有存在文档中，DOM树上没有这个节点
+        var div = document.createElement('div');
+        div.style.height = '500px';
+        div.style.background ='red';
+        document.body.appendChild(div);
+        send.onclick = function(){
+            var value=message.value;
+            list.innerHTML+='<li>'+value+'</li>'
+        }
+   </script>
+</body>
+</html>

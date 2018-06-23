@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>仿select</title>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+	<section class="warp">
+		<div class="searchIpt clearFix">
+			<div class="clearFix">
+				<input type="text" id="txt" class="keyWord" value="">
+				<input type="button" id="txt" value="GO">
+				<span></span>
+			</div>
+			<ul class="list">
+				<li>html+css</li>
+				<li>html5+css3</li>
+				<li>javascript</li>
+				<li>angular</li>
+				<li>react</li>
+				<li>vue</li>
+				<li>jquery</li>
+				<li>nodejs</li>
+			</ul>
+		</div>
+	</section>
+
+	<script>
+		var txt = document.getElementById('txt');
+		var list = document.querySelector('.list');
+		var divaa = list.parentNode;
+		console.log(divaa)
+		var lis = list.querySelectorAll('li');
+		var timer = null;
+
+	//鼠标移入
+	divaa.onmouseover =function(ev){
+		list.style.display = 'block';
+		ev.stopPropagation();
+		clearInterval(timer);
+	}
+	//鼠标移出
+	divaa.onmouseout =function(ev){	
+		ev.stopPropagation();
+		render();
+	}
+	list.onclick = function(ev){
+		var str = '';
+		str = ev.target.tagName == 'LI'?ev.target.innerHTML:txt.value;
+		txt.value = str;	
+		list.style.display = 'none';
+	}
+
+	function render(){
+		timer = setInterval(function(){
+			list.style.display ='none';
+		},1000)
+	}
+	</script>
+</body>
+</html>

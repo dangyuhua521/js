@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<style>
+			body {
+				margin: 0;
+			}
+			
+			#warp {
+				width: 700px;
+				height: 500px;
+				margin: 30px auto;
+				background: url(img/warp.png) no-repeat;
+				position: relative;
+				/*text-align: center;*/
+			}
+			
+			#files {
+				position: absolute;
+				left: 148px;
+				width: 420px;
+				top: 200px;
+				overflow: auto;
+			}
+			
+			.add {
+				width: 132px;
+				height: 47px;
+				display: inline-block;
+				text-decoration: none;
+				background: url(img/addberfor.png) no-repeat;
+				background-size: cover;
+				position: absolute;
+				left: 290px;
+				bottom: 102px;
+			}
+			
+			.del {
+				width: 132px;
+				height: 48px;
+				display: inline-block;
+				text-decoration: none;
+				background: url(img/add.png) no-repeat;
+				position: absolute;
+				left: 295px;
+				bottom: 50px;
+			}
+			
+			.file {
+				width: 116px;
+				height: 118px;
+				border: 2px solid rgba(0, 0, 0, 0);
+				position: relative;
+				border-radius: 10%;
+				float: left;
+				margin-right: 10px;
+			}
+			
+			.fileActive {
+				border-color: #b5a3c2;
+				background: #6f5872;
+			}
+			
+			.file .ico {
+				margin: 20px auto 0;
+				width: 70px;
+				height: 57px;
+				background: url(img/wenjian.png) no-repeat;
+				background-size: cover;
+			}
+			
+			.file .check {
+				position: absolute;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+			
+			.fileActive .check {
+				display: block;
+			}
+			
+			.file span {
+				display: block;
+				font: 16px/34px "微软雅黑";
+				text-align: center;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				color: #fff;
+			}
+			
+			.file .text {
+				position: absolute;
+				left: 12px;
+				top: 82px;
+				height: 20px;
+				padding: 1px;
+				display: none;
+				width: 80px;
+				font: 16px/34px "微软雅黑";
+			}
+		</style>
+	</head>
+
+	<body>
+		<section id="warp">
+			<div id="files">
+				<!--			
+			<div class="file">
+				<div class="ico"></div>
+				<input type="checkbox" class="check">
+				<span>新建文件夹</span>
+				<input type="text" class="text" style="display: none;">
+			</div>-->
+				<!--<div class="file">
+				<div class="ico"></div>
+				<input type="checkbox" class="check">
+				<span>新建文件夹</span>
+				<input type="text" class="text" style="display: none;">
+			</div>
+			<div class="file">
+				<div class="ico"></div>
+				<input type="checkbox" class="check">
+				<span>新建文件夹</span>
+				<input type="text" class="text" style="display: none;">
+			</div>--></div>
+			<a href="javascript:;" class="add"></a>
+			<a href="javascript:;" class="del"></a>
+		</section>
+		<script>
+			
+			
+			
+			var data = [{
+				id: 0,
+				name: "新建文件夹"
+			}, {
+				id: 1,
+				name: "新建文件夹"
+			}, {
+				id: 2,
+				name: "新建文件夹"
+			}];
+			const files = document.getElementById('files');
+			const ul = document.getElementById('ul');
+			const del = document.querySelector('.del')
+			const add = document.querySelector('.add');
+			let num = 0
+			//点击新建文件夹按钮执行创建文件夹函数
+			add.onclick = function() {
+				createFile();
+			}
+			//点击删除文件夹按钮执行删除文件夹函数
+			del.onclick = function() {
+				delFile();
+			}
+			//创建文件函数开始
+			function createFile() {
+				if(num > data.length - 1) num = 0
+				//创建一个div
+				let addFile = document.createElement('div');
+				//创建的div的class名字为file
+				addFile.className = 'file';
+				//新创建的div的内容
+				addFile.innerHTML = `<div class="ico"></div>
+									<input type="checkbox" class="check">
+									<span>${data[num].name+num}</span>
+									<input type="text" class="text" style="display: none;">
+											`;
+				//把新创建的div添加到每一个div后面
+				files.appendChild(addFile);
+				
+				
+				num++
+				//获取到新创建的div
+				let afile = files.getElementsByClassName('file');
+				
+			    //获取到新创建的div里面的chekbox 的input
+				const aChecks = files.getElementsByClassName('check')
+				//循环所有的获取到新创建的div里面
+				for(let i = 0; i < afile.length; i++) {
+					//给创建的div添加鼠标滑过事件
+					afile[i].onmousemove = function() {
+						//当鼠标滑过后让div的className添加上fileActive
+						afile[i].classList.add('fileActive');
+					}
+					//鼠标移除事件
+					afile[i].onmouseout = function() {
+						//判断当前移除的div里的chekbox是否为选择状态
+						if(aChecks[i].checked) {
+							//如果是选择状态则div的className 添加fileActive
+							afile[i].classList.add('fileActive');
+						} else {
+							//如果是非选择状态这去除掉fileActive
+							afile[i].classList.remove('fileActive');
+						}
+					}
+				}
+			}
+			//删除文件夹函数
+			function delFile() {
+				//获取checkedbox
+				const aChecks = files.getElementsByClassName('check')
+				//循环所有的checkedbox
+				for(let i = 0; i < aChecks.length; i++) {
+					//判断checkedbox是否为true
+					if(aChecks[i].checked) {
+						//如果checkedbox为true则删除当前文件夹
+						aChecks[i].parentElement.remove();
+						//必须i--一下 否则一次只能删除掉一个
+						i--;
+					}
+				}
+			}
+			//		
+			//
+		</script>
+	</body>
+
+</html>

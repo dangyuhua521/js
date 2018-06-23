@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       #box {
+				width: 300px;
+				height: 300px;
+				background:red;
+				position: absolute;
+				left: 0;
+				top: 0;
+				overflow-y: scroll;
+			} 
+    </style>
+</head>
+<body style="height:3000px;width: 3000px;">
+ <div id="box">
+     <p>111</p>
+     <p>111</p>
+     <p>111</p>
+     <p>111</p>
+     <p>111</p>
+     <p>111</p>
+     <p>111</p>
+     <p>111</p>
+     <p>111</p>
+     <p>111</p>
+     <p>111</p>
+ </div>
+ <script>
+     var box = document.querySelector('#box');
+     var l = (document.documentElement.clientWidth-box.offsetWidth)/2;
+     var t = (document.documentElement.clientHeight-box.offsetHeight)/2;
+     box.style.left = l+'px';
+     box.style.top=t+'px';
+     //浏览器对滚动条距离会有记忆功能，当刷新页面中之后会回到之前拉到的位置，会触发一次事件
+    window.onresize = function(){
+        console.log('监听到了变化');
+        var scrollTop = document.documentElement.scrollTop;
+        var l = (document.documentElement.clientWidth-box.offsetWidth)/2;
+        var t = (document.documentElement.clientHeight-box.offsetHeight)/2;
+        box.style.left = l+'px';
+        box.style.top = t+'px';
+    }
+    window.onscroll = function(){
+        var scrollTop = document.documentElement.scrollTop;
+        var t = (document.documentElement.clientHeight-box.offsetHeight)/2;
+        box.style.top = t+'px';
+    }
+ </script>   
+</body>
+</html>

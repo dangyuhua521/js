@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var list = [
+            {
+               title:'菜单：1-1',
+               children:[
+                   {
+                       title:'菜单1-2',
+                       children:[
+                        {
+                            title:'菜单1-2-1'
+                        },
+                        {
+                            title:'菜单1-2-2'
+                        }
+                    ]
+                   },
+                   {
+                       title:'菜单1-3'
+                   }
+               ]
+            },
+            {
+               title:'菜单：2-1',
+               children:[
+                   {
+                     title:'菜单2-2'  
+                   }
+               ]
+            },
+            {
+               title:'菜单：3-1',
+               children:[
+                   {
+                       title:'菜单:3-2'
+                   }
+               ]
+            }
+        ]
+
+        var box = document.getElementById('box');
+        var flag= true;
+
+        createElements(box,list);
+
+        function createElements(ele,arr){
+            var newHtml = document.createElement('ul');
+            if(flag){
+                flag=!flag;
+            }else{
+                newHtml.style.display = 'none';
+            }
+            arr.forEach(function(e){
+                var newLi = document.createElement('li');
+                var newSpan = document.createElement('span');
+                newSpan.onclick = function(){
+                    if(this.nextElementSibling){
+                        var status = this.nextElementSibling.style.display;
+                        if(status== 'none'){
+                            this.nextElementSibling.style.display = 'block';
+                        }else if(status == 'block'){
+                            this.nextElementSibling.style.display = 'none';
+                        }
+                    }
+                    closeOtherBiches(this);
+                }
+                newSpan.innerHTML = e.title;
+                newLi.appendChild(newSpan);
+                if(e.children){
+                    createElements(newLi,e.children)
+                }
+                newHtml.appendChild(newLi);
+
+            })
+            ele.appendChild(newHtml)
+
+        }
+
+
+        function closeOtherBiches(that){
+            var lis = that.parentNode.parentNode.children;
+            for(var i=0;i<lis.length;i++){
+                if(lis[i].children[1]){
+                    lis[i].children[1].style.display='none';
+                }
+            }
+            if(that.nextElementSibling){
+                that.nextElementSibling.style.display='block';
+            }
+        }
+    </script>
+</body>
+</html>

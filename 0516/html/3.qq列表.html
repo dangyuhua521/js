@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li,
+			h2 {
+				margin: 0;
+				padding: 0;
+			}
+			
+			li {
+				list-style: none;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../css/qq.css"/>
+	</head>
+
+	<body onselectstart="return false;">
+		<div class="wrap">
+			<div class="list">
+				<h2><span></span>我的好友</h2>
+				<ul>
+					
+					<li>小佳Love</li>
+					<li>从来就是这么正经</li>
+					<li>leo是个胖子</li>
+					<li>momo不是陌陌</li>
+				</ul>
+				<h2><span></span>企业好友</h2>
+				<ul>
+					<li>习近平</li>
+					<li>普京</li>
+					<li>奥巴马</li>
+				</ul>
+				<h2><span></span>黑名单</h2>
+				<ul>
+					<li>安倍</li>
+					<li>杜特尔特</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			/*
+				分析：
+					1. 获取元素h2和ul,让一堆h2来控制ul
+					2. 点击h2的时候让对应ul展示出来，在点击h2的时候，让ul隐藏。切换显示隐藏
+			*/
+			var h2s = document.querySelectorAll('.list h2');
+			var uls = document.querySelectorAll('.list ul');
+			var len = h2s.length;
+			
+			for(var i = 0; i<len;i++){
+				h2s[i].index=i;
+				h2s[i].state=false;// 用来记录ul是否显示的，默认不显示的
+				h2s[i].onclick = function(){
+					// 让所有的h2背景为空，所有的ul为none
+					// for循环中包含了所点击的h2
+					for(var i = 0; i<len;i++){
+						h2s[i].style.background= '';
+						uls[i].style.display='none';
+						// 界面改了，样子也要改
+					
+					// 如果循环的每一个h2和点击的h2相同，就什么都不做
+						if(this==h2s[i]){
+				
+						}else{// 如果不相同，其他的ul都收回去了，状态就应该设置为false
+							h2s[i].state=false;
+						}
+					}
+					if(this.state){
+						this.style.background = '';
+						uls[this.index].style.display = 'none';
+						this.isShow = false;
+					}else{
+						this.style.background = 'yellow';
+						uls[this.index].style.display = 'block';
+						this.isShow = true;
+					}
+				}
+			}
+			
+			
+		</script>
+	</body>
+
+</html>

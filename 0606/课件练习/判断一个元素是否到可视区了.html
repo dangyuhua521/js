@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box img {
+            height: 500px;
+            display: block;
+            margin: 30px;
+
+        }
+    </style>
+</head>
+
+<body style="height: 3000px;width: 3000px;">
+    <div id="box">
+        <img src="./img/loading.gif" _src="./img/1.jpg">
+        <img src="./img/loading.gif" _src="./img/1.jpg">
+        <img src="./img/loading.gif" _src="./img/1.jpg">
+    </div>
+
+
+    <script>
+        var imgs = document.querySelectorAll('img');
+
+        function isView(el) {
+            var viewT = el.getBoundingClientRect().top; //到可视区上边的距离
+            var h = document.documentElement.clientHeight;
+
+            //viewT = viewT < 0 ? el.getBoundingClientRect().bottom : viewT;
+            /*
+            	元素到可视区上面的距离 < 0
+            		1. 全完在可视区外
+            		2. 有一点在可视区内
+            */
+            viewT = viewT < 0 ? el.offsetHeight + viewT : viewT;
+            return viewT < 0 ? false : viewT < h;
+
+        }
+
+        for (var i = 0; i < imgs.length; i++) {
+            if (isView(imgs[i])) {
+                imgs[i].src = imgs[i].getAttribute('src');
+
+            }
+        }
+
+        window.onscroll = function () {
+            for (var i = 0;i < imgs.length; i++) {
+                (function (i) {
+                    var _src = imgs[i].getAttribute('_src');
+            
+                    if (isView(imgs[i]) && _src) {
+                        setTimeout(function () {
+                            imgs[i].src = _src;
+                        }, 1000)
+                        imgs[i].removeAttribute('_src');
+
+                    }
+                })(i)
+
+            }
+        }
+    </script>
+</body>
+
+</html>

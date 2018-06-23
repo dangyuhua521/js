@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="count1 count">
+        <input/>
+        <button>+</button>
+        <input/>
+        <button>=</button>
+        <span>0</span>
+    </div>
+    <div class="count2 count">
+        <input/>
+        <button>+</button>
+        <input/>
+        <button>=</button>
+        <span>0</span>
+    </div>
+    <div class="count">
+        <input/>
+        <button>+</button>
+        <input/>
+        <button>=</button>
+        <span>0</span>
+    </div>
+    <div class="count">
+        <input/>
+        <button>+</button>
+        <input/>
+        <button>=</button>
+        <span>0</span>
+    </div>
+
+    <script>
+    var count= document.querySelectorAll('.count');
+    
+    for( var i = 0; i<count.length; i++){
+        countFn(count[i])
+    }
+    function countFn(c){
+        var buttons = c.querySelectorAll('button')
+        var input = c.querySelectorAll('input')
+        var span = c.querySelector('span')
+
+        buttons[1].onclick = function(){
+        span.innerHTML=Number(input[0].value)+Number(input[1].value)
+       }  
+    }
+  
+    </script>
+</body>
+</html>

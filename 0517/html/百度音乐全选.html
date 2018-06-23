@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+		</style>
+	<link rel="stylesheet" type="text/css" href="../css/baidu.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="baidu">
+				<ul id="list">
+					<li>
+						<div><input type="checkbox" name=""></div>
+						<span>泡沫</span>
+						<span>邓紫棋</span>
+					</li>
+					<li class="active">
+						<div><input type="checkbox" name=""></div>
+						<span>说爱你</span>
+						<span>蔡依林</span>
+					</li>
+					<li>
+						<div><input type="checkbox" name=""></div>
+						<span>稻香</span>
+						<span>周杰伦</span>
+					</li>
+					<li>
+						<div><input type="checkbox" name=""></div>
+						<span>我的梦</span>
+						<span>张靓颖</span>
+					</li>
+					<li>
+						<div><input type="checkbox" name=""></div>
+						<span>怎么说我不爱你</span>
+						<span>萧敬腾</span>
+					</li>
+					<li>
+						<div><input type="checkbox" name=""></div>
+						<span>无处安放</span>
+						<span>白若溪</span>
+					</li>
+				</ul>
+				<div class="select">
+					<span class="selectAll">
+						<input type="checkbox" name="">
+						<span>全选</span>
+					</span>
+					<div class="others">
+						<span><em></em>收藏</span>
+						<span><em></em>添加</span>
+						<span><em></em>删除</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var check = document.querySelectorAll('#list input')
+			var checkAll = document.querySelector('.selectAll input');
+			var len =check.length;
+			
+			//无论点击哪一个单选，都去遍历一下所有的checkbox，统计是否所有都选中
+			var n = 0;
+			for( var i = 0; i < len; i++){
+				check[i].onclick = function(){
+					n = 0;
+					// 统计所有的chekbox，哪一个选中就+1
+					// 无论点击哪一个checkbox都要检查一下
+					for( var i = 0; i < len; i++){
+						if(check[i].checked){
+							n++;
+						}
+					}
+					if(n == len){
+						checkAll.checked = true
+					}else{
+						checkAll.checked = false
+					}
+				}
+			}
+			
+			checkAll.onclick =function(){
+				for(var i = 0; i<len; i++){
+					check[i].checked = this.checked;
+				}
+			}
+			
+			
+
+		</script>
+	</body>
+
+</html>

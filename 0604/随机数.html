@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        	Math对象
+				处理数字相关的
+			Math.ceil() 	对数进行向上取整  大于小数最近的的整数
+
+			Math.floor() 	对数进行向下取整
+
+			Math.round()	对数进行四舍五入
+
+			Math.abs() 	取数的绝对值
+
+            作用
+						返回0-1之间的随机数，不包含1
+				语法
+						number Math.random()
+
+				返回值
+					返回0-1之间的随机数，不包含1.
+
+				常用的取整公式：
+					x ~ y : Math.round(Math.random()*(y-x) + x)
+
+            */
+            // 1 - 8 之间的随机数 整数
+
+			// Math.random() 0 - 0.99999999999999
+
+			// Math.random() * 7 + 1
+
+			// x ~ y之间的随机数 Math.random() * (y-x) + x;
+            console.log(Math.round(Math.random() *7+1));//2
+            console.log(Math.round(Math.random()*(80-10)+10));//48
+            
+            console.log(Math.random());
+            /*
+            for(var i = 0; i<100;i++){
+                consloe.log(Math.random());
+            }
+            */
+        
+       
+    </script>
+</body>
+
+</html>

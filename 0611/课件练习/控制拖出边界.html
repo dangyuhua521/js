@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+   <div class="box"></div>
+   <script>
+       var box = document.querySelector('.box')
+       //记录鼠标到元素左边和上边的距离
+       var boxX = 0,boxY = 0;
+       box.onmousedown=function(ev){
+        //    鼠标到元素左边上和上边的距离
+           boxX=ev.clientX-box.offsetLeft;
+           boxY=ev.clientY-box.offsetTop;
+
+            document.onmousemove = function(ev){
+                // 移动过程中元素的left值
+                // 移动过程中鼠标的位置-鼠标到元素左边和上边的距离
+                var l = ev.clientX-boxX;
+                var t = ev.clientX-boxY;
+                if(l<50) l =0;
+                if(t<50) t =0;
+                if(l>document.documentElement.clientWidth-box.offsetWidth){
+                    l=document.documentElement.clientWidth-box.offsetWidth
+                }
+                if(t>document.documentElement.clientHeight-box.offsetHeight){
+                    t=document.documentElement.clientHeight-box.offsetHeight
+                }
+                box.style.left = l+'px';
+                box.style.top =t+'px';
+            }
+            document.onmouseup = function(){
+                //解除move事件
+                document.onmousemove = document.onmouseup =null;
+            }
+       } 
+      
+       
+   </script>
+</body>
+</html>

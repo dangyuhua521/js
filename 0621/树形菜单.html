@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+			ul ul {
+				display: none;
+			}
+			ul.show {
+				display: block;
+			}
+		</style>
+</head>
+
+<body>
+    <div id="box">
+      <!-- <ul cla>
+				<li>
+					<span>菜单1_1</span>
+					<ul>
+						<li>
+							<span>菜单2_1</span>
+						</li>
+						<li>
+							<span>菜单2_2</span>
+						</li>
+						<li>
+							<span>菜单2_3</span>
+							<ul>
+								<li>
+									<span>3_1</span>
+								</li>
+								<li>
+									<span>3_2</span>
+								</li>
+								<li>
+									<span>3_3</span>
+									<ul>
+										<li>
+											<span>4_1</span>
+										</li>
+										<li>
+											<span>4_2</span>
+										</li>
+										<li>
+											<span>4_3</span>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<span>菜单1_2</span>
+					<ul>
+						<li>
+							<span>菜单2_1</span>
+						</li>
+						<li>
+							<span>菜单2_2</span>
+						</li>
+						<li>
+							<span>菜单2_3</span>
+						</li>
+					</ul>
+				</li>
+			</ul> -->
+    </div>
+    <script>
+       
+			var list = [
+				{
+					title: '菜单1_1',
+					children: [
+						{
+							title: '菜单2_1',
+							children: [
+								{
+									title: '3'
+								},
+								{
+									title: '3',
+									children: [
+										{
+											title: '4'
+										},
+										{
+											title: '4'
+										}
+									]
+								}
+							]
+						},
+						{
+							title: '菜单2_2',
+							children: [
+								{
+									title: '3'
+								},
+								{
+									title: '3',
+									children: [
+										{
+											title: '4'
+										},
+										{
+											title: '4'
+										}
+									]
+								}
+							]
+						},
+						{
+							title: '菜单2_3',
+							children: [
+								{
+									title: '3'
+								},
+								{
+									title: '3',
+									children: [
+										{
+											title: '4'
+										},
+										{
+											title: '4'
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					title: '菜单1_2'
+				},
+				{
+					title: '菜单1_3',
+					children: [
+						{
+							title: '菜单2_1'
+						},
+						{
+							title: '菜单2_2',
+							children: [
+								{
+									title: '3'
+								},
+								{
+									title: '3',
+									children: [
+										{
+											title: '4'
+										},
+										{
+											title: '4'
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+
+
+        var box = document.getElementById('box');
+
+        function createUl(data){
+            var html ='<ul>'
+            for(var i =0;i<data.length;i++){
+                html+='<li><span>'+data[i].title+'</span>'
+                if(data[i].children){
+                    //传入一个数组，返回ul结构
+                    html+=createUl(data[i].children)
+                }
+                 html +='</li>'
+            }
+            html+='</ul>'
+            return html;
+        }    
+        box.innerHTML = createUl(list)
+        var spans = document.querySelectorAll('#box span')
+
+        var first = document.querySelector('#box>ul')
+
+        function addEvent(showUl){
+            var lis = showUl.children;
+            if(lis[0].children[0].onclick) return;
+            for( var i =0; i<lis.length;i++){
+                fn(lis[i])
+            }
+        }
+        addEvent(first)
+        function fn(li){
+            var next = li.children[1];
+            if(next){
+                li.children[0].onclick = function(){
+                    var bl = next.classList.toggle('show');
+                    if(bl){
+                        addEvent(next)
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

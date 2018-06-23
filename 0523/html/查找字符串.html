@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+			body {
+				margin: 0;
+			}
+			
+			body {
+				background: #9ed8e4;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			img {
+				vertical-align: top;
+			}
+			
+			.pad18 {
+				padding: 18px;
+				box-sizing: border-box;
+			}
+			
+			.w409 {
+				width: 409px;
+			}
+			
+			.w202 {
+				width: 202px;
+			}
+			
+			.warp {
+				margin: 30px auto;
+				width: 575px;
+				height: 519px;
+			}
+			
+			.warpTopBox {
+				background: #fff;
+				border-radius: 10px;
+				height: 328px;
+				width: 100%;
+			}
+			
+			.warpTopText {
+				width: 403px;
+				height: 273px;
+				border: 1px solid #a5dde9;
+				float: left;
+				padding: 19px;
+				box-sizing: border-box;
+				font: 14px/30px "微软雅黑";
+				color: #2c626c;
+				text-shadow: 3px 3px 3px #fff;
+				background: #ebf8f9;
+			}
+			
+			.warpTopBtns {
+				float: right;
+				height: 273px;
+				width: 100px;
+				position: relative;
+			}
+			
+			.warpTopBtns span {
+				width: 100px;
+				height: 80px;
+				/*font: 16px/80px "微软雅黑";*/
+				font-size: 16px;
+				text-align: center;
+				display: inline-block;
+				cursor: pointer;
+				border-radius: 5px;
+				color: #fff;
+				font-weight: bold;
+				position: absolute;
+				left: 0;
+			}
+			
+			.warpTopBtns span:nth-of-type(1) {
+				background: #83dff1;
+				top: 0;
+				z-index: 3;
+			}
+			
+			.warpTopBtns span:nth-of-type(2) {
+				background: #9e9bf6;
+				top: 0;
+				z-index: 2;
+				opacity: 0;
+				transition: 300ms;
+			}
+			
+			.warpTopBtns span:nth-of-type(3) {
+				background: #93e69d;
+				top: 0;
+				opacity: 0;
+				transition: 300ms;
+				z-index: 1;
+			}
+			
+			.warpBttomBox {
+				width: 100%;
+				height: 160px;
+				background: #fff;
+				border-radius: 10px;
+				margin-top: 32px;
+				display: none;
+			}
+			
+			.warpBttombtns {
+				height: 41px;
+				width: 100%;
+			}
+			
+			.warpBttombtns span {
+				width: 100px;
+				color: #fff;
+				height: 41px;
+				text-align: center;
+				font: 14px/41px "微软雅黑";
+				display: inline-block;
+				border-radius: 3px;
+				cursor: pointer;
+			}
+			
+			.warpBttombtns span:nth-of-type(1) {
+				background: #9e9bf6;
+			}
+			
+			.warpBttombtns span:nth-of-type(2) {
+				background: #93e69d;
+				margin-left: 20px;
+			}
+			
+			.warpBttombtns a {
+				display: block;
+				float: right;
+				width: 41px;
+				height: 41px;
+				font: 18px/41px "微软雅黑";
+				text-align: center;
+				color: #8ee1ee;
+			}
+			
+			.findInput {
+				margin-top: 20px;
+				display: none;
+			}
+			
+			.findGob {
+				height: 46px;
+				border: 2px solid #5ba8fc;
+				background: #ebf8f9;
+				border-radius: 2px;
+				padding: 0px 3px;
+			}
+			
+			.findSubBtn {
+				height: 52px;
+				background: #9e9bf6;
+				color: #fff;
+				border: none;
+				padding: 0 20px;
+				cursor: pointer;
+			}
+			
+			.warpTopText span {
+				/*color: red;*/
+				background: pink;
+			}
+			
+			.active {
+				display: block;
+			}
+			
+			.warpTopBtns span i {
+				display: block;
+				width: 29px;
+				height: 28px;
+				margin: 10px auto;
+			}
+			
+			.addico {
+				transition: 1s;
+			}
+			
+			.findInput {
+				float: left;
+			}
+			
+			.findInput input {
+				height: 48px;
+				background-color: rgb(238, 248, 250);
+				border: 1px solid rgb(171, 221, 231);
+				border-radius: 2px;
+				color: #004654;
+				font-family: 'Lantinghei SC ';
+				padding-left: 5px;
+				float: left;
+			}
+			
+			#text1 {
+				width: 400px;
+				display: block;
+			}
+			
+			#text2,
+			#text3 {
+				display: none;
+				width: 190px;
+			}
+			
+			#text2 {
+				margin-right: 13px;
+			}
+			
+			#btn1 {
+				float: left;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="warp">
+			<div class="warpTopBox pad18">
+				<div class="warpTopText">妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一途中全新单独快乐学习方法！目前主要针对的是javascript培训，同时还提供了Css教程、javascript视频、js特效等，最新推出了外地学员们喜欢的javascript网络课程服务，同时还为处于javascript入门阶段的朋友录制了大量javascript视频，其中涉及了大量的javascript基础知识，希望妙味课堂推出的javascript网络培训课程能带给大家更多的惊喜。 </div>
+				<div class="warpTopBtns"> <span><i class="addico">
+						<img src="../img/ALL_07.png"/>
+						
+					</i>展开</span> <span class="find"><i>
+						<img src="../img/li_bg_12.png" >
+					</i>查找</span> <span class="find">
+						<i>
+						<img src="../img/li_bg_14.png" alt="">
+					</i>
+						替换</span> </div>
+			</div>
+			<div class="warpBttomBox pad18">
+				<div class="warpBttombtns"> <span>查找</span> <span>替换</span>
+					<a href="#" class="close"> <img src="../img/close.png" /> </a>
+				</div>
+				<div class="findInput find active">
+					<form> <input id="text1" class="bg" type="text" placeholder="输入要查找的内容"> <input id="text2" class="bg" type="text" placeholder="输入要查找的内容"> <input id="text3" class="bg" type="text" placeholder="输入要替换的内容"> </form>
+				</div>
+				<div id="btn1"> <input type="button" id="findSubBtn" class="findSubBtn" value="提交" /> </div>
+			</div>
+		</div>
+    <script>
+        var warpTopText = document.querySelector('.warpTopText');//获取文字描述
+        var warpBttomBox = document.querySelector('.warpBttomBox');
+        var warpTopBtns = document.querySelector('.warpTopBtns');//获取展开按钮
+        var spans = document.getElementsByTagName('span');//获取查找、替换按钮的span
+        var warpSpans = document.querySelectorAll('.warpBttombtns span');//获取展开按钮下面的所有span
+        var close = document.querySelector('.close');//获取关闭按钮
+        var text1 = document.getElementById('text1');
+        var text2 = document.getElementById('text2');
+        var text3 = document.getElementById('text3');//获取输入框
+        var findSubBtn = document.getElementById('findSubBtn');//获取查找按钮
+        var addico = document.querySelector('.addico');//获取展开按钮
+        
+        var onOff = false;
+        //给关闭按钮和查找、替换添加点击事假
+        close.onclick = spans[0].onclick = function(){
+			
+            warpBttomBox.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

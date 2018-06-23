@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="miaov">
+        <!-- 文字描述 -->
+        <li>123</li>
+        <li>1234</li>
+    </ul>
+    <script>
+        var miaov = document.getElementById('miaov');
+        var childNodes = miaov.childNodes;
+        // console.log(childNdes)//[text, li, text, li, text]
+        // console.log(miaov.nodeName);//UL
+        // console.log(miaov.nodeType);//1
+        // console.log(miaov.firstElementChild);//第一个子节点
+        // console.log(miaov.lastElementChild)//获取元素中最后一个子节点
+        // console.log(miaov[0].)
+        console.log(miaov.childNodes);
+        console.log(miaov.childNodes[0].nodeType);//3
+        console.log(miaov.childNodes[1].nodeType);//8
+        for(var i = 0;i < childNodes.length; i++){
+           
+            if(childNodes[i].nodeType===1){
+                console.log(childNodes[i]);
+            }
+        }
+    </script>
+</body>
+</html>

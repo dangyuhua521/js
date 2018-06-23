@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>星星评分</title>
+		<style>
+			body,h1 {
+				margin: 0;
+				padding: 0;
+				-webkit-font-smoothing: antialiased;
+			}
+			.starts{
+				overflow:hidden;
+			}
+			.starts span{
+				display: block;
+				float: left;
+				padding: 3px;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../css/pingfen.css"/>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="baidu">
+				<div class="caption">
+					<h1></h1>
+					<span>总体评价</span>
+				</div>
+				<div class="context">
+					<div class="starts">
+						<span>☆</span>
+						<span>☆</span>
+						<span>☆</span>
+						<span>☆</span>
+						<span>☆</span>
+					</div>
+					<div class="info"></div>
+				</div>
+				<div class="tips">
+					小提示：点击星星就能打分
+				</div>
+			</div>
+		</div>
+		<script>
+			var stars = document.querySelectorAll('.starts span');//获取所有的星星元素
+			var info = document.querySelector('.info');//获取标签元素
+			var arr = ['极差','一般','不错','推荐','力推'];//声明显示文字的数组
+			var ishow = false;//记录点击状态
+			 var chanIndex = -1;//记录一个数字
+			
+			 for(i = 0; i<stars.length; i++){
+				 stars[i].index=i;//记录星星的下标
+				 //鼠标移入
+				stars[i].onmouseover = function(){
+					for(i = 0; i<stars.length; i++){
+						if(stars[i].index<=this.index){
+						//如果鼠标移入的星星是第2就让星星的颜色显示为黄色
+							if(this.index<2){
+								stars[i].style.color='yellow'
+							}else{//否则鼠标当前移入>2让所有的星星颜色变为红色
+								stars[i].style.color ='red'
+							}	
+						}else{
+							stars[i].style.color =''
+						}
+					}
+					//鼠标移入时，让info显示推荐的字样的标签显示的状态
+					info.style.display = 'block';
+					//把存储的内容输出显示在页面
+					info.innerHTML =arr[this.index]
+				}
+				//鼠标移出的时
+				stars[i].onmouseout =function(){
+					if(chanIndex){
+						for(i = 0; i<stars.length; i++){
+							if( stars[i].index){
+								if(chanIndex<2){
+									tars[i].style.color='yellow';	
+								}else{
+									stars[i].style.color ='red'
+								}
+							}else{
+									tars[i].style.color ='';
+							}
+							
+						}
+						
+					}else{
+						for(i = 0; i<stars.length; i++){
+							stars[i].style.color='';
+						}	
+					}
+					info.style.display ='none'
+				}
+				stars[i].onclick= function(){
+					ishow=true;
+					chanIndex=this.index;
+				}
+			 }
+		</script>
+	</body>
+</html>

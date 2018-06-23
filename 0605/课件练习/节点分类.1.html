@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="miaov" class="abc" test='1'>
+        <!-- 文字描述 -->
+        <li>123</li>
+        <li>1234</li>
+    </ul>
+    <abc>hello,我就是abc</abc>
+    <script>
+        var miaov = document.getElementById('miaov');
+        var childNodes = miaov.childNodes;
+       console.log(miaov.childNodes);
+       console.log(miaov.childNodes[0].nodeType);//3
+       console.log(miaov.childNodes[1].nodeType); //8
+       console.log(miaov.id);//属性，不是节点
+       console.log(miaov.attributes);//拿到所有属性节点
+       console.log(miaov.attributes[0].nodeType);//2
+        console.dir(miaov);
+    </script>
+</body>
+</html>

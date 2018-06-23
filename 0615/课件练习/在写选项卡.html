@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            display: none;
+        }
+        .yellow {
+            background: yellow;
+        }
+    </style>
+  
+</head>
+<body>
+<div style="display: block;">世界杯</div>
+<div>俄罗斯</div>
+<div>沙特</div>
+<button class="yellow">世界杯</button>
+<button>俄罗斯</button>
+<button>沙特</button>  
+<script src="jquery-3.3.1.js"></script> 
+<script>
+// 自己循环
+
+    // 记录一个元素的下标，缓存一个数据
+
+var buttons = $('button');
+console.log(buttons);
+buttons.each(function(index,item){
+    //this=>循环出来元素
+    console.log(index,item,this);
+    //给每一个绑定一个自定义属性，记录下标
+    $(item).data('i',index)//数据存在内存中
+    $(item).attr('i',index)//存在标签行间
+    $(item).click(function(){
+        buttons.removeClass('yellow')
+        $(this).addClass('yellow')
+        var i = $(this).data('i');
+        console.log($(this).attr('i'));
+        $(this).removeAttr('i')
+        $('div').css('display','none').eq(i).css('display','block')
+    })
+})
+
+</script>
+</body>
+</html>

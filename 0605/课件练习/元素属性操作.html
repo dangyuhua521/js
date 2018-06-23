@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <!-- 行间属性  attribute   -->
+  <img src="./1.jpg" id="miaov" test='123'>
+  <script>
+      //property 对象上的属性
+      var miaov= document.querySelector('#miaov');
+      console.log(miaov.src);//绝对路径
+      console.log(miaov.getAttribute('src'));
+      console.log(miaov.getAttribute('test'));
+      
+      miaov.setAttribute('abc',1);
+      
+  </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	#box{
+		width: 900px;
+		height: 500px;
+		background: url(img/bg.png) no-repeat;
+		position: relative;
+	}
+	#left{
+		width: 335px;
+		height: 188px;
+		position: absolute;
+		left: 148px;
+		top: 155px;
+		overflow: hidden;
+	}
+	#imgs1{
+		width: 100%;
+		height: 100%;
+	}
+	#right{
+		width: 200px;
+		height: 200px;
+		overflow: hidden;
+		position: absolute;
+		left: 580px;
+		top: 150px;
+		border-radius: 50%;
+		background: url(img/border.png) no-repeat;
+	}
+	#mask{
+		width: 50px;
+		height: 50px;
+		background: #deadbb;
+		border-radius: 50%;
+		opacity: .7;
+		position: absolute;
+		display: none;
+	}
+	#border{
+		width: 184px;
+		height: 184px;
+		position: absolute;
+		left: 7px;
+		top: 7px;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+	#img2{
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="left">
+			<img src="img/img.png" id="imgs1">
+			<div id="mask"></div>
+		</div>
+		<div id="right">
+			<div id="border">
+				<img src="img/img.png" id="img2">
+			</div>
+		</div>
+	</div>
+	<script >
+	var mask = document.getElementById('mask');
+	var left = document.getElementById('left');
+	var img2 = document.getElementById('img2');
+	var right = document.getElementById('border');
+	var box = document.getElementById('box')
+	var minX = 0;
+	var minY = 0;
+
+	console.dir(left)
+
+	left.onmouseover = function(){
+		//当鼠标移入时让mask显示
+		mask.style.display = 'block';
+		//获取mask的定位最大值
+		var maxX = left.clientWidth-mask.clientWidth;
+		var maxY = left.clientHeight-mask.clientHeight;
+		//获取计算img2的图片宽高并设置
+		var imgWidth = right.clientWidth*left.clientWidth/mask.clientWidth;
+		var imgHeight = right.clientHeight*left.clientHeight/mask.clientHeight;
+		img2.style.width = imgWidth + 'px';
+		//获取mask相对于img2移动的比例
+		var imgLeftW = imgWidth/left.clientWidth;
+		var imgLeftH = imgHeight/left.clientHeight;
+		
+		left.onmousemove = function(e){
+			//获取mask相对于left的定位值
+			var x = e.clientX-left.offsetLeft-mask.offsetWidth/2;
+			var y = e.clientY-left.offsetTop-mask.offsetHeight/2;
+			//防止mask超出left范围
+			if(x<minX) x = minX;
+			if(y<minY) y = minY;
+			if(x>maxX) x = maxX;
+			if(y>maxY) y = maxY;
+			//设置mask的定位值
+			mask.style.left =x+'px';
+			mask.style.top= y+'px';
+			//设置img2的定位值
+			img2.style.left = -x * imgLeftW+'px';
+			img2.style.top = - y * imgLeftH+'px';
+		}
+	}
+
+	left.onmouseout = function(){
+		//当鼠标移出时将mask隐藏
+		mask.style.display = '';
+	}
+
+	
+	
+	</script>
+</body>
+</html>

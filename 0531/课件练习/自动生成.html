@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var list = [
+            {
+               title:'菜单：1-1',
+               children:[
+                   {
+                       title:'菜单1-2'
+                   },
+                   {
+                       title:'菜单1-3'
+                   }
+               ]
+            },
+            {
+               title:'菜单：2-1',
+               children:[
+                   {
+                     title:'菜单2-2'  
+                   }
+               ]
+            },
+            {
+               title:'菜单：3-1',
+               children:[
+                   {
+                       title:'菜单:3-2'
+                   }
+               ]
+            }
+        ]
+
+        var box = document.getElementById('box');
+        var html = '<ul>';
+        for( var i = 0; i<list.length;i++){
+            html+='<li><span>'+list[i].title+'</span>';
+            if(list[i].children){
+                var two = list[i].children;
+            html+='<ul>';
+            for(var j = 0; j<two.length;j++){
+                html+='<li><span>'+two[j].title+'</span></li>'
+            }
+            html+='</ul>'
+            }
+            
+            html+='</li>';
+
+        }
+         html+='</ul>'  
+         box.innerHTML = html;
+    </script>
+</body>
+</html>

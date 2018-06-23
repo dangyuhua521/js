@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 0px;
+            height: 0px;
+            background:pink;
+            border: 1px dashed #000;
+            position: absolute;
+            opacity:.5;
+            top: 0;
+            left: 0;
+        }
+       
+    </style>
+</head>
+<body>
+    <!-- <div class="box"></div> -->
+    <script>
+        
+        document.onmousedown = function(e){
+            var div = document.createElement('div')
+            div.classList.add('box');
+            document.body.appendChild(div); 
+            var downX = e.clientX;
+            var downY = e.clientY;
+            div.style.left = downX+'px';
+            div.style.top = downY+'px';
+        document.onmousemove = function(e){
+            //元素的宽高=鼠标移动过程中的位置-鼠标摁下的位置
+            console.log(e.clientX-downX)
+            div.style.width = Math.abs(e.clientX - downX)+'px';
+            div.style.height = Math.abs(e.clientY - downY)+'px';
+        
+            //控制left和top 和鼠标一致
+            div.style.left = Math.min(e.clientX,downX)+'px';
+            div.style.top = Math.min(e.clientY,downY)+'px';
+        }
+
+            document.onmouseup = function(e){
+                document.onmousemove = document.onmouseup =null;
+            }
+        }
+    </script>
+</body>
+</html>

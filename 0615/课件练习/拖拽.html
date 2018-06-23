@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .one{
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+        }
+        .two{
+            width: 300px;
+            height: 300px;
+            background: pink;
+            margin:80px;
+            position: relative;
+        }
+        .three{
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            margin: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+          
+        }
+    </style>
+</head>
+<body>
+   <div class="one">
+       <div class="two">
+           <div class="three"></div>
+       </div>
+   </div> 
+   <script src="jquery-3.3.1.js"></script>
+   <script>
+       console.log($('.three').position());
+       console.log($('.three').offset())
+       $('.three').mousedown(function(e){
+           var disX = e.clientX-$(this).position().left;
+           var disY = e.clientY-$(this).position().top;
+           $(document).mousemove(function(e){
+               $('.three').css({
+                   left:e.clientX-disX,
+                   top:e.clientY-disY
+               })
+           })
+           $(document).mouseup(function(e){
+               $(document).off('mousemove mouseup')
+           })
+       })
+   </script>
+</body>
+</html>

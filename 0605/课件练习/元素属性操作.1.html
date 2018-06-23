@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  	<!--行间属性 attribute-->
+		
+      <button id="btn">按钮</button>
+      <ul id="miaov"></ul>
+      <script>
+          btn.onclick  = function (){
+              // 动态的生成script，引入js文件
+              var script = document.createElement('script');	
+              script.src = './createLi.js';
+              document.body.appendChild(script);
+          }
+      </script>
+</body>
+</html>

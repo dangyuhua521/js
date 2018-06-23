@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+        function fnFlip(li, idx) {
+            var ps = li.getElementsByTagName('p')[0],
+                aImg = li.getElementsByTagName('img');
+
+            if (str.charAt(idx) == ':') {
+                aImg[0].src = '../2018.6.1/img/nfh.png';
+                setTimeout(function () {
+                    aImg[0].src = '../2018.6.1/img/fuh.png';
+                }, 50)
+            } else {
+                aImg[1].src = '../2018.6.1/img/' + str.charAt(idx) + '.png';
+                if (aImg[0].src != aImg[1].src) {
+                    doMove(ps, 'top', 10, -208, function () {
+                        aImg[0].src = aImg[1].src;
+                        ps.style.top = 0 + 'px';
+                    })
+                }
+            }
+        }
+   </script> 
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 封装一个方法，把传入的字符串的首字母转成大写,返回首字母转大写后端额字符串
+           function toFirstUpperCase(str){
+               str = str.trim();
+               return  str.charAt(0).toUpperCase()+str.slice(1);
+           }
+           toFirstUpperCase('abc'); // "Abc"ss
+           console.log(toFirstUpperCase('abc'))
+
+           // 2  封装一个方法,把传入的字符串的每一个单词的首字母转成大写，返回转成大写的字符串
+           
+           function toAllUpperCase(str){
+               str = str.trim();
+               var arr = str.split(' ');
+               for( var i = 0;i<arr.length;i++){
+                   arr[i]= arr[i].charAt(0).toUpperCase()+arr[i].slice(1);
+                   //返回字符串
+                return arr.join(' ')
+               }
+                
+               
+           }
+           console.log(toAllUpperCase('i am wang i very smart')); // 'I Am Wang I Very Smart'
+   </script>
+</body>
+</html>

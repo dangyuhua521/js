@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .three {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+
+        .one {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+        }
+
+        .two {
+            width: 300px;
+            height: 300px;
+            background: red;
+            margin: 0 auto;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" class="message" />
+    <input type="button" class="btn" value="提交" />
+
+    <ul class="list">
+        <li>
+            <span>标题</span>
+            <button>删除</button>
+        </li>
+    </ul>
+    <script src="jquery-3.3.1.js"></script>
+    <script>
+        
+        $('.btn').click(function () {
+            var value = $('.message').val();
+
+
+            var newLi = $('<li><span>' + value + '</span><button>删除</button></li>')
+
+            //newLi.appendTo($('.list'))
+            newLi.prependTo($('.list'))
+
+            $('.message').val('')
+        })
+
+        $('.list').on('click', 'button', function () {
+            //alert('删除')
+
+            console.log(this) // this => 事件源的
+
+            $(this).parent().remove()
+        })
+    </script>
+</body>
+
+</html>

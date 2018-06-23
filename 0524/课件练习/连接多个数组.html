@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 复制一份提出来，原来的还保留
+    var arr = ['a','b','c','d'] 
+    var arr2 = [1,2,3];
+    var news = arr.concat(arr2);
+      console.log(news);//["a", "b", "c", "d", 1, 2, 3]
+    // 会把参数的数组，每一项都会放在新数组中
+    var news2 = arr.concat(arr2,['ggg','kkkk'],['lllll']);  
+        console.log(news2)
+    </script>
+</body>
+</html>

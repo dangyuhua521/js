@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="height: 3000px;">
+   <input type="" value="0" id="inputs">
+   <input type="" value="0" id="inputs2">
+   <script>
+       function addWheel(el,upFn,downFn){
+        el.onmousewheel = wheel;
+        // console.log(1123)
+        el.addEventListener('DOMMouseScroll',wheel);
+            function wheel(e){
+                console.log(e.wheelDelta);//向上正数 向下负数
+                console.log(e.detail);//向上负数 向下正数
+                var direction = true;//向上
+                //ie和chrome支持这个属性，向上正数 记录为true 向下负数 记录为fale
+                if(e.wheelDelta){
+                    direction = e.wheelDelta > 0 ? true:false;
+                }else if(e.detail){
+                    //ff支持这个属性，向上负数 记录为true 向上正数 记录为false
+                    direction = e.detail < 0 ? true:false;
+                }
+                if(direction){
+                    // console.log('向上');
+                    // this.value =++this.value
+                    typeof upFn ==='function'&& upFn();
+                }else{
+                    // console.log('向下')
+                    // this.value =++this.value 
+                    if(typeof downFn ==='function'){
+                        downFn();
+                    }
+                }
+                e.preventDefault()
+            }
+        }
+        addWheel(inputs,function(){
+            inputs.value =++inputs.value;
+
+        },function(){
+            inputs.value = --inputs.value;
+        })
+        addWheel(inputs2,function(){
+            inputs2.value = 100+inputs2.value;
+        })
+       
+      
+   </script>
+</body>
+</html>

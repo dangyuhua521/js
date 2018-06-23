@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li{
+            list-style: none;
+
+        }
+    </style>
+</head>
+<body>
+   <ul>
+       <li>
+            <span>姓名：XXX</span>
+            <span>身高:XXXcm</span>
+            <button>删除：</button> 
+       </li>
+       <li>
+            <span>姓名：XXX</span>
+            <span>身高:XXXcm</span>
+            <button>删除：</button> 
+        </li>
+        <li>
+            <span>姓名：XXX</span>
+            <span>身高:XXXcm</span>
+            <button>删除：</button> 
+        </li>
+   </ul> 
+   <script>
+       var list = document.querySelector('ul');
+       var arr = [
+            {
+                name:"leo",
+                height: 180
+            },
+            {
+                name:"duoduo",
+                height: 190
+            },
+            {
+                name:"momo",
+                height: 130
+            }]
+   
+        function render(){
+            var str ='';
+            for(i = 0; i<arr.length; i++){
+                str  += "<li>\
+                            <span>姓名："+arr[i].name+"</span>\
+                            <span>身高："+arr[i].height+"cm</span>\
+                            <button>删除</button>\
+                        </li>"
+            }
+            list.innerHTML=str;
+        
+            var btns = document.querySelectorAll('button');
+                for(i = 0; i<btns.length; i++){
+                    btns[i].index=i;
+                    btns[i].onclick = function(){
+                        arr.splice(this.index,1);
+                        render();
+                    }
+                
+                }
+        }
+        render();
+        var btns = document.querySelectorAll('button');
+                for(i = 0; i<btns.length; i++){
+                    btns[i].index=i;
+                    btns[i].onclick = function(){
+                        arr.splice(this.index,1);
+                        render();
+                    }
+                
+                }
+   </script>
+</body>
+</html>

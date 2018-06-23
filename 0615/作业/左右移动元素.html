@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+        }
+
+        .clear:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        #content {
+            width: 614px;
+            height: 630px;
+            background-color: rgba(115, 103, 195, 0.8);
+            margin: 150px auto;
+            position: relative;
+        }
+
+        .title {
+            width: 441px;
+            height: 420px;
+            background-color: #4a34a2;
+            position: absolute;
+            top: 144px;
+            left: 80px;
+        }
+
+        .towardL {
+            width: 86px;
+            height: 30px;
+            background-color: #01efd8;
+            color: white;
+            font-size: 18px;
+            line-height: 30px;
+            text-align: center;
+            position: absolute;
+            top: 144px;
+            left: 178px;
+            border-radius: 4px;
+        }
+
+        .towardR {
+            width: 86px;
+            height: 30px;
+            background-color: #45a4fe;
+            color: white;
+            font-size: 18px;
+            line-height: 30px;
+            text-align: center;
+            position: absolute;
+            top: 198px;
+            left: 178px;
+            border-radius: 4px;
+
+        }
+
+        .left {
+            width: 162px;
+            height: 100%;
+            background-color: #3c278b;
+            float: left;
+        }
+
+        ul li {
+            line-height: 40px;
+            font-size: 16px;
+            color: white;
+        }
+
+        .right {
+            width: 162px;
+            height: 100%;
+            background-color: #3c278b;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content" class="clear">
+        <div class="title">
+            <strong class="towardL"><向左</strong>
+                    <strong class="towardR">向右></strong>
+                    <div class="left">
+                        <ul class="list">
+                            <li>小程序</li>
+                            <li>jQuery</li>
+                            <li>AJAX</li>
+                            <li>js基础-2</li>
+                            <li>移动端实践</li>
+                        </ul>
+                    </div>
+                    <div class="right">
+                        <ul class="list">
+                            <li>Node</li>
+                            <li>ECMA6</li>
+                            <li>面向对象-中</li>
+                            <li>React</li>
+                            <li>js基础-1</li>
+                        </ul>
+                    </div>
+        </div>
+    </div>
+    <script src="jquery-3.3.1.js"></script>
+    <script>
+       $('.towardL').click(function(){
+           
+       }) 
+    </script>
+</body>
+
+</html>

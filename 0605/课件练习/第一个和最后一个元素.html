@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>hello</div>
+    <ul id="miaov" class="abc" test='1'>
+        <!-- 文字描述 -->
+        <li>123</li>
+        <li>456</li>
+        <li>1234</li>
+        <li>456</li>
+        <li>1234</li>
+    </ul>
+    <abc>hello,我就是abc</abc>
+    <script>
+        function pes(node){
+            return node.previousElementSibling;
+        }
+        function nes(node){
+            return node.nextElementSibling;
+        }
+        function firstNode(node){
+            return node.firstElementChild
+        }
+        function lastNode(node){
+            return node.lastElementChild;
+        }
+        var miaov = document.getElementById('miaov');
+        
+        miaov.firstElementChild.style.background = 'red';
+        miaov.lastElementChild.style.background= 'red';
+    </script>
+</body>
+</html>

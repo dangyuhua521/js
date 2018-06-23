@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #imgs{
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: plum;
+        }
+    </style>
+</head>
+<body>
+    hello
+    <div id="imgs">miaovketang</div>
+    <script>
+        var imgs = document.getElementById('imgs');
+        imgs.onmousedown = function(e){
+            console.log(123)
+            //鼠标到元素左边上边的距离
+            var disX = e.clientX-imgs.offsetLeft;
+            var disY = e.clientY-imgs.offsetTop;
+
+            document.onmousemove= function(e){
+                console.log(444);
+                imgs.style.left = e.clientX-disX+'px';
+                imgs.style.top = e.clientY-disY+'px';
+            }
+            document.onmouseup = function(){
+                document.onmousemove=document.onmouseup=null;
+            }
+            e.preventDefault();
+        }
+    </script>
+</body>
+</html>

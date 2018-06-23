@@ -1,0 +1,89 @@
+/*rest.css*/
+body{
+	margin: 0;
+}
+a{
+	text-decoration: none;
+}
+ul,p{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+input{
+	outline: none;
+}
+#box{
+	position: relative;
+	width: 305px;
+	height: 535px;
+	border: 2px solid #999;
+}
+#list{
+	width: 305px;
+	height: 495px;
+	overflow: auto;
+}
+#list>li{
+	line-height:26px;
+	font-size: 14px;
+	overflow: hidden;
+	
+}
+#imgl{
+	float: left;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.pl{
+	float: left;
+	overflow: hidden;
+}
+#imgr{
+	float: right;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.pr{
+	float: right;
+	overflow: hidden;
+}
+.foot{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width:305px;
+	height: 50px;
+	background-color:#999 ;
+}
+#f-pink{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	vertical-align: middle;
+}
+ #img{
+ 	border-radius: 20px;
+ 	width: 40px;
+	height: 40px;
+	overflow: hidden;
+ }
+#f-input{
+	border: none;
+	width: 200px;
+	height: 40px;
+	line-height: 40px;
+	color: #000;
+	border-radius: 6px;
+	margin-top: 6px;
+	
+}
+#f-imp{
+	line-height: 40px;
+	color: red;
+}

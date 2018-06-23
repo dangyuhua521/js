@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .scroll-box {
+            width: 30px;
+            height: 100%;
+            border: 1px solid #000;
+            position: absolute;
+            right: 0;
+            top: 0;
+
+        }
+
+        .scroll-bar {
+            width: 100%;
+            height: 50px;
+            background: yellow;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .content {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #list {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: pink;
+            width: 50%;
+            margin: 0;
+            list-style: none;
+            margin: 0;
+
+        }
+
+        #list li {
+            margin: 30px 0;
+            color: #fff;
+            font-size: 30px;
+        }
+    </style>
+    <script>
+        function addWheel(el, upFn, downFn) {
+            el.onmousewheel = wheel
+            el.addEventListener('DOMMouseScroll', wheel)
+
+            function wheel(e) {
+                console.log(e.wheelDelta); // 向上正数 向下负数
+                console.log(e.detail); // 向上负数 向下正数
+
+                var direction = true; // 向上
+
+                // ie和chrome支持这个属性，向上正数 记录为true 向下负数 记录为false
+                if (e.wheelDelta) {
+                    direction = e.wheelDelta > 0 ? true : false;
+                } else if (e.detail) {
+                    // ff支持这个属性，向上负数 记录为true 向下正数 记录为false
+                    direction = e.detail < 0 ? true : false;
+                }
+
+                if (direction) {
+                    typeof upFn === 'function' && upFn();
+                } else {
+                    //typeof downFn === 'function' && downFn();
+                    if (typeof downFn === 'function') {
+                        downFn();
+                    }
+                }
+
+                e.preventDefault();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="content">
+        <ul id="list">
+            <li>123</li>
+        </ul>
+        <div class="scroll-box">
+            <div class="scroll-bar"></div>
+        </div>
+    </div>
+
+    <script>
+        var str = '';
+        for (var i = 0; i < 100; i++) {
+            str += '<li>' + i + '</li>'
+        }
+        list.innerHTML = str;
+        // 公式：内容向上走的距离 = 滚动条滚动的距离 / 滚动条能滚动的最大距离 * 内容能走的最大距离
+        var scrollBar = document.querySelector('.scroll-bar')
+        var scrollBox = document.querySelector('.scroll-box');
+        var content = document.querySelector('.content');
+        // 可视区height / 滚动调容器高度
+        var clientH = content.clientHeight;
+        var contentH = content.scrollHeight;
+        //计算出滚动条的高度
+        scrollBar.style.height = clientH / contentH * clientH + 'px';
+        if (contentH <= clientH) {
+            scrollBox.style.display = 'none';
+        }
+        //计算滚动条height之后再获取
+        console.log(scrollBar.offsetHeight);
+        //最大值和最小值
+        var minY = 0;
+        var maxY = clientH - scrollBar.offsetHeight;
+        // 左边内容走的距离 = 滚动条走的距离/滚动体能走的最大距离 * 内容能走的最大距离
+
+        //5. 内容走的最大距离 = 内容height - 可视区height
+        var maxContentY = contentH - clientH;
+        //拖出滚动条在Y轴上走
+        scrollBar.onmousedown = function (e) {
+            var disY = e.clientY - scrollBar.offsetTop;
+            document.onmousemove = function (e) {
+                var t = e.clientY - disY;
+                if (t < minY) t = minY;
+                if (t > maxY) t = maxY;
+                scrollBar.style.top = t + 'px';
+                list.style.top = -t / maxY * maxContentY + 'px';
+
+            }
+            document.onmouseup = function (e) {
+                document.onmousemove = document.onmouseup = null;
+            }
+            e.preventDefault();
+        }
+        //加上滚轮
+        addWheel(content,function(){
+            //向上
+            var t = scrollBar.offsetTop-5;
+            if(t<minY) t = minY;
+            scrollBar.style.top = t+'px';
+            list.style.top = -t / maxY * maxContentY + 'px';
+
+        },function(){
+            var t = scrollBar.offsetTop+5;
+            if(t>maxY) t =maxY;
+            scrollBar.style.top = t+'px';
+            list.style.top = -t / maxY * maxContentY + 'px';
+        })
+    </script>
+</body>
+
+</html>

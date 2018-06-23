@@ -1,0 +1,27 @@
+body{
+	margin: 0;
+	}
+ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#title{
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	border: 1px solid #000;
+	text-align: center;
+	
+}
+#list{
+	display: none;
+}
+#list li{
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	color: #000000;
+	border: 1px solid #000;
+	text-align: center;
+}

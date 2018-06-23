@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			 ul,button {
+	            margin: 0;
+	            padding: 0;
+	            list-style: none;
+	        }
+	        #bg {
+	            width: 700px;
+	            height: 500px;
+	            background: url(img/warp.png) no-repeat;
+	            margin: 50px auto;
+	            padding-top: 200px;
+	            text-align: center;
+	        }
+	        #build {
+	            width: 130px;
+	            height: 40px;
+	            background: url(img/addberfor.png) no-repeat;
+	            border: none;
+	            border-radius: 10px;
+	            margin: 20px 120px 10px;
+	        }
+	        #delete {
+	            width: 120px;
+	            height: 35px;
+	            background: url(img/add.png) no-repeat;
+	            border: none;
+	            border-radius: 10px;
+	        }
+	        #list {
+	            width: 500px;
+	            height: 200px;
+	            margin: 0 auto;
+	            display: flex;
+	            justify-content: center;
+	        }
+	        #list li {
+	            width: 120px;
+	            height: 120px;
+	            border: 1px solid #fff;
+	            background: url(img/wenjian.png) no-repeat 25px 20px ;
+	            color: aliceblue;
+	            font-size: 12px;
+	            border-radius: 10px;
+	            margin: 10px;
+	            
+	        }
+	        #list li:hover {
+	            background: url(img/wenjian.png) no-repeat 25px 20px rgba(0,0,0,.3);
+	        }
+	        #list li div {
+	            margin-top: 60px;
+	            text-align: center;
+	        }
+	        #list li span {
+	            display: inline-block;
+	            width: 10px;
+	            height: 10px;
+	            border: 1px solid #fff;
+	            /* background-color: purple; */
+	            margin: 10px;
+	            margin-left: -75px;
+	        }
+	        #list .black {
+	            background: url(img/wenjian.png) no-repeat 25px 20px rgba(0,0,0,.3);
+	        }
+	        .purple {
+	            background-color: yellow;
+	        }
+		</style>
+	</head>
+	<body>
+		<div id="bg">
+			<ul id="list">
+				<!--<li>
+					<span></span>
+					<div>新建文件夹</div>
+				</li>
+				<li>
+					<span></span>
+					<div>新建文件夹</div>
+				</li>
+				<li>
+					<span></span>
+					<div>新建文件夹</div>
+				</li>-->
+			</ul>
+			<button id="build"></button>
+       		<button id="delete"></button>
+
+		</div>
+		
+		<script>
+			//获取元素
+			var list = document.querySelector('#list')
+			var build = document.querySelector('#build')
+			var cancel = document.querySelector('#delete')
+			
+			//生成结构
+			function addHtml(){
+				var li = document.createElement('li');//创建li
+				var divs = document.createElement('div');//创建div
+				list.appendChild(li);//把li放进list里面
+				li.innerHTML = '<span></span><div>新建文件夹</div>';
+				
+				var span = li.children[0];//声明li的子节点并赋值给span
+				
+				li.onclick=function(){//li点击事件
+					span.classList.toggle('purple') //给span添加（或去掉）purple样式
+					if(span.className){  //如果span添加了purple样式，就让当前的li添加black样式，否则就去掉
+		                li.classList.toggle('black');
+		           } else{
+		                li.classList.toggle('black');
+		            }
+				}
+			}
+			
+			//点击新建按钮事件
+			build.onclick = function(){
+				addHtml();//函数调用
+			}
+			//删除按钮点击事件
+			cancel.onclick=function(){
+				var li = document.querySelectorAll('li');//获取所有的li元素
+				for(var i = 0; i < li.length; i++){ //循环li，如果li添加了black样式就删除该元素
+					if(li[i].className=='black'){
+						li[i].remove();
+					}
+				}
+			}
+			
+		</script>
+	</body>
+</html>

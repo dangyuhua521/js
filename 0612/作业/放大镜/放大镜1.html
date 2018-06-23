@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	#box{
+		width: 900px;
+		height: 500px;
+		background: url(img/bg.png) no-repeat;
+		position: relative;
+	}
+	#left{
+		width: 335px;
+		height: 188px;
+		position: absolute;
+		left: 148px;
+		top: 155px;
+		overflow: hidden;
+	}
+	#imgs1{
+		width: 100%;
+		height: 100%;
+	}
+	#right{
+		width: 200px;
+		height: 200px;
+		overflow: hidden;
+		position: absolute;
+		left: 580px;
+		top: 150px;
+		border-radius: 50%;
+		background: url(img/border.png) no-repeat;
+	}
+	#mask{
+		width: 50px;
+		height: 50px;
+		background: #deadbb;
+		border-radius: 50%;
+		opacity: .7;
+		position: absolute;
+		display: block;
+	}
+	#border{
+		width: 184px;
+		height: 184px;
+		position: absolute;
+		left: 7px;
+		top: 7px;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+	#img2{
+		position: absolute;
+		width: 1328px;
+		height: 769px;
+		top: 0;
+		left: 0;
+	}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="left">
+			<img src="img/img.png" id="imgs1">
+			<div id="mask"></div>
+		</div>
+		<div id="right">
+			<div id="border">
+				<img src="img/img.png" id="img2">
+			</div>
+		</div>
+	</div>
+	<script >
+	
+	function getRect(el){
+		return el.getBoundingClientRect();
+	}
+	var mask = document.getElementById('mask');
+	var left = document.getElementById('left');
+	var img2 = document.getElementById('img2');
+	
+	var minX =0;
+	var minY = 0;
+	var maxX = left.clientWidth - mask.offsetWidth;
+	console.log(maxX)
+	var maxY = left.clientHeight - mask.offsetHeight;
+	console.log(maxY)
+	
+	var minx1 = getRect(img2);
+	console.log(minx1)
+	var miny2 = getRect(left);
+	// console.log(miny2)
+	var minL = minx1.width/miny2.width;
+	// console.log(minL)
+	var minT = minx1.height/miny2.height;
+	// console.log(minT)
+	document.onmousemove = function(e){
+		var r = getRect(left);
+		var x = e.clientX-r.left-mask.offsetWidth/2;
+		var y = e.clientY-r.top-mask.offsetHeight/2;
+		console.log(y,r.top,mask.offsetHeight/2)
+		if(x<minX) x = minX;
+		if(y<minY) y = minY;
+		if(x>maxX) x =maxX;
+		if(y>maxY) y = maxY;
+		mask.style.left =x+'px';
+		mask.style.top= y+'px';
+		img2.style.left = -x * minL+'px';
+		img2.style.top = - y * minL+'px';
+
+	}
+	
+	</script>
+</body>
+</html>

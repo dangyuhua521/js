@@ -1,0 +1,56 @@
+数组.sort()
+    给数组排序，默认从小大排序
+    排序是按照字符串来排序，根据每一项的Unicode编码来的
+    sort会改变原数组
+        从大到小
+        从小到大
+        随机排序
+var arr=[1,0,3,5,7,8,10,2]
+arr .sort();
+console.log(arr);
+console.log(3<10);//数字比较true
+console.log('3'<'10');//字符串比较false
+
+//从小到大排序
+arr.sort(function(a,b){
+    console.log(a,b);
+/*
+    返回值
+        负数 不交换位置
+        整数 交换位置
+        0   不交换位置
+*/
+return a-b
+});
+console.log(arr);
+
+排序一个对象
+var arr = [{
+        name:'leo1',
+        age:30
+    },
+    {
+        name:'leo1',
+        age:18
+    },
+    {
+        name:'leo1',
+        age:40
+    }];
+    
+    // 根据年龄，从大到小排序
+
+    arr.sort(function (a,b){
+        return b.age - a.age;
+    })
+
+    console.log(arr);
+
+
+ 日期对象
+ 什么是日期对象
+ 创建日期对象
+    new Date()
+    参数：
+    1.不传入参数
+        以调用Date时本地当       

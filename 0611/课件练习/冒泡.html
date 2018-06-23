@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            display: none;
+
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">控制div显示隐藏</button>
+    <div id="box">
+    </div>
+    <script>
+        var btn = document.querySelector('#btn');
+        var box = document.querySelector('#box')
+        btn.onclick = function(e){
+            console.log('btn');
+            box.style.display = 'block';
+            e.stopPropagation();
+        }
+        // 由于点击btn冒泡了，所以会触发这个document的点击处理
+        document.onclick = function(){
+            console.log('box');
+            box.style.display = 'none'
+        }
+    </script>
+</body>
+</html>

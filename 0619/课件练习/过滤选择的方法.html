@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../src/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <strong>list</strong> item 1 - one strong tag</li>
+        <li>
+            <strong>list</strong> item
+            <strong>2</strong> - two
+            <span>strong tags</span>
+        </li>
+        <li>list item 3</li>
+        <li>list item 4</li>
+        <li>list item 5</li>
+    </ul>
+    <div class="box">
+        <ul>
+            <li>1</li>
+        </ul>
+    </div>
+    <div class="box">
+        <ul>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+        </ul>
+    </div>
+    <script>
+    //点击li，如果li中子元素有两个strong,添加red
+    //没有strong,只有一个strong,添加blue
+    /*
+        jq对象.find(选择器)
+            根据选择器找jq对象所有的子孙节点
+    */
+    
+    var ul =$('ul');
+    //ul.find('li').css('background','red')
+    console.log($('li').length);
+    console.log($('li','.box').length);
+    console.log($('li',$('.box')).length);
+    console.log($('.box li'));
+
+    $('li').click(function(){
+     /* var strong = $(this).find('strong');
+      if(strong.length ===2){
+          $(this).css('background','red')
+      }else{
+          $(this).css('background','blue')
+      }  
+      var _this = $(this);
+      $(this).is('strong')
+      console.log($(this).is('li'))// 点击的li是否符合is传入的选择器
+    */
+        var bl = $(this).is(function(){
+            return $('strong',this).length ===2
+        })
+        if(bl){
+            $(this).css('background','red')
+        }else{
+            $(this).css('background','blue')
+        }
+    })
+    </script>
+</body>
+
+</html>

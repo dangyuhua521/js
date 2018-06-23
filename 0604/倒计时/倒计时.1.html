@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            height: 210px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #box>div {
+            float: left;
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+
+        #box img {
+            display: block;
+        }
+
+        .dot {
+            height: 210px;
+            width: 150px;
+            font-size: 100px;
+            line-height: 200px;
+            background-color: #303030;
+            color: #d0d0d0;
+            border-radius: 8px;
+            text-align: center;
+            transition: .5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="run">
+            <img src="./img/0.png">
+            <img src="./img/0.png">
+        </div>
+        <div class="run">
+            <img src="./img/0.png">
+            <img src="./img/0.png">
+        </div>
+        <div class="dot">天</div>
+        <div class="run">
+            <img src="./img/0.png">
+            <img src="./img/0.png">
+        </div>
+        <div class="run">
+            <img src="./img/0.png">
+            <img src="./img/0.png">
+        </div>
+        <div class="dot">时</div>
+        <div class="run">
+            <img src="./img/0.png">
+            <img src="./img/0.png">
+        </div>
+        <div class="run">
+            <img src="./img/0.png">
+            <img src="./img/0.png">
+        </div>
+        <div class="dot">分</div>
+        <div class="run">
+            <img src="./img/0.png">
+            <img src="./img/0.png">
+        </div>
+        <div class="run">
+            <img src="./img/0.png">
+            <img src="./img/0.png">
+        </div>
+        <div class="dot">秒</div>
+    </div>
+    <script src="../tools.js"></script>
+    <script>
+        function addZero(n) {
+            return n < 10 ? '0' + n : n;
+        }
+        var runs = document.querySelectorAll('#box .run');
+        var oldStr = '00000000';
+       // 未来的时间点
+        var futureTime = '2018 6 7 12:05:00';
+        var futureDate = new Date(futureTime);
+
+        var futureMs = futureDate.getTime(); // 未来时间点时间戳
+        function render(){
+            var nowTime = new Date();
+            var nowMs = nowTime.getTime();//现在时间戳
+
+            var chazhi = (futureMs - nowMs)/1000; // s
+            if(chazhi < 0) {
+                return
+            }
+            //天，时间差秒数/一天总共的秒数=多少天
+            var d = addZero(parseInt(chazhi/86400));
+            //时，余秒数/60m*60s = 多少小时
+            var h = parseInt(chazhi%86400/3600);
+            //分
+            var m = parseInt(chazhi%86400%3600/60);
+            //秒  ???
+            var s = parseInt(chazhi%60);
+            
+            // var str = d + '天' + h + '小时' + m + '分' + s + '秒';
+            var d1 = String(d);
+            var h1= String(addZero(h));
+            var m1= String(addZero(m));
+            var s1= String(addZero(s));
+            var nowStr = d1+h1+m1+s1;
+            for( var i = 0; i < nowStr.length; i++ ){
+                if(nowStr[i] !== oldStr[i]){
+                    // console.log(nowStr+'---'+oldStr)
+                    // console.log(i)
+                    slied(i);
+                    css(runs[i],'top',0);
+                    mTween({
+                        el: runs[i],
+                        attr: 'top',
+                        target: -210,
+                        duration: 500
+                    })
+                }  
+            } 
+            function slied(i){
+                var imgs = runs[i].getElementsByTagName('img') ;
+                imgs[0].src ="./img/"+oldStr[i]+".png";  
+                imgs[1].src ="./img/"+nowStr[i]+".png"; 
+            }
+            oldStr = nowStr;
+        }
+        render();
+
+        setInterval(render,1000)
+    </script>
+</body>
+
+</html>

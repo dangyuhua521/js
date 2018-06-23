@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    div {
+        width: 300px;
+        height: 300px;
+        background: red;
+        display: inline-block;
+    }
+
+    .blue {
+        background: blue;
+    }
+    </style>
+</head>
+<body>
+    <div>新闻</div>
+    <div>娱乐</div>
+    <div>体育</div>
+   <script>
+    var divs = document.getElementsByTagName('div')
+    var hash = window.location.hash;
+    var index =1;
+    var minIndex =1;
+    var maxIndex = divs.length;
+    //如果hash存在，拿到#后面的值
+    if(hash){
+        index = hash.slice(1);
+    }
+    //值超过了再最小和最大范围
+    if(index>maxIndex||index<minIndex){
+        index =1;
+        window.location.hash =index;
+    }
+    //hash不是数字
+    if(isNaN(index)){
+        index =1;
+        window.location.hash = index;
+    }
+    divs[index-1].className ='blue';
+    
+    for(var i =0; i<divs.length;i++){
+        divs[i].index =i;
+        divs[i].onclick = function(){
+            for(var j =0;j<divs.length;j++){
+                divs[j].className ='';
+            }
+            this.className='blue'
+            window.location.hash = this.index+1;
+        }
+    }
+
+   </script>
+</body>
+</html>

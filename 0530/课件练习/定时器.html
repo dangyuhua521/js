@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       var n =0;
+       time1= setInterval (function(){
+           n++;
+           if(n>30){
+               clearInterval(time1);// 停止不再执行下一次，这一次要把函数执行完
+           } 
+           console.log(n)
+       },100)
+       document.onclick = function(){
+           	// 利用这个变量存的定时器的编号来停止定时器，变量依然回存一个数字
+               clearInterval(time1);
+               console.log('定时器的编号',timer1);	
+       }
+        var time2 =setTimeout (function(){
+            console.log('hello');	
+       },100)
+       console.log('返回值',time2)
+   </script> 
+</body>
+</html>

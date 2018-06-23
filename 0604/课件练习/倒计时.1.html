@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //未来的时间点
+        var futureTime = '2018 6 5 12:05:00';
+        //未来的天数
+        var futureDate = new Date(futureTime);
+        console.log(futureDate);
+        //未来时间戳
+        var futureMs = futureDate.getTime();
+        // console.log(futureMs);
+        var nowTime = new Date();
+        console.log(nowTime);
+        var nowMs = nowTime.getTime();//现在时间戳
+        //差值= 未来时间点(ms)-现在时间点(ms)
+        var chazhi = (futureMs-nowMs)/1000;//s
+        // 秒 -> 天
+        // 1天 = 24 * 60 * 60
+        var d =parseInt(chazhi/86400);
+        // 1小时 = 60 * 60
+        var h =parseInt(chazhi%8640/3600);
+        //90000 / 几天 几小时
+		// 1分钟 = 60
+        var m =parseInt(chazhi%86400%3600/60);
+        // 1s = 1s;
+        var s=parseInt(chazhi %60);
+
+        console.log(d,h,m,s);//0 1 40 11
+
+
+    </script>
+</body>
+
+</html>

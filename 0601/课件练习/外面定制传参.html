@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="create_div1">生成100</button>
+    <button id="create_div2">生成200</button>
+    <div id="box"></div>
+    <script>
+        function createDiv(width,height,bg){
+            width= width||100
+            height= height||100
+            bg=bg||'red'
+          var div ='<div style="width:'+width+'px;height:'+height+'px;background:'+bg+';"></div>' 
+          return div;
+        }
+        create_div1.onclick = function(){
+            box.innerHTML=createDiv()
+        }
+        create_div2.onclick = function(){
+            box.innerHTML=createDiv(null,null,'yellow')
+        }
+    </script>
+</body>
+</html>

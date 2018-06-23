@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box div {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            display: none;
+        }
+        .box .yellow {
+            background: yellow;
+        }
+        .box .red {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <button class="yellow">新闻</button>
+        <button>娱乐</button>
+        <button>体育</button>
+        <div style="display: block;">新闻</div>
+        <div>娱乐</div>
+        <div>体育</div>
+    </div>
+    <div  class="box">
+        <button  class="red">股票</button>
+        <button>区块链</button>
+        <button>比特币</button>
+        <div  style="display: block;">股票</div>
+        <div>区块链</div>
+        <div>比特币</div>
+    </div>
+    <div  class="box">
+        <button  class="yellow">天气</button>
+        <button>环保</button>
+        <button>球队</button>
+        <div  style="display: block;">天气</div>
+        <div>环保</div>
+        <div>球队</div>
+    </div>
+    <div  class="box">
+        <button  class="yellow">天气</button>
+        <button>环保</button>
+        <button>球队</button>
+        <div  style="display: block;">天气</div>
+        <div>环保</div>
+        <div>球队</div>
+    </div>
+    <script>
+        function tab(pet,classNames){
+            var btns = pet.querySelectorAll('button');
+            var divs = pet.querySelectorAll('div');
+            for( var i = 0; i < btns.length; i++){
+                btns[i].index=i;
+               btns[i].onclick = function(){
+                   for( var i = 0; i < btns.length; i++){
+                       btns[i].className='';
+                       divs[i].style.display = 'none';
+                   }
+                   this.className= classNames;
+                   divs[this.index].style.display='block';
+               } 
+            }
+            
+        }
+
+            var boxs = document.querySelectorAll('.box');
+            for( var i = 0; i<boxs.length;i++){
+                if(i===1){
+                    tab(boxs[i],'red')
+                }else{
+                    tab(boxs[i],'yellow')
+                }
+            }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        td {
+            text-align: center;
+        }
+        .red{
+            background: red;
+        }
+        .color{
+            background-image: linear-gradient(135deg, #41c8ff 0, #41c8ff 25%,#46e6fe 75%);
+        }
+    </style>
+    <script src="../src/jquery-3.3.1.js"></script>
+    <script>
+
+        //在页面加载完成的时候，把下面这个数据动态添加到表格中
+       
+
+        /*
+            1、根据数据生成表格。
+            2、数据的添加
+            3、全选、单选
+            4、单条删除，选中删除
+            5、排序（按年龄从大到小-从小到大）
+            6、如果是在排序的状态，添加后依然保持排序
+        */
+    </script>
+</head>
+
+<body>
+
+<form action="" name="form">
+    <p>
+        姓名:<input type="text" id="userName" name="username"/>
+    </p>
+    <p>
+        年龄:<input type="text" id="age" name="age"/>
+    </p>
+    <p>
+        性别: <select name="sex" id="sex">
+            <option value=" 男 ">男</option>
+            <option value="女">女</option>
+        </select>
+    </p>
+    <p>
+        <input type="button" id="add" value="添加" name="add"/>
+    </p>
+</form>
+    <input type="button" id="delectAll" value="删除选中"  class="btn"> 
+    <input type="button" value="年龄从小到大" id="ageSort"  class="btn"> 
+    <table id="tab1" width="100%" border="1">
+
+        <thead>
+        <tr>
+            <th>
+                <input id="checkAll" type="checkbox" /> 全选
+            </th>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+           <!-- <tr>
+                <td>
+                    <input type="checkbox"/>
+                </td>
+                <td>1</td>
+                <td>LEO</td>
+                <td>36</td>
+                <td>男</td>
+                <td>
+                    <a href="javascript:;">删除</a>
+                </td>
+            </tr> -->
+        </tbody>
+
+    </table>
+    <script>
+      var data =[]
+
+      for(var i=0;i<10;i++){
+          data.push({
+            id:Date.now()+i,
+            name:'leo'+i,
+            age:50+i,
+            sex:i % 4 === 0 ? '男':'女',
+            checked:i % 4 === 0 ? true:false
+          })
+      }
+      //渲染数据结构
+      function createHtml(d){
+        return d.map(function(item){
+        var checked = item.checked ?'checked':'';
+        return `<tr custom-id ="${item.id}">
+                <td>
+                    <input type="checkbox"${checked}/>
+                </td>
+                <td>${item.id}</td>
+                <td>${item.name}</td>
+                <td>${item.age}</td>
+                <td>${item.sex}</td>
+                <td>
+                    <a href="javascript:;">删除</a>
+                </td>
+            </tr>`
+           }).join('');  
+      }
+      $('tbody').append(createHtml(data))
+
+    //删除某一条
+    $('tbody').on('click','dele',function(){
+        var tr = $(this).parents('tr');
+        tr.remove();
+        //删除对应的数据
+        var customId = tr.attr('custom-id');
+        for( var i =0; i<data.length;i++){
+            if(data[i].id==customId){
+                data.splice(i,1);
+               
+                break//停止循环
+            }
+        }
+    })
+     console.log(data.splice(i,1))
+
+    //添加
+    $('#add').on('click',function(){
+        var userName = $('#userName').val().trim()
+        var age = $('#age').val().trim();
+        var sex = $('#sex').val().trim();
+        //以上三个不能为空
+        if(isNaN(age)){
+            alert('请输入数字')
+            return;
+
+        }
+        if(age<10||age>100){
+            alert('你的年龄不符合')
+            return
+        }
+
+        //添加在数据中 在界面中要生成
+        var o ={
+            id:Date.now(),
+            name:userName,
+            age:age,
+            sex:sex,
+            checked:false
+        }
+
+        //先放在数据中
+        data.push(o)
+
+        // 排序了没有？
+        // 排序了 排序后重新渲染
+        // 没有排序 追加结构
+
+        if(isSort){
+            //把数据重新排序
+            if(sort){
+                data.sort(function(a,b){
+                    return b.age-a.age;
+                })
+            }else{
+                data.sort(function(a,b){
+                    return a.age-b.age;
+                })
+            }
+            //重新渲染
+            $('tbody').html(createHtml(data))
+        }else{
+            //根据数据生成结构，追加在tbody中
+            $('tbody').append(createHtml([o]))
+        }
+        checkAll.prop('checked',false)     
+    })
+    //全选
+    var checkAll = $('#checkAll');
+    checkAll.click(function(item){
+        var checkAllS = $(this).prop('checked')
+        $('tbody input[type="checkbox"]').prop('checked',checkAllS);
+        //数据要同步
+        data.forEach(function(item){
+            item.checked= checkAllS
+        })
+    })
+    //单选
+    $('tbody').on('click','input[type="checkbox"]',function(){
+        checkAll.prop('checked',$('tbody input:checked').length===$('tbody input').length);
+        //同步数据
+        var id = $(this).parents('tr').attr('custom-id');
+        //通过id找到数据
+        var option = data.filter(function(item){
+            return item.id ==id
+        })[0];
+        option.checked = $(this).prop('checked');
+        console.log(data)
+    })
+    //删除选中的
+    $('#delectAll').click(function(){
+        //找到所有选中的input的父级的父级 tr
+        var trs = $('tbody input:checked').parents('tr');
+        //循环tr，拿到每一个tr的id
+        trs.each(function(index,item){
+            var id = $(item).attr('custom-id');
+            console.log(id)
+            //拿到要删除的id，和数据中每一个进行对比，如果删除的id和这个条数据的id相同，就删除
+            for( var i =0; i<data.length;i++){
+                if(data[i].id==id){
+                    data.splice(i,1)
+                    break;
+                }
+            }
+        })
+        trs.remove();
+        checkAll.prop('checked',false)
+
+    })
+    var sort = true//从大到小排序
+    var isSort = false;//记录有没有排序，默认是没有排序
+
+    //排序
+    $('#ageSort').click(function(){
+        isSort = true;//无论怎么排序只要点击了，就记录为true
+        if(sort){
+            //从小到大
+                data.sort(function(a,b){
+                    return a.age-b.age;
+                })
+                $(this).val('从大到小')
+            }else{
+                //从大到小
+                data.sort(function(a,b){
+                    return b.age-a.age;
+                })
+                $(this).val('从小到大')
+            }
+            sort = !sort
+            //重新渲染
+            $('tbody').html(createHtml(data))
+    })
+    </script>
+</body>
+</html>

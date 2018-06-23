@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style >
+			
+		</style>
+	</head>
+	<body>
+		<button>男</button>
+		<button>女</button>
+		<button>保密</button>
+		<button>男</button>
+		<button>女</button>
+		<button>保密</button>
+		<button>男</button>
+		<button>女</button>
+		<button>保密</button>
+		<button>男</button>
+		<button>女</button>
+		<button>保密</button>
+		<button>男</button>
+		<button>女</button>
+		<button>保密</button>
+		<script >
+			var btn = document.querySelectorAll('button');
+			
+			var len=btn.length;//自己定义一个属性
+			//定义一个变量，用来记录当前点击的那个元素（点谁记谁）
+			
+			var currentCulickElement;//用来记录点击的元素
+			//给每个按钮绑定点击按钮
+			for(var i = 0; i<len;i++){
+			btn[i].onclick = function(){
+				 //没有记录之前currentCulickElement是谁
+					 // 是上一次记录的元素
+					// 判断一下currentClickElement有没有存值
+					if(currentCulickElement){
+						currentCulickElement.style.background= '';	
+					}
+				this.style.background= 'red';
+					//点谁记谁
+					currentCulickElement=this;
+				}
+			}
+		</script>
+	</body>
+</html>

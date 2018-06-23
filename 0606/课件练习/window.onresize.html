@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 300px;
+            height: 300px;
+            padding: 10px;
+            margin: 10px;
+            border: 10px solid #000;
+            background: red;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+ <div id="box">hello</div>  
+ <script>
+    var box = document.querySelector('#box');
+    var l = (document.documentElement.clientWidth-box.offsetWidth)/2;
+    var t =(document.documentElement.clientHeight-box.offsetHeight)/2;
+
+    box.style.left = l+'px';
+    box.style.top=t+'px';
+    window.onresize = function(){
+        console.log('监听到了变化');
+        var l = (document.documentElement.clientWidth-box.offsetWidth)/2;
+        var t = (document.documentElement.clientHeight-box.offsetHeight)/2;
+        box.style.left = l+'px';
+        box.style.top =t+'px';
+    } 
+ </script> 
+</body>
+</html>

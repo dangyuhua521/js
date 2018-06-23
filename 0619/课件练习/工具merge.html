@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        p[miaov="leo"] {
+            background: red;
+        }
+    </style>
+    <script src="../src/jquery-3.3.1.js"></script>
+
+</head>
+<body>
+    <p miaov='leo 123'>123 <span>123</span> </p>
+    <p>123 456</p>
+    <p miaov='leo 123'>123 456 789 </p>
+    <p miaov="momo 123">123 456 789 0000 <span></span></p>
+    <p> </p>
+    <div></div>
+    <script>
+     var arr= [1,2,3],
+         arr2 =[1,2,3,4,5,6];
+    $.merge(arr,arr2)//合并数组
+    console.log(arr)
+    var o = {a:1},
+        o2 = {b:2};
+    $.merge(o,o2)
+    console.log(o)
+
+    // 静态方法
+    // 挂载在函数上的方法，称之为静态方法
+    // 访问 函数.函数();
+    // 函数也是对象，可执行的对象，所以函数也有方法
+    function f(a,b){
+
+    }
+    // fn属性对应的是一个函数并且挂载在了一个函数f上，称之为fn这个为静态方法
+    f.fn = function(){
+
+    }
+    //静态属性
+    f.miaov = 123;
+    console.dir(f)
+    var arr123 = [];
+    console.log(arr123.push(1));
+    console.dir(arr123)
+    </script>
+</body>
+
+</html>

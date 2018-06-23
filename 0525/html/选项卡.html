@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .yellow{
+            background: yellow;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            /* font-size: 16px;
+            text-align: center; */
+            display: none;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+   <button class="yellow">新闻</button> 
+   <button>娱乐</button> 
+   <button>体育</button> 
+   <div style="display: block">新闻</div>
+   <div>娱乐</div>
+   <div>体育</div>
+   <script>
+       var btn = document.querySelectorAll('button');
+       var divs = document.querySelectorAll('div');
+       for( var i = 0; i<btn.length; i++){
+            btn[i].a=i
+       
+       btn[i].onclick = function(){
+          for( var i = 0; i<btn.length; i++){
+              btn[i].className=''
+              divs[i].style.display='none'
+
+          } 
+         this.className='yellow'
+         divs[this.a].style.display='block'
+       }
+         
+       }
+   </script>
+</body>
+</html>

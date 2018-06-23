@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style >
+			div{
+				width: 80px;
+				height: 80px;
+				border: 1px solid #000;
+				text-align: center;
+			}
+			.list{
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<ul class="list">
+			<li>1</li>
+			<li>2</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>1</li>
+			<li>4</li>
+		</ul>
+		<!--<script>
+//			需求:点击按钮,让内容为1的li改变红色背景
+			//让内容为2的li变为绿色背景 让内容为3的 li变为黄色背景
+			//获取所有按钮元素
+			var btn = document.querySelector('button');
+			var list = document.querySelector('list');
+			var lis = document.querySelectorAll('li');
+			
+			//给btn添加点击事件
+			btn.onclick = function(){
+				//让li遍历，找到每一个li的内容，然后判断是不是想要的内容1，内容是1，背景色为红色
+				for( var i = 0; i < lis.length; i++){
+					//如果li当前元素下所有字符为1,li背景颜色为红色
+					if(lis[i].innerHTML==1){
+						lis[i].style.background= 'red';
+					//如果li当前元素下所有字符为2,li背景颜色为绿色
+					}else if(lis[i].innerHTML==2){
+						lis[i].style.background= 'green';
+					
+					}else if(lis[i].innerHTML==3){
+						lis[i].style.background= 'yellow';
+					}
+					
+				}
+			}
+			
+		</script>-->
+		<script>
+			//需要：点击li，加上红色背景的，去掉，没有红色背景的，加上红色背景。
+			//并且统计当前li中有几个加上了红色背景
+			var divs = document.querySelector('div');
+			var list = document.querySelector('list');
+			var lis = document.querySelectorAll('li');
+			var len = lis.length;
+			
+			var n= 0;
+			for (var i = 0 ; i < len; i++){
+				lis[i].onclick = function(){
+					if(this.style.background ==''){
+						this.style.background = 'red';
+						n++;
+					}else{
+						this.style.background = '';
+						n--;
+					}
+					
+					divs.innerHTML=n;
+				}
+			}
+		</script>
+	</body>
+</html>

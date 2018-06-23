@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+		//一维数组 [每个元素都是一个值]
+		var arr = [1,2,3,4,5];
+		//二维数组 [[],[],[]]  数组套数组
+		var arr2 = [['a','b',],["c","d"],['w','z']];
+		
+		// 把数组中的数组的每一项都打出来
+/*
+	1. 使用一个for循环，遍历第一层的数组，取出每一值
+	2. 取出的值是一个数组，继续遍历
+
+	注意：
+		for套for初始值一定不能使用同一个变量
+*/
+for( var i = 0; i < 3; i++){
+	//i = 0 1 2
+	for(var j = 0; j < 2;  j++){
+		//j = 0 1
+		console.log("i="+i,""+j)//0 0 0 1 0 1 1 2 0 2 1
+	}
+}
+		</script>
+	</body>
+</html>

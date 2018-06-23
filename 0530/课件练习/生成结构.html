@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="box">
+    <!-- <ul>
+        <li><span>菜单1-1</span></li>
+        <ul>
+            <li><span>菜单1-2</span></li>
+            <li><span>菜单1-3</span></li>
+            <li><span>菜单1-4</span></li>
+        </ul>
+    </ul>
+    <ul>
+        <li><span>菜单2-1</span></li>
+        <ul>
+            <li><span>菜单2-2</span></li>
+            <li><span>菜单2-3</span></li>
+            <li><span>菜单2-4</span></li>
+        </ul>
+    </ul>
+    <ul>
+        <li><span>菜单3-1</span></li>
+        <ul>
+            <li><span>菜单3-2</span></li>
+            <li><span>菜单3-3</span></li>
+        </ul>
+    </ul> -->
+</div>
+<script>
+    var list = [
+        {
+          title:'菜单1-1',
+          children:[
+              {
+                title:'菜单1-2'
+              },
+              {
+                title:'菜单1-3'   
+              }
+          ]
+        },
+        {
+          title:'菜单2-1',
+          children:[
+              {
+                title:'菜单2-2'   
+              },
+              {
+                title:'菜单2-3'   
+              }
+          ]  
+        },
+        {
+            title:'菜单3-1',
+            children:[
+                {
+                    title:'菜单3-2'  
+                }
+            ]
+        }
+    ]
+    var boxs = document.getElementById('box');
+
+    //先循环list，生成第一级
+    var html = '<ul>';
+    for(var i =0 ;i<list.length;i++){
+        html+="<li><span>"+list[i].title+"</span>";
+         if(list[i].children){
+            var two = list[i].children; 
+            html+='<ul>';
+            for( var j = 0; j <two.length;j++){
+                html+="<li><span>"+two[j].title+"</span></li>";
+                
+            } 
+              html+='</ul>'; 
+         }
+        html+="</li>";
+    }
+    html+="</ul>";
+    boxs.innerHTML= html;
+    
+</script>
+</body>
+</html>

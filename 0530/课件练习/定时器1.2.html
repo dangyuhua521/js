@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box,img{
+            width: 650px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box">
+        <img id="imgs" src="../img/qiaoba.jpg" alt="">
+    </div>
+   <script>
+    var boxs = document.getElementById('imgs');
+    var h = 670;
+
+    var initHeight = 0;
+    var  time = setInterval(function(){
+        initHeight += 10;
+        // console.log(initHeight)
+        if(initHeight >= 670){
+            clearInterval(time)
+            initHeight= 670;//等于终点
+            setTimeout(function(){
+                var time1 = setInterval(function(){
+                    initHeight -= 10;
+                    // console.log(initHeight)
+                if(initHeight <= 0){
+                    clearInterval(time1)
+                    initHeight = 0; 
+                }
+                boxs.style.height = initHeight+'px';
+                },10)
+            },1000)
+        }
+        boxs.style.height = initHeight+'px';
+    },10)
+
+   </script> 
+</body>
+</html>

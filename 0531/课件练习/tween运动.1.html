@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 20px;
+            background: red;
+            /* transition: 1s; */
+        }
+    </style>
+    <script src="../tween.js"></script>
+</head>
+<body>
+    <button id="start">开始</button>
+    <button id="start2">开始</button>
+    <button id="stop">停止</button>
+    <div ></div>
+    <script>
+        var div = document.querySelector('div');
+        function css(el,attr,value){
+            if(arguments.length===2){
+                return getComputedStyle(el)[attr]
+            }else{
+                el.style[attr] = value+'px';
+            }
+        }
+        /*
+				el: 要运动的元素
+				attr: 要运动的属性
+				target：目标点
+				duration 持续时间
+				fx: 运行形式
+
+				1. 一旦运动了，说明开启定时器了，再次调用函数，不能开启定时器
+
+				2. 每次开启，都把之前定时器停掉 
+			*/
+
+       function mTween(el,attr,target,duration,fx){
+
+           var timer = 'timer-'+attr;
+           //如果元素的属性timer有值说明已经开启定时器，没必要再开启了
+           console.log(el[timer]);
+           clearInterval(el[timer]);
+           console.log('已经开始');
+
+           var begin = parseFloat(css(el,attr));//起始位置
+           var count = target-begin;//总距离
+           fx = fx||'linear';//给fx默认值
+
+           var start = Date.now();//起始时间戳
+
+           //把运动的属性的定时器，存在某个元素中
+           //通过元素上的属性，就可以找到定时器
+           el[timer] = setInterval( function(){
+               var time = Date.now()-start; //已过去时间
+
+               if(time>duration){
+                   time = duration;
+                   clearInterval(el[timer]);
+                   //定时器定制，没必要在存定时器的编号了
+                   el[timer]= null;
+
+               }
+               //var value = begin + count/duration * time;
+               var value = Tween[fx](time,begin,count,duration);
+               css(el,attr,value);
+           })
+
+       }
+       var start = document.getElementById('start');
+       var start2 = document.getElementById('start2');
+       var stop = document.getElementById('stop');
+       start.onclick= function(){
+        mTween(div,'width',1000,1000);//'timer-width'
+        mTween(div,'height',1000,1000);//'timer-height'
+            console.dir(div);
+       }
+       start2.onclick = function(){
+           clearInterval(div['timer-width']);
+           clearInterval(div['timer-height']);
+
+           div['timer-width']=null;
+           div['timer-height']= null;
+       }
+    </script>
+</body>
+</html>

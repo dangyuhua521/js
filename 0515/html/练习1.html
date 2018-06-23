@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style >
+			.btn{
+				width: 100px;
+				height: 100px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button"  class="btn" value="男" />
+		<input type="button"  class="btn" value="女" />
+		<input type="button"  class="btn" value="保密" />
+		
+		<script>
+			var btn = document.getElementsByClassName('btn');
+			
+			var cur;
+			for(var i = 0; i<btn.length;i++){
+				
+				btn[i].onclick = function(){
+					if(cur){
+						btn[i].style.background= '';
+					}
+					this.style.background= 'red';
+					cur=this;
+				}
+				
+			}
+			
+		</script>
+	</body>
+</html>

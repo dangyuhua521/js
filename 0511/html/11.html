@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.box {
+				width: 800px;
+				height: 400px;
+				margin: 20px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.img_box {
+				height: 400px;
+				width: 3200px;
+				position: absolute;
+				left:0;
+				transition: 0.5s;
+			
+			}
+			
+			img {
+				width: 800px;
+				height: 400px;
+				float: left;
+			}
+			
+			.switch {
+				width: 100px;
+				height: 100%;
+				position: absolute;
+				top: 200px;
+			}
+	
+			#left {
+				left: 0px;
+				
+				font-size: 40px;
+				color: #fff;
+				
+			}
+			
+			#right {
+				right: 0px;
+			
+				font-size: 40px;
+				color: #fff;
+			
+			}
+			
+		
+			
+		
+		</style>
+	</head>
+
+	<body>
+		<div class="box" id="box">
+			<div class="img_box" id="img_box"> <img src="img/img01.jpg" class="image"> <img src="img/img02.jpg" class="image"> <img src="img/img03.jpg" class="image"> <img src="img/img04.jpg" class="image"> </div>
+			<div id="left" class="switch"> < </div>
+			<div id="right" class="switch"> > </div>
+		</div>
+		<script>
+			var num = 1;
+			window.onload = function() {
+				var box = document.getElementById("img_box");
+				var left = document.getElementById("left");
+				var right = document.getElementById("right");
+				left.onclick = function(){
+					var dis = 0;
+				if(num > 1) {
+					dis = (2 - num) * 800;
+					
+				} else {
+					
+					dis = -3 * 800;
+					num = 5;
+				}
+				box.style.left = dis + "px";
+				num -= 1;
+					
+				};
+				right.onclick = function(){
+					var dis = 0;
+				if(num < 4) {
+					
+					dis = num * 800;
+					
+				} else {
+					
+					dis = 0;
+					num = 0;
+				}
+				box.style.left = "-" + dis + "px";
+				num += 1;
+					
+				};
+	
+			}
+			
+
+		
+
+		</script>
+	</body>
+
+</html>

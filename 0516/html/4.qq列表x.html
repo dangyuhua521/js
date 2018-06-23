@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li,
+			h2 {
+				margin: 0;
+				padding: 0;
+			}
+			
+			li {
+				list-style: none;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../css/qq.css"/>
+	</head>
+
+	<body onselectstart="return false;">
+		<div class="wrap">
+			<div class="list">
+				<h2><span></span>我的好友</h2>
+				<ul>
+					
+					<li>小佳Love</li>
+					<li>从来就是这么正经</li>
+					<li>leo是个胖子</li>
+					<li>momo不是陌陌</li>
+				</ul>
+				<h2><span></span>企业好友</h2>
+				<ul>
+					<li>习近平</li>
+					<li>普京</li>
+					<li>奥巴马</li>
+				</ul>
+				<h2><span></span>黑名单</h2>
+				<ul>
+					<li>安倍</li>
+					<li>杜特尔特</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			/*
+				分析：
+					1. 获取元素h2和ul,让一堆h2来控制ul
+					2. 点击h2的时候让对应ul展示出来，在点击h2的时候，让ul隐藏。切换显示隐藏
+			*/
+			var h2s = document.querySelectorAll('.list h2');
+			var uls = document.querySelectorAll('.list ul');
+			var len = h2s.length;
+			 // 记录展开的ul的下标 0 - length-1  因为现在没有任何一个ul展开，
+			 //所以不能记录0到lenght-1之间的数
+			 var currentIndex = -1;
+			 
+			for( var i = 0; i < len; i++ ){
+			 	h2s[i].index = i;
+				h2s[i].onclick = function(){
+			 		console.log( this.index == currentIndex );
+			 		// 判断，上一次点击的和这一次点击的是不是同一个
+			 		
+			 		// 只要点击不是同一个，肯定要让ul展示出来
+					/*
+						点击任何一个h2分两种情况：
+							1. 点击了同一个h2
+								一定是隐藏的
+								所有的ul都隐藏了
+								不记录任何一个下标，赋值-1
+							2. 不是同一个h2
+									上一次的要关闭
+									点击的h2对应的ul肯定是展开的
+									记录当前点击的下标
+
+					*/
+				 	if(currentIndex == this.index){
+						this.style.background = '';
+						uls[this.index].style.display = 'none';
+						currentIndex = -1;
+					}else{
+						if(currentIndex != -1){
+							h2s[currentIndex].style.background = '';
+							uls[currentIndex].style.display = 'none';
+						}
+				 		// 只要点击不是同一个，肯定要让ul展示出来
+				 		this.style.background = 'yellow';
+						uls[this.index].style.display = 'block';
+
+						currentIndex = this.index;
+				 		
+				 	}
+			 	}
+			 }
+			
+		</script>
+	</body>
+
+</html>

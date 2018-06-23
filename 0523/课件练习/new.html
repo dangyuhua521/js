@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+       
+/*一个对象上的函数，称之为方法，或者这个对象的功能
+
+某一个数据上的方法，用来操作这一类数据的
+
+string类型上  
+Array上有方法
+
+Number类型上
+Object类型上
+Function上的方法
+
+Undefined类型 Null类型 Boolean类型上没有方法
+
+方法就是函数
+    1. 这个方法操作哪一类数据
+    2. 这个方法的作用是什么
+    3. 传入指定类型的参数
+    4. 返回值，类型
+    5. 是否影响原数据
+
+
+*/
+// 作用：做两数相加
+// 通用，传参决定,传参看一下参数的类型
+// 返回值 返回结果
+/*
+function add(a,b){
+    return a+b
+}
+add(1,2)
+//字符串字面量、数字字面量、布尔值字面量、Undefined和Null的字面量，这些值一旦定义都不会改变
+var str ='miaov ketang'
+console.log(str)
+/*str  ='abc'  // 经过这个操作，并没改变字符串 'miaov ketang'，改变的是变量存储的值*/
+//1 找到指定位置的字符
+// 0  str[0]
+// 字符串这类数据会提供方法，供我们操作这个字符串
+
+/*
+string.charAt(一个数字)
+    作用：根据传入指定位置，找到指定位置的字符
+    参数：数字类型，范围在 0- length-1之间
+        参数超过length-1，返回值是空字符串
+        参数小于0，返回值是空字符串
+    返回值：找到指定位置的字符 返回的类型是String类型
+    */
+    /*
+    console.log(str.charAt(1))//i
+    console.log(str)//miaov ketang
+    console.log(str.charAt(-1))//空
+    console.log(str.charAt(1000))//空
+    console.log(str.charAt(str.length-1))//g
+/*
+/*	
+        1 找到指定位置的字符 charAt()
+        2. 通过一个字符找字符在字符串中出现的位置 indexOf
+        3. 指定开始和结束位置之间的字符 slice subString
+        4. 制定开始位置和执行长度之间的字符 subStr
+        5. 小写转大写 
+        6. 大写转小写
+        7. 字符串转数组
+    
+    */
+    /*
+    //2. 通过一个字符找字符在字符串中出现的位置 indexOf
+    var str ='miaovm ketang';
+    // 找到一个字符或字符串在调用这个方法的字符串中首次出现的位置
+    var n = str.indexOf('m',2);// 指定搜索的位置
+    console.log(n);//5
+    var m = str.indexOf('ketan')
+    console.log(m)//7
+    var k = str.indexOf('leo')
+    console.log(k)//-1
+
+    // 举例：
+    if(str.indexOf('leo') !== -1){
+        console.log('有')
+    }else{
+        console.log('没有')
+    }
+    */
+    /*
+    //指定开始和结束位置之间的字符 slice subString
+    var str = 'miaovm ketang';
+    var newStr = str.slice(0);// 从0截取到 length的位置
+    console.log(newStr)//miaovm ketang
+    var newStr1 = str.slice(3)
+    console.log(newStr1)//ovm ketang
+    // 截取开始位置 和结束位置之间的字符，不包含结束位置
+    var newStr2 = str.slice(3,5); 
+    console.log(newStr2)//ov
+    // '' 开始位置大于结束位置，返回是''
+    var newStr3 = str.slice(5,3);
+    console.log(newStr3)
+    */
+    /*    
+string.subString(startIndex[,endIndex])
+作用
+    截取指定位置之间的字符串
+语法
+    string string.slice(beginSlice[, endSlice])
+参数
+    beginSlice
+        起始位置
+    endSlice
+        结束位置，默认为字符串长度
+        不包含结束为止的字符
+返回值
+    返回截取后的字符串
+
+
+slice和substring
+    相同
+        都是截取开始到结束位置的字符
+    不同
+        开始大于结束，使用substring，可以交换位置
+        如果使用负数，使用slice，-1代表最后一个，-2倒数第二个，依次向前推
+*/   
+/*
+    var str = 'miaovm ketang miaovm ketang miaovm ketang'; 
+    var newStr = str.substring(0,3) 
+    console.log(newStr) //mia
+     // 开始大于结束，交换位置，再截取
+    var newStr3 = str.substring(5,3);  
+    console.log(newStr3)//ov
+    console.log('--------测试slice----------');
+        var newStr4 = str.slice(-2);
+        console.log(newStr4);//ng
+    console.log('--------测试subString----------');
+			var newStr5 = str.substring(-2); // 不接受负参数
+			console.log(newStr5);//miaovm ketang miaovm ketang miaovm ketang
+        */
+/*
+    var str = 'miaovm ketang miaovm ketang miaovm ketang';
+    var newStr = str.substr(0);// 默认第二个参数lenght
+    console.log(newStr)  
+    var newStr2 = str.substr(5,5);  // 默认第二个参数lenght
+
+    console.log(newStr2); 
+    */ 
+/*
+    string.slice(startIndex[,endIndex])
+		作用
+			截取指定位置之间的字符串
+		语法
+			string string.slice(beginSlice[, endSlice])
+		参数
+			beginSlice
+				起始位置
+			endSlice
+				结束位置，默认为字符串长度
+				不包含结束为止的字符
+		返回值
+			返回截取后的字符串
+*/
+/*
+string.toLowerCase()
+        作用
+            把字符串转成小写
+        语法
+            string string.toLowerCase()
+        参数
+            无
+        返回值
+            转成小写后的字符串
+    string.toUpperCase()
+        作用
+            把字符串转成大写
+        语法
+            string string.toUpperCase()
+        参数
+            无
+        返回值
+            转成大写后的字符串
+
+
+    toUpperCase
+    toLowerCase
+
+
+*/
+var str = 'miaovm ketang miaovm ketang miaovm ketang'
+    console.log(str.toUpperCase());//MIAOVM KETANG MIAOVM KETANG MIAOVM KETANG
+    console.log('MMMMMMMM'.toLowerCase());//mmmmmmmm
+/*
+string.split(分割符)
+    作用：
+        根据一个分割符，把字符串转成一个数组
+    语法
+        Array string.split(分割符)
+    参数
+        分割符,字符串根据分割符，分割成不同的部分，作为数组的每一项
+        没有分割符，默认是空的，会把整个字符串当做数组的一项
+    返回值
+        是一个数组
+*/
+    var str = 'mikaovketkang';
+    console.log( str.split() );//["mikaovketkang"]
+    console.log( str.split('g') );//["mikaovketkan", ""]
+    // ["m", "i", "k", "a", "o", "v", "k", "e", "t", "k", "a", "n", "g"]
+    console.log( str.split('') );  // 以空字符串分割，字符串的每个字符作为数组的每一项
+    </script>
+</body>
+</html>

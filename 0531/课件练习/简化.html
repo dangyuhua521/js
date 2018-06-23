@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            height: 30px;
+            width: 100px;
+            background-color: blue;
+
+        }
+    </style>
+</head>
+<body>
+    <button id="start">开始</button>
+    <div id="box"></div>
+   <script>
+       var start = document.getElementById('start');
+       var h = 100;
+       start.onclick = function(){
+           console.log(box.timer);
+           if(box.timer) return;
+        box.timer = setInterval(function(){
+            h+=1;
+            if(h>200){
+                console.log('清除');
+                clearInterval(box.timer)
+                box.timer = null;
+            }
+            box.style,width = h+'px';
+        })
+       }
+    </script> 
+</body>
+</html>

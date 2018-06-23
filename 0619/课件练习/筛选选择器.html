@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* .box div {
+            background: red;
+        }
+
+        .box>div {
+            background: green;
+        } */
+
+        .first+div {
+            -background: blue;
+        }
+
+        .first~div {
+            -background: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="first">hello，我是第一个</div>
+        <div>hello，我是第2个</div>
+        <div>hello，我是第3个</div>
+        <div>
+            hello，我是第4个
+            <div>
+                我是孙子节点
+            </div>
+        </div>
+    </div>
+
+    <script src="../src/jquery-3.3.1.js"></script>
+    <script>
+        // $('.box div:eq(0)').css('background','red')//选择器形式
+        // $('.box div').eq(0).css('background','red')//调用方法
+        // var divs = $('.box div');
+        // divs.eq(0)
+        // $('.box div:first').css('background','red')
+        // $('.box div:last').css('background','red')
+
+        //所有大于1下标的元素
+        $('.box div:gt(1)').css('background','blue')
+        //所有小于1下标的元素
+        $('.box div:lt(1)').css('background','blue')
+    </script>
+
+</body>
+
+</html>

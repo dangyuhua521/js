@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul ul {
+            display: none;
+        }
+
+        ul.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+    <script>
+        var list = [{
+                title: '第一级菜单',
+                children: [{
+                        title: '第二级菜单',
+                        children: [{
+                            title: '第三级菜单'
+                        }]
+                    },
+                    {
+                        title: '第二级菜单',
+                        children: [{
+                            title: '第二级菜单',
+                            children: [{
+                                title: '第三级菜单'
+                            }]
+                        }]
+                    }
+                ]
+            },
+            {
+                title: '第一级菜单',
+                children: [{
+                    title: '第二级菜单',
+                    children: [{
+                        title: '第三级菜单'
+                    }]
+                }]
+            },
+            {
+                title: '第一级菜单',
+                children: [{
+                    title: '第二级菜单',
+                    children: [{
+                        title: '第三级菜单'
+                    }]
+                }]
+            }
+        ]
+
+        var box = document.querySelector('#box');
+
+        //封装一个函数，传入数组，返回生成后的ul结构
+        function createEm(data) {
+            var html = '<ul>'
+            for (var i = 0; i < data.length; i++) {
+                html += '<li><span>' + data[i].title + '</span>';
+                if (data[i].children) {
+                    //传入一个数组，返回ul结构
+                    html += createEm(data[i].children)
+                }
+                html += '</li>';
+            }
+            html += '</ul>'
+            return html;
+        }
+        box.innerHTML = createEm(list);
+        //获取所有的span，添加点击事件
+        var spans = document.querySelectorAll('#box span');
+        console.log(spans)
+        for (var i = 0; i < spans.length; i++) {
+            spans[i].onclick = function () {
+                var nextEm = this.nextElementSibling;
+                console.log(nextEm)
+                if (nextEm) {
+
+                    //找到点击的span的父级的父级 ul
+                    var parents = this.parentNode.parentNode;
+                    console.log(parents)
+                    //从这个ul下找到所有的ul
+                    var ulS = parents.querySelectorAll('ul');
+                    //给所有的ul都隐藏，排除点击的span下一个ul
+                    for (var i = 0; i < ulS.length; i++) {
+                        if (ulS[i] !== nextEm) {
+                            ulS[i].style.display = 'none';
+                            ulS[i].isShow = false;
+                        }
+                    }
+                    console.log(this.isShow);
+                    if (nextEm.isShow) {
+                        nextEm.style.display = 'none';
+                        nextEm.isShow = false;
+                    }else{
+                        nextEm.style.display ='block';
+                        nextEm.isShow=true
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

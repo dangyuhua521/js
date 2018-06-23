@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style >
+			#btn{
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button"  id="btn" value="按钮" />
+		<script>
+			var btn = document.getElementById('btn');
+			
+			var state =true;
+			btn.onclick = function(){
+				console.log(btn.style.background);
+				if(state){
+					btn.style.background= 'pink';
+					state=false
+				}else{
+					btn.style.background= '';
+					state=true
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* .box div {
+            background: red;
+        }
+
+        .box>div {
+            background: green;
+        } */
+
+        .first+div {
+            -background: blue;
+        }
+
+        .first~div {
+            -background: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <p>123 <span>123</span> </p>
+    <p>123 456</p>
+    <p>123 456 789 </p>
+    <p>123 456 789 0000 <span></span></p>
+    <p> </p>
+    <div></div>
+
+    <script src="../src/jquery-3.3.1.js"></script>
+    <script>
+    // 找到有指定选择器的后代元素p标签
+    // 筛选p标签的 
+    /*
+       $('p:has("span")').css('background','red')
+       $('p:empty').css('background','red')
+    */
+       //找里面文本或标签的p标签
+       $('p:parent').css('background','red')
+    </script>
+
+</body>
+
+</html>

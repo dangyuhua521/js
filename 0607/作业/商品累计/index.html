@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="price.css" />
+	</head>
+
+	<body onselectstart="return false;">
+		<div class="wrap">
+			<div class="box">
+				<ul class="list">
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong class="money">12.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong class="money">10.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong class="money">8.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong class="money">8元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong class="money">14.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+				</ul>
+				<div class="info">
+					<span>商品公合计：<em class="totalEm">0</em>件</span>
+					<span>共花费了：<em class="totalPriceEm">0</em>元</span>
+					<br />
+					<br />
+					<span>其中最贵的商品单价是：<em class="zuiguiEm">0</em>元</span>
+				</div>
+			</div>
+		</div>
+		<script>
+		function fn(parent){
+				// i标签 减加
+				// em标签 商品个数
+				// strong 单价 小计
+				var btn = parent.querySelectorAll('i');
+				var shopNum = parent.querySelector('em');
+				var strong = parent.querySelectorAll('strong');
+
+				// 商品个数
+				var num = Number(shopNum.innerHTML.trim());
+				// 单价
+				var price = parseFloat(strong[0].innerHTML.trim())
+
+				// 加
+				btn[1].onclick = function (){
+					num++;
+					shopNum.innerHTML = num;	// 购买数量
+					strong[1].innerHTML = num * price + '元'; // 小计
+
+					totalNum++;
+					totalEm.innerHTML = totalNum;  // 统计总数
+
+					totalPrice += price;
+					totalPriceEm.innerHTML = totalPrice; // 总价
+
+					// 当前点击购买这个商品，如果这个商品的单价，大于我记录的单价的值，就记录当前购买的这个商品的单价
+					if(price > zuigui){
+						zuigui = price; // 记录单价
+						zuiguiEm.innerHTML = zuigui;
+					}
+					
+				}
+				// 减
+				btn[0].onclick = function (){
+					//if(num === 0) return;
+					if(num === 0){
+						return;
+					}
+					num--;
+					shopNum.innerHTML = num;	// 购买数量
+					strong[1].innerHTML = num * price + '元'; // 小计
+
+					totalNum--;
+					totalEm.innerHTML = totalNum;  // 统计总数
+					totalPrice -= price;
+					totalPriceEm.innerHTML = totalPrice; // 总价
+
+					// 扫描一下那些商品数量不为0的参与比较单价
+					var max = 0;
+					for( var i = 0; i < ems.length; i++ ){
+						if(ems[i].innerHTML.trim() !== "0"){
+							
+							if(parseFloat(moneys[i].innerHTML) > max){
+								max = parseFloat(moneys[i].innerHTML);
+							}
+						}
+					}
+
+
+					zuiguiEm.innerHTML = max;
+					zuigui = max;  // 记录最贵的
+				}
+			}
+
+
+			var totalNum = 0;  // 用来记录购买的总数
+			var totalPrice = 0; // 记录总价钱
+			var zuigui = 0; // 记录最贵单价
+
+			var lis = document.querySelectorAll('.list li');
+			var totalEm = document.querySelector('.totalEm'); // 统计总数的容器
+			var totalPriceEm = document.querySelector('.totalPriceEm'); // 统计总价钱
+			var zuiguiEm = document.querySelector('.zuiguiEm'); // 最贵单价
+
+			// 获取所有的em
+			var ems = document.querySelectorAll('.list li em');
+			// 所有单价元素
+			var moneys = document.querySelectorAll('.list li .money');
+
+			totalEm.innerHTML = totalNum;
+			totalPriceEm.innerHTML = totalPrice;
+
+			for( var i = 0; i < lis.length; i++ ){
+				fn(lis[i])
+			}
+		
+		</script>
+	</body>
+
+</html>

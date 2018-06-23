@@ -1,0 +1,166 @@
+1. 找到指定下标的字符 charAt(index)
+2. 找到指定的字符或字符串首次出现的位置 indexOf(char/string[,fromIndex])
+3. 截取指定开始位置和结束位置之间所有的字符 slice substring
+4. 截取指定开始位置和指定长度个字符 substr(startIndex[,length])
+5. 转大写 toUpperCase()
+6. 转小写 toLowerCase() 
+8. 根据分割符转数组 split([分割符])
+9. 去除字符串前后空格 trim()
+//举例:
+ // trim用在获取imput的value值的时候，都要调用trim，去除前后空格
+var str = '   mi   aov   '
+
+    console.log(str.trim());
+
+
+
+			
+1. 向数组的尾部追加元素 push
+2. 向数组开始添加元素 unshift
+3. 删除数组的最后一项 pop
+4. 删除数组的第一项 shift
+5. 删除指定位置的元素 splice
+6. 添加指定位置的元素 splice
+7. 替换指定位置的元素 splice
+8.截取开始和结束位置的元素 slice
+9. 转成字符串   join()
+10. 指定一项，在数组中首次出现的位置 indexOf
+11.翻转数组 reverse()
+12. 连接多个数组 concat()
+
+//数组的方法
+push()
+    作用添加一个或多个元素到数组的末尾
+语法
+    number arr.push(element1,...elementN)
+参数
+    elementN 一个或多个元素
+返回的值
+    添加后数组的length
+
+注意：会改变原数组
+举例：
+    var arr = ['abc','1',2];
+       console.log(arr)//["abc", "1", 2]
+    var n = arr.push('教父',1)
+       console.log(n)//5
+
+
+unshift()
+    作用
+        添加一个或多个元素到数组的头部
+    语法
+        number arr.unshift(element1, ..., elementN)
+    参数
+        elementN	一个或多个元素
+    返回值
+        添加后数组的length
+举例：
+var arr = [1,2,3]
+    console.log(arr)//Array(数组)
+var n = arr.unshift('miaov','leo','duoduo')
+    console.log(n)//6
+
+pop()
+作用
+    删除数组最后一个元素
+语法
+    arr.pop()
+参数
+    返回值
+    被删除的那一个元素
+
+ 举例：
+ var arr = [1,2,3]
+    arr.pop();//每调用一次删除最后一个
+    arr.pop()//返回值是删除的那一项
+        console.log(arr) //Array
+        console.log(arr.pop())//1
+
+shift()
+作用
+    删除数组第一个元素
+语法
+    arr.shift()
+参数
+    无
+返回值
+    被删除的那一个元素    
+举例：
+var arr = [1,2,3]
+    // arr.shift()//语法
+    console.log(arr.shift())//1
+var arr = ['a','b','c']
+    // arr.shift()//语法
+     console.log(arr.shift())//a
+
+splice()
+作用
+    删除指定位置的元素，
+    用新元素替换旧元素，以此修改数组的内容	
+语法
+    array	array.splice(start, deleteCount[, item1[, item2[, ...]]])	
+参数
+    start		起始位置
+    deleteCount	删除长度
+    item		替换的内容
+返回值
+    由被删除的元素组成的一个数组
+
+注意：会修改原数组     
+举例：
+ var arr = ['a','b','c','d']
+     //不传任何参数，返回的时空数组
+    //  var a = arr.splice()
+    //startIndex 指定位置 delectLength 从指定位置一直到最后
+     // 传入一个参数，意思是起始位置，会从这个位置一直删除到数组的最后，返回值是删除的元素组成的新数组。
+     //var a = arr.splice(2);  
+     // startIndex 指定位置 delectLength 删除的个数
+    //var a = arr.splice(2,20); 
+    //var a = arr.splice(2,0); 
+    // startIndex 指定位置 delectLength 删除的个数 从第三个参数开始，就是在startIndex这个位置要插入/替换的内容
+ var a = arr.splice(2,0,'miaov')
+    console.log(a)
+    console.log(arr)//["a", "b", "miaov", "c", "d"]
+
+indexOf 查指定一项，在数组中首次出现的位置
+举例：
+// 复制一份提出来，原来的还保留
+var arr = ['a','b','c','d',"c"]
+
+console.log(arr.indexOf('c'));  // 2
+console.log(arr.indexOf('c',3));  // 2
+console.log(arr.indexOf('c',30));  // -1
+
+ reverse() 翻转数组
+ // 复制一份提出来，原来的还保留
+var arr = ['a','b','c','d']
+//翻转数组，返回值还是原来的数组
+var a = arr.reverse();
+console.log(a);
+console.log(arr);
+// ===可以判断两个对象相不相同
+console.log(a === arr);//true
+
+ooncat() 连接多个数组
+举例：
+// 复制一份提出来，原来的还保留
+    var arr = ['a','b','c','d']
+
+    var arr2 = [1,2,3];
+
+    // 连接数组，返回连接后的新数组,不会改变原数组
+    var newArr = arr.concat(arr2);
+
+    console.log(newArr);
+    console.log(arr);
+    console.log(arr2);
+
+    // 会把参数的数组，每一项都会放在新数组中
+    var newArr2 = arr.concat(arr2,['ggg','kkkk'],['lllll']);
+    console.log(newArr2);
+
+    // 传入不是数字的值，也放在新数组中
+    var newArr3 = arr.concat(arr2,['ggg','kkkk'],1,2,3);
+
+    console.log(newArr3);

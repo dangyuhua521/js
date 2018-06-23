@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="create_div1">生成div 100X100 red</button>
+    <button  id="create_div2">生成div 200X100 yellow</button>
+    <div id="box">
+        
+    </div>
+    <script>
+        /*
+				外面可定制
+					options {}
+						width  可选
+						height 可选
+						bg    可选
+			*/
+        function createDiv(options){
+            var defaults = {
+                width:100,
+                height:100,
+                bg:'red',
+                ft:50
+            }
+            for( var attr in options){
+                defaults[attr]=options[attr]
+            }
+            var div='<div style="width:'+defaults.width+'px;height:'+defaults.height+'px;background:'+defaults.bg+';font-size:'+defaults.ft+'px;">字体</div>'
+            return div;
+        }
+        create_div1.onclick = function(){
+            box.innerHTML=createDiv({
+                height:200,
+                width:200
+            })
+        }
+        create_div2.onclick = function(){
+             //尺寸按照函数内部的，颜色 yellow
+             box.innerHTML = createDiv({
+                 bg:'yellow',
+                 ft:12
+             })
+        }
+    </script> 
+</body>
+</html>

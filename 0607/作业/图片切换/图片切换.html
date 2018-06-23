@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        #wrap{
+            width: 760px;
+            height: 590px;
+            margin: 50px auto;
+            background: url(imgs/bg.png);
+            overflow: hidden;
+        }
+        section{
+            width: 420px;
+            height: 320px;
+            border: 3px solid #fff;
+            margin: 173px auto 0;
+            overflow: hidden;
+            position: relative;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            width: 2100px;
+            position: absolute;
+            left: 0;
+            -transition: .5s;
+        }
+        li{
+            list-style: none;
+            float: left;
+            position: relative;
+        }
+        img{
+            vertical-align: top;
+            width: 420px;
+            height: 320px;
+        }
+        a{
+            text-decoration: none;
+        }
+        #prev,#next{
+            width: 49px;
+            height: 63px;
+            line-height: 63px;
+            color: #fff;
+            font-size: 50px;
+            text-align: center;
+            background: black;
+            opacity: .5;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        #prev{
+            left: 0;
+        }
+        #next{
+            right: 0;
+        }
+        nav{
+            position: absolute;
+            bottom: 16px;
+            text-align: center;
+            width: 100%;
+        }
+        nav a{
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            margin: 0 5px;
+            display: inline-block;
+            transition: .3s;
+        }
+        nav .active{
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <section>
+            <ul id="banner">
+                <li><img src="imgs/1.jpg" /></li>
+                <li><img src="imgs/2.jpg" /></li>
+                <li><img src="imgs/3.jpg" /></li>
+                <li><img src="imgs/4.jpg" /></li>
+                <li><img src="imgs/5.jpg" /></li>
+                <li><img src="imgs/1.jpg" /></li>
+            </ul>
+            <a href="javascript:;" id="prev">&lt;</a><a href="javascript:;" id="next">&gt;</a>
+            <nav>
+                <a href="javascript:;" class="active"></a>
+                <a href="javascript:;"></a>
+                <a href="javascript:;"></a>
+                <a href="javascript:;"></a>
+                <a href="javascript:;"></a>
+            </nav>
+        </section>
+    </div>
+    <script src="../图片切换/tools.js"></script>
+    <script type="text/javascript">
+      
+    var next = document.querySelector('#next');//下一张
+    var prev = document.querySelector('#prev');//上一张
+    var nav = document.querySelectorAll('nav a');//小按钮
+    // console.log(nav)
+    var lis = document.querySelectorAll('li');
+    var banner = document.querySelector('#banner');
+    // console.log(banner)
+
+    var len = lis.length;
+    var n =0;//记录切换的图片
+    var m =0;//记录小按钮
+    // console.log(m)
+    //获取一张图片的宽度
+    var onW = parseFloat(css(lis[0],'width'));
+    // console.log(onW)
+    css(banner,'width',len*onW)
+    // console.log(banner)
+    next.onclick = function(){
+        if(banner['timer_left']) return;
+        console.log(nav[m])
+        mTween({
+            el:nav[m],
+            attr:'height',
+            target:10,
+            duration:100
+        })
+        m++;
+        console.log(m)
+        if(m>nav.length-1){
+            m=0;
+        }
+        mTween({
+            el:nav[m],
+            attr:'height',
+            target:20,
+            duration:100
+        })
+
+        n++;
+        //如果n超过len-1,说明后面没有图片了
+        //瞬间拉到第一张，向第二项运动
+        if(n>len-1){
+            css(banner,'left',0)
+            n=1;
+        }
+        mTween({
+            el:banner,
+            target:-n*onW,
+            attr:'left'
+
+        })
+    }
+    prev.onclick = function(){
+        if(banner['timer_left']) return;
+        mTween({
+            el:nav[m],
+            attr:'height',
+            target:10,
+            duration:100
+        })
+        m--;
+        if(m<0){
+            m=nav.length-1;
+            // console.log(m)
+        }
+        mTween({
+            el:nav[m],
+            attr:'height',
+            target:20,
+            duration:100
+        })
+        n--;
+        if(n<0){
+            css(banner,'left',-(len-1)*onW)
+            n=len-2
+        }
+        mTween({
+            el:banner,
+            target:-n*onW,
+            attr:'left' 
+        })
+    }
+    </script>
+</body>
+</html>

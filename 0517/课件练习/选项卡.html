@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style >
+			div{
+				width: 100px;
+				height: 100px;
+				border: 1px solid #000;
+				display: none;
+			}
+			.yellow{
+				background-color: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="yellow">娱乐新闻</button>
+		<button>世界杯专题</button>
+		<button>体育新闻</button>
+
+		<div style="display: block;">
+			娱乐新闻
+		</div>
+		<div>
+			世界杯专题
+		</div>
+		<div>
+			体育新闻
+		</div>
+		<script >
+			
+		var divs = document.querySelectorAll('div');
+		var btn = document.querySelectorAll('button');
+		var len = btn.length;
+		
+		for( var i = 0; i<len; i++){
+			btn[i].a=i;//添加自定义属性，记录下标
+			btn[i].onclick = function(){
+			for( var i = 0; i<len; i++){	
+				btn[i].className ='';
+				divs[i].style.display = 'none';
+			}
+			// this.a 点击按钮，通过自定的属性a找到下标
+			this.className='yellow';
+			divs[this.a].style.display='block';
+			}
+		}
+		</script>
+	</body>
+</html>

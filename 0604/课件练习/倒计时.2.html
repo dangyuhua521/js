@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+                倒计时
+                    未来时间点，和现在的时间点，直接有时间差
+            */
+        function addZero(n) {
+            return n < 10 ? '0' + n : n;
+        }
+        //未来的时间点
+        var futureTime = '2018 6 5 12:05:00';
+        //未来的天数
+        var futureDate = new Date(futureTime);
+        //未来时间戳
+        var futureMs = futureDate.getTime();
+
+        function render() {
+            var nowTime = new Date();
+            console.log(nowTime);
+            var nowMs = nowTime.getTime(); //现在时间戳 
+        
+           //差值= 未来时间点(ms)-现在时间点(ms)
+            var chazhi = (futureMs - nowMs) / 1000; //s
+            
+            if(chazhi<0){
+                console.log('到时间了');
+                return
+            }
+            // 秒 -> 天
+            // 1天 = 24 * 60 * 60
+            var d =addZero(parseInt(chazhi / 86400));
+            // 1小时 = 60 * 60
+            var h =addZero(parseInt(chazhi % 8640 / 3600));
+            //90000 / 几天 几小时
+            // 1分钟 = 60
+            var m =addZero(parseInt(chazhi % 86400 % 3600 / 60));
+            // 1s = 1s;
+            var s =addZero( parseInt(chazhi % 60));
+            var str = d+'天'+h+'时'+m+'分'+s+'秒';
+            console.log(str);
+            
+        }
+        render();
+        setInterval(render,1000);
+    </script>
+</body>
+
+</html>

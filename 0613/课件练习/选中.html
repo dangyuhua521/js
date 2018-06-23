@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            float: left;
+            margin: 20px;
+        }
+        .yellow{
+            width: 0;
+            height: 0;
+            border: 1px dashed #000;
+            background: yellow;
+            opacity: .5;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="red"></div>
+    <div class="red"></div>
+    <div class="red"></div>
+    <div class="red"></div>
+    <div class="red"></div>
+    <div class="red"></div>
+    <div ></div>
+  <script>
+   var red = document.querySelectorAll('.red');
+ //   1.先画方块
+    document.onmousedown = function(e){
+        var newDiv = document.createElement('div');
+        newDiv.classList.add('yellow');
+        document.body.appendChild(newDiv);
+        //down下去鼠标的位置
+        var downDisX = e.clientX;
+        var downDisY = e.clientY;
+        newDiv.style.left = downDisX+'px';
+        newDiv.style.top = downDisY+'px';
+        console.log(downDisY)
+        document.onmousemove = function(e){
+            newDiv.style.width =Math.abs(e.clientX - downDisX)+'px';
+
+            newDiv.style.height =Math.abs(e.clientY - downDisY)+'px';
+            newDiv.style.left =Math.min(e.clientX,downDisX)+'px';
+            newDiv.style.top =Math.min(e.clientY,downDisY)+'px';
+            //要和所有的div进行检测
+            for(var i =0;i<red.length; i++){
+                if(collision(newDiv,red[i])){
+                   red[i].style.background = 'blue' 
+                }else{
+                    red[i].style.background = 'pink';
+                }
+            }
+        }
+        document.onmouseup = function(e){
+            document.onmousemove =document.onmouseup=null;
+            newDiv.remove();
+        }
+        e.preventDefault();
+    }
+    function getRect(el){
+        return el.getBoundingClientRect();  
+    }
+    function collision(dragEl,hitedEl){
+        var dragRect = getRect(dragEl);
+        console.log(dragRect)
+        var hitedRect = getRect(hitedEl);
+        if( dragRect.right < hitedRect.left||
+            dragRect.bottom < hitedRect.top||
+            dragRect.left > hitedRect.right||
+            dragRect.top > hitedRect.bottom
+        ){
+            return false
+        }
+        return true
+    }
+  </script>  
+</body>
+</html>

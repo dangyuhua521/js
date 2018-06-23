@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style >
+			#box{
+				width: 100px;
+				height: 100px;
+				background: pink;
+		</style>
+	</head>
+	<body>
+		<button id="box">按钮</button>
+		
+		<script>
+			var box = document.getElementById('box');
+			
+			var box = box;
+			box.onclick = function(){
+				console.log('box.style.background')
+				if(box.style.background ==''){
+					box.style.background= 'red';
+				}else{
+					box.style.background= '';
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 150px;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+    <script>
+        var box = document.querySelector('#box');
+        var box2 = document.querySelector('#box2');
+        /*
+				options:
+					el 要运动的元素    *
+					attr 要运动的属性  *
+					target 目标点      *
+
+					duration 持续时间 默认400
+					fx 运行形式 默认匀速 linear
+
+            */
+        function css(el, attr, value) {
+            if (arguments.length === 2) {
+                return getComputedStyle(el)[attr]
+            } else {
+                el.style[attr] = value + 'px';
+            }
+        }
+        console.log(mTween)
+        function mTween(options) {
+            //如果元素上已经有定时器在开启，不在继续开启了
+            if (options.el['timer_' +options.attr]) {
+                return;
+            }
+            var defauls = {
+                //匀速
+                el: null,
+                attr: null,
+                target: null,
+                duration: 400,
+                fx: 'linear'
+            }
+            for (var at in options) {
+                defauls[at] = options[at]
+            }
+            //存在变量中
+            var 
+                el = defauls.el,
+                attr = defauls.attr,
+                target = defauls.target,
+                duration = defauls.duration;
+
+            //运动函数
+            //已过去时间所处的位置=总距离/持续时间*已过去时间+起始位置
+            // console.log(defaults);
+            var begin = parseFloat(css(el, attr))
+            var count = target - begin;
+            console.log(begin)
+            var start = Date.now(); //开始
+            el['timer_' + attr] = setInterval(function () {
+                var time = Date.now() - start; //已过去时间
+                console.log('定时器还在 走');
+                if (time > duration) {
+                    time = duration;
+                    clearInterval(el['timer_' + attr])
+                    el['timer_' + attr] = null;
+                }
+                var value = begin + count / duration * time;
+                el.style[attr] = value + 'px'
+            })
+        }
+        document.onclick = function () {
+            mTween({
+                el: box,
+                attr: 'left',
+                target: 1000
+            })
+            mTween({
+                el: box,
+                attr: 'width',
+                target: 1000
+            })
+        }
+    </script>
+</body>
+
+</html>

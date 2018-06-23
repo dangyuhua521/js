@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li{
+            list-style: none;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            line-height: 60px;
+            color: #fff;
+            background-color: red;
+            text-align: center;
+            display: inline-block;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <button>向上</button>
+    <button>向后</button>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+    </ul>
+    <script>
+        var buttons = document.querySelectorAll('button');
+        var list = document.querySelector('ul');
+        //数据
+        var arr = [1,2,3,4,5,6,7,8]
+        function render(){
+            var str = '';
+            for( i = 0; i<arr.length;i++ ){
+                str += '<li>'+arr[i]+'</li>';
+            }
+            list.innerHTML=str;
+        }
+        render()
+        buttons[0].onclick = function(){
+            arr.push(arr.shift())
+            render();
+        }
+        buttons[1].onclick = function(){
+            arr.unshift(arr.pop())
+            render();
+        }
+    </script>
+</body>
+</html>

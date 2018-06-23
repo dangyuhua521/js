@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 370px;
+            height: 400px;
+            overflow: hidden;
+            border: 1px solid blue;
+        }
+        .mian{
+            height: 50px;
+            line-height: 50px;
+            border-bottom:1px solid blue;
+        }
+        #prev-year,#prev-month{
+            margin-left: 20px;
+        }
+        .title{
+            height: 50px;
+            line-height: 50px;
+        }
+        span{
+            width: 60px;
+            height: 50px;
+            font-size: 18px;
+            line-height: 50px;
+            color: #000;
+            margin-right: 8px;
+            padding-left: 20px;
+            text-align: center;
+        }
+        #list{
+            border-top:1px solid #eee;
+        }
+        li{
+            width: 52px;
+            line-height: 50px;
+            font-size: 18px;
+            text-align: center;
+            color: #000;
+            display: inline-block;
+        }
+    </style>
+    <script>
+        //一个月有多少天
+        function getMonthDate(year,month){
+            //需要把月推到下一个月，把date为0就可以了
+            // var d = new Date();
+            // d.setFullYear(year);//设置年
+            // d.setMonth(month-1+1)//设置到下个月 月从0开始
+            // d.setDate(0);//推到了上个月的最后一天
+            // return d.getDate();
+            return (new Date(year,month,0)).getDate();
+        }
+        //一个月的一号周几？
+        function getMonthDateWeek(year,month){
+            var d = new Date(year,month-1,1);
+            // d.setFullYear(year);
+            // d.setMonth(month-1);
+            // d.setDate(1);
+            return d.getDay();
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <div class="mian">
+            <button id="prev-year"><<<</button>
+            <span id="year-box">2018</span>
+            <button id="next-year">>>></button>
+            <button id="prev-month"><<</button>
+            <span id="month-box">05</span>
+            <button id="next-month">>></button>
+        </div>      
+        <div class="title">
+                <span>一</span>
+                <span>二</span>
+                <span>三</span>
+                <span>四</span>
+                <span>五</span>
+                <span>六</span>
+                <span>日</span>
+        </div>
+        <ul id="list">
+                <!-- <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+                <li>11</li>
+                <li>12</li>
+                <li>13</li>
+                <li>14</li>
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+                <li>18</li>
+                <li>19</li>
+                <li>20</li>
+                <li>21</li>
+                <li>22</li>
+                <li>23</li>
+                <li>24</li>
+                <li>25</li>
+                <li>26</li>
+                <li>27</li>
+                <li>28</li>
+                <li>29</li>
+                <li>30</li>
+                <li>31</li> -->
+        </ul>
+    </div>
+    <script>
+
+        //根据一个月多少天，生成多少个li
+        var list = document.querySelector('#list');
+        //切换下一个月的按钮
+        var nextMonth = document.querySelector('#next-month');//月份的下一个按钮
+        var prevMonth = document.querySelector('#prev-month');//月份的上一个按钮
+        var monthBox = document.querySelector('#month-box');//月份的按钮
+        
+       
+
+        // 切换年的按钮
+        var nextYear = document.querySelector('#next-year');//年的下一个按钮
+        var prevYear = document.querySelector('#prev-year');//年的上一个按钮
+        var yearBox = document.querySelector('#year-box');//年的按钮
+        //年的点击事件
+        nextYear.onclick = function(){
+            currentYear++;
+            renderDate(currentYear,currentMonth); 
+        }
+
+        //月份的下一月的点击事件
+        nextMonth.onclick = function(){
+            currentMonth++;
+            renderDate(currentYear,currentMonth);
+        }
+        //月份的上一月的点击事件
+        prevMonth.onclick = function(){
+            currentMonth--;
+            renderDate(currentYear,currentMonth);
+        }
+        function renderDate(year,month){
+            //生成2018年5月份
+            var d = new Date();
+
+            d.setFullYear(year);
+            d.setMonth(month);
+
+            var year = d.getFullYear();
+            var month = d.getMonth();
+            //设置容器的月份
+            monthBox.innerHTML = month+1;
+            yearBox.innerHTML = year;
+            currentMonth = month
+            currentYear = year;
+
+            var dates = getMonthDate(year,month+1);//总天数
+            list.innerHTML = '';
+
+            //1 开始补li
+            //前面要填充的li，根据1号周几来
+            var oneDateWeek = getMonthDateWeek(year,month+1);
+            var preLength = oneDateWeek ===0? 7: oneDateWeek;
+            var preStr ='';
+            for( var i = 1; i < preLength; i++){
+                preStr += '<li></li>'
+            }
+            list.innerHTML += preStr;
+            //中间，根据天数，生成li
+            //根据总天数，生成li
+            var str ='';
+            for( var i = 1; i <= dates; i++){
+                str += '<li>'+i+'</li>'
+            }
+            list.innerHTML += str;
+            //根据总数 减去 签名和中间补得li
+            //后面补li 
+            var backLength = 42 - dates- (preLength-1);
+            var backStr='';
+            for( var i = 1;i <=backLength; i++){
+                backStr +='<li></li>'
+            }
+            list.innerHTML += backStr;
+        }
+        
+        var d = new Date();
+        var currentYear = d.getFullYear();
+        var currentMonth = d.getMonth();//记录显示月的结构
+        renderDate(currentYear,currentMonth);
+    </script>
+</body>
+</html>

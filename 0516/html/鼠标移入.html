@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style >
+			button{
+				width: 80px;
+				height: 80px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<button>改变颜色</button>
+		<ul class="list">
+			<li>1</li>
+			<li>2</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>1</li>
+			<li>4</li>
+		</ul>
+		<script>
+//			需求:移入到每一个li，在当前移入li的上面的所有的li（包含当前移入的li），
+			//下面的li,不加背景
+			var btn = document.querySelector('button');
+			var list = document.querySelector('list');
+			var lis = document.querySelectorAll('li');
+			var len = lis.length;
+			
+			//要和所有的li对比,小于移入的li的下标，加red
+			for( var i = 0; i < len; i++){
+				lis[i].index=i;
+				//鼠标移入，获取到移入这个元素的下标	
+				// 给每一个li加上状态，来记录是否有红色的背景
+				lis[i].onmouseover = function(){
+					for(var i = 0; i<len;i++){
+						if(lis[i].index <=this.index){
+						lis[i].style.background = 'red';
+						}
+					}
+					
+				}
+				lis[i].onmouseout = function(){
+					this.style.background = '';
+				}
+			}
+			
+		</script>
+	</body>
+</html>

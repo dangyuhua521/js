@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var o ={
+            a:1,
+            b:2,
+            // c:3
+        };
+        var o2 = {
+            c:3,
+            d:4,
+            e:5
+            
+        };
+        //o2身上的属性都合并到o上
+        // o.c = o2.c;
+        for( var attr in o2){
+            o[attr] = o2[attr]
+        }
+        console.log(o)
+    </script>
+</body>
+</html>

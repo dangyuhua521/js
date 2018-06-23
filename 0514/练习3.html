@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style >
+			
+		</style>
+	</head>
+	<body>
+		<input type="button"  id="btn" value="按钮" />
+		<input type="button"  id="btn" value="按钮" />
+		<input type="button"  id="btn" value="按钮" />
+		<input type="button"  id="btn" value="按钮" />
+		<input type="button"  id="btn" value="按钮" />
+		<input type="button"  id="btn" value="按钮" />
+		<input type="button"  id="btn" value="按钮" />
+		<input type="button"  id="btn" value="按钮" />
+		<script>
+			
+//			for循环改造
+			var btn =document.querySelectorAll('#btn');
+			
+			
+			for( var i = 0; i < btn.length;i++){
+//				console.log(i)
+//				console.log(btn.i)
+				btn[i].onclick = function(){
+					this.style.background='red';
+//					alert(1);
+				}
+			}
+		</script>
+	</body>
+</html>

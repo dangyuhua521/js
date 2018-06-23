@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+ <script>
+     var arr = ['a','b','c','d']
+     //不传任何参数，返回的时空数组
+    //  var a = arr.splice()
+    //startIndex 指定位置 delectLength 从指定位置一直到最后
+     // 传入一个参数，意思是起始位置，会从这个位置一直删除到数组的最后，返回值是删除的元素组成的新数组。
+     //var a = arr.splice(2);  
+     // startIndex 指定位置 delectLength 删除的个数
+    //var a = arr.splice(2,20); 
+    //var a = arr.splice(2,0); 
+    // startIndex 指定位置 delectLength 删除的个数 从第三个参数开始，就是在startIndex这个位置要插入/替换的内容
+    var a = arr.splice(2,0,'miaov')
+    console.log(a)
+    console.log(arr)//["a", "b", "miaov", "c", "d"]
+ </script>   
+</body>
+</html>

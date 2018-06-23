@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .content{
+            width: 800px;
+            height: 800px;
+            border: 5px solid green;
+            position: relative;
+        }
+        .box{
+            width: 400px;
+            height: 400px;
+            position: relative;
+            border: 1px solid red;
+            margin: 50px auto;
+        }
+        .mask{
+            width: 200px;
+            height: 200px;
+            background: yellow;
+            opacity: .5;
+            border: 2px dashed #000;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+   <div class="content">
+       <div class="box">
+           <div class="mask"></div>
+       </div>
+   </div> 
+   <script>
+       var box = document.querySelector('.box');
+       console.log(box)
+       var mask = document.querySelector('.mask');
+       function getRect(ev){
+           return ev.getBoundingClientRect();
+       }
+        var minX = 0;
+        var minY =0;
+        var maxX = box.clientWidth - mask.offsetWidth;
+        var maxY = box.clientHeight - mask.offsetHeight;
+       console.log(maxY)
+       box.onmousemove = function(e){
+           var r = getRect(box);
+           var l = e.clientX-r.left - mask.offsetWidth/2
+           var t = e.clientY-r.top - mask.offsetHeight/2;
+           if(l<minX) l =minX;
+           if(t<minY) t = minY;
+
+           if(l>maxX) l = maxX;
+           if(t>maxY) t = maxY;
+           mask.style.left = l+'px';
+           mask.style.top = t+'px';
+       }
+
+   </script>
+</body>
+</html>

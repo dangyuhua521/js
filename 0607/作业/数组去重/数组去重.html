@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //随机生成50个数 1-100之间
+        var arr =[];
+        for(var i =0;i<100;i++){
+            var n =Math.round(Math.random()*(100-1)+1) ;
+            arr.push(n)
+        }
+        console.time('miaov')
+        // 把重复的去掉之后放在新数组中，[1,2,4,6]
+        var newArr =[];
+        for(var i =0; i<arr.length;i++){
+            if(newArr.indexOf(arr[i])=== -1){
+                newArr.push(arr[i])
+            }
+        }
+        console.log(newArr);
+        console.timeEnd('miaov');//时间终点
+        // 调用方法是有开销的，调用indexOf就在内部帮助循环找这一项存不存在
+        console.time('miaov1');
+        var newArr1 =[];
+        //对象的key值是唯一的
+        var obj = {}
+        for(var i =0; i<arr.length;i++){
+            //取出数组中的值，作为对象的key值
+            if(!obj[arr[i]]){//没有这一项
+            obj[arr[i]]= true;
+            newArr1.push(arr[i])
+
+            }
+        }
+        console.log(newArr1);
+        console.timeEnd('miaov1')
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+            top:0;
+            left: 100px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+   <script>
+
+    var boxs = document.getElementById('box');
+    // 元素上的属性 offsetLeft => offset 偏移 相对左边偏移
+    var initLeft = 0;
+    console.log(box.offsetLeft)
+    box.onclick = function(){
+
+        setInterval(function(){
+            initLeft +=1;
+            box.style.left = initLeft+'px';
+        },10)
+        console.log(box.offsetLeft)
+    }
+   
+   </script> 
+</body>
+</html>

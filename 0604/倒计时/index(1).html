@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<style>
+	.box{
+		height: 61px;
+		overflow: hidden;
+	}
+	.div1{
+		position: relative;
+	}
+	.div2{
+		position: relative;
+	}
+	.div1 img{
+		width: 45px;
+		height: 61px;
+		transition: 1s;
+		position: absolute;
+	}
+	.div2 img{
+		width: 45px;
+		height: 61px;
+		transition: 1s;
+		position: absolute;
+	}
+</style>
+<body>
+	<div class="box">
+		<div class='div1'>
+			<img src="img/0.png" />
+			<img src="img/0.png" />
+			<img src="img/second1.png" />
+			<img src="img/0.png" />
+			<img src="img/0.png" />
+			<img src="img/second1.png" />
+			<img src="img/0.png" />
+			<img src="img/0.png" />
+		</div>
+		<div class="div2"></div>
+	</div>
+	
+<script type="text/javascript">
+	const div1 = document.querySelector('.div1')
+    const div2= document.querySelector('.div2')
+	const img1 = div1.getElementsByTagName('img');
+    const img2 = div2.getElementsByTagName('img');
+    div2.innerHTML+=div1.innerHTML;
+	time();
+	setInterval(time,1000);
+	function time(){
+		//当前时间
+		let d = new Date();
+		let H = d.getHours();
+		let M = d.getMinutes();
+		let S = d.getSeconds();
+		let str = toDou(H)+':'+toDou(M)+':'+toDou(S);
+		//当前时间加1秒
+		let d1 = new Date();
+		d1.setSeconds(d1.getSeconds()+1)
+		let H1 = d1.getHours();
+		let M1 = d1.getMinutes();
+		let S1 = d1.getSeconds();
+        let str1 = toDou(H1)+':'+toDou(M1)+':'+toDou(S1);
+
+		
+		for(let i=0;i<str.length;i++){
+			img1[i].style.transition='1s';
+			img2[i].style.transition='1s';
+			img1[i].style.top =0+'px'
+			img1[i].style.left = 45*i+'px'
+			img2[i].style.top =61+'px'
+			img2[i].style.left = 45*i+'px'
+			if(i != 2 && i!=5){
+				img1[i].src = 'img/'+str[i]+'.png';
+				img2[i].src = 'img/'+str1[i]+'.png';
+				if(str[i]!=str1[i]){
+					img1[i].style.top='-61px'
+					img2[i].style.top='0px'
+					setTimeout(function(){
+						img1[i].style.transition='0s';
+						img2[i].style.transition='0s';
+						img1[i].src = img2[i].src
+						img1[i].style.top='0px'
+						img2[i].style.top='61px'
+					},800)
+				}
+			}
+		}
+	}
+	function toDou(n){
+		return n<10?'0'+n:''+n;
+	}
+
+</script>	
+</body>
+</html>

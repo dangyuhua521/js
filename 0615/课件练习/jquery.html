@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       .yellow{
+            background: yellow;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000; 
+           
+        }
+    </style>
+</head>
+<body>
+   <button class="yellow">世界杯</button> 
+   <button>俄罗斯</button> 
+   <button>沙特</button> 
+   <div style="display: block">世界杯</div>
+   <div>俄罗斯</div>
+   <div>沙特</div>
+   <script src="jquery-3.3.1.js"></script>
+   <script>
+      console.log($('button')) //返回数组，选中的元素
+      console.log($('button')[0])
+      $('button').click(function(){
+          var i = $(this).index();
+          $('button').removeClass('yellow');
+          $(this).addClass('yellow')
+          $('div').css('display','none')
+          $('div').eq(i).css('display','block')
+      })
+   </script>
+</body>
+</html>

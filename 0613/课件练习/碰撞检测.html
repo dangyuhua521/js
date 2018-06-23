@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background:peru;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+        #yellow{
+            background: pink;
+            left: 400px;
+            top: 400px;
+        }
+    </style>
+</head>
+<body>
+   <div id="red"></div>
+   <div id="yellow"></div> 
+   <script>
+       function getRect(ev){
+           return ev.getBoundingClientRect();
+       }
+      red.onmousedown = function(e){
+          var disX = e.clientX -red.offsetLeft;
+          var disY = e.clientY-red.offsetTop;
+          document.onmousemove = function(e){
+              red.style.left = e.clientX-disX+'px';
+              red.style.top = e.clientY-disY+'px';
+              if(collision(red,yellow)){
+                  console.log('碰上了')
+              }else{
+                  console.log('没碰上')
+              }
+              document.onmouseup = function(e){
+                document.onmousemove = document.onmouseup = null;
+
+              }
+          }
+        /*
+        作用：
+          检测两个元素是否碰撞上
+          参数
+            拖拽的元素
+            被碰撞的元素
+        */
+
+        function collision(dragEl,hitedEl){
+            var dragRect = getRect(dragEl)
+            var hitedRect = getRect(hitedEl)
+            if( dragRect.right<hitedRect.left||
+                dragRect.bottom<hitedRect.top||
+                dragRect.left>hitedRect.right||
+                dragRect.top>hitedRect.bottom
+            ){
+                return false
+            }
+            return true
+        }
+      } 
+   </script>
+</body>
+</html>

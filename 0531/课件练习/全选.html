@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .checkbox{
+            width: 60px;
+            height: 60px;
+            border: 1px solid #000;
+            font-size:16px;
+            line-height: 60px; 
+            text-align: center;
+        }
+        .yellow{
+            background: yellow;
+        }
+        .red{
+            background:red;
+        }
+    </style>
+</head>
+<body>
+    <div class=" miaov checkbox">王杰</div>
+    <div class=" miaov checkbox">周杰伦</div>
+    <div class="miaov checkbox">谢天笑</div>
+    <div class="miaov checkbox">窦唯</div>
+    <div class="miaov checkbox">张国荣</div>
+    <hr>
+    <div class="checkedAll checkbox">全选</div>
+   <script>
+       var divs = document.querySelectorAll('.miaov');
+       var checkedAll = document.querySelector('.checkedAll');
+       var n = 0;//记录多少个div添加了yellow这个class
+      
+        for( var i = 0; i<divs.length; i++){
+            divs[i].onclick = function(){
+                var bl = this .classList.toggle('yellow');
+                if(bl){
+                    n++
+                }else{
+                    n--;
+                }
+
+                if(n===divs.length){
+                    checkedAll.classList.add('red')
+                }else{
+                    checkedAll.classList.remove('red')
+                }
+                if(n===divs.length){
+                    divs[i].classList.add('yellow') = true; 
+                }else{
+                    divs[i].classList.remove('yellow') = false;
+                }
+            }
+        }
+            checkedAll.onclick = function(){
+                var bl = this.classList.toggle('red');
+                if(bl){//全选选中
+                    for( var i = 0; i<divs.length; i++){
+                        divs[i].classList.add('yellow');
+                    } 
+                    n=divs.length
+                }else{
+                    for(var i = 0; i<divs.length; i++){
+                        divs[i].classList.remove('yellow');
+                    }
+                    n=0;
+                }
+            }
+        
+   </script> 
+</body>
+</html>

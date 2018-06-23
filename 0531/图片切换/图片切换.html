@@ -1,0 +1,172 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        #wrap{
+            width: 760px;
+            height: 590px;
+            margin: 50px auto;
+            background: url(imgs/bg.png);
+            overflow: hidden;
+        }
+        section{
+            width: 420px;
+            height: 320px;
+            border: 3px solid #fff;
+            margin: 173px auto 0;
+            overflow: hidden;
+            position: relative;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            width: 2100px;
+            position: absolute;
+            left: 0;
+            -transition: .5s;
+        }
+        li{
+            list-style: none;
+            float: left;
+            position: relative;
+        }
+        img{
+            vertical-align: top;
+            width: 420px;
+            height: 320px;
+        }
+        a{
+            text-decoration: none;
+        }
+        #prev,#next{
+            width: 49px;
+            height: 63px;
+            line-height: 63px;
+            color: #fff;
+            font-size: 50px;
+            text-align: center;
+            background: black;
+            opacity: .5;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        #prev{
+            left: 0;
+        }
+        #next{
+            right: 0;
+        }
+        nav{
+            position: absolute;
+            bottom: 16px;
+            text-align: center;
+            width: 100%;
+        }
+        nav a{
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            margin: 0 5px;
+            display: inline-block;
+            transition: .3s;
+        }
+        nav .active{
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <section>
+            <ul id="banner">
+                <li><img src="imgs/5.jpg" /></li>
+                <li><img src="imgs/1.jpg" /></li>
+                <li><img src="imgs/2.jpg" /></li>
+                <li><img src="imgs/3.jpg" /></li>
+                <li><img src="imgs/4.jpg" /></li>
+                <li><img src="imgs/5.jpg" /></li>
+                <li><img src="imgs/1.jpg" /></li>
+            </ul>
+            <a href="javascript:;" id="prev">&lt;</a><a href="javascript:;" id="next">&gt;</a>
+            <nav>
+                <a href="javascript:;" class="active"></a>
+                <a href="javascript:;"></a>
+                <a href="javascript:;"></a>
+                <a href="javascript:;"></a>
+                <a href="javascript:;"></a>
+            </nav>
+        </section>
+    </div>
+    <script src="../tools.js"></script>
+    <script type="text/javascript">
+        /*
+            点击右边按钮，向左运动，每次运动一张图片的宽度
+
+            步骤：
+                1. 找到相关元素
+                2. 绑定事件
+                3. 在事件中处理逻辑
+        */
+
+        var wrap = document.querySelector('#wrap');
+        var next = document.querySelector('#next');//上一张
+        var prev = document.querySelector('#prev');//下一张
+        var nav = document.querySelectorAll('nav a');//小按钮
+        var banner = document.querySelector('#banner');
+        var lis = banner.querySelectorAll('li');
+        
+        //得到一张图片的宽度
+        var oneW = parseFloat(css(lis[0],'width'));
+        
+        banner.style.width = lis.length*oneW + 'px';
+        console.log(oneW);
+
+        var n = 0; //记录所展示的图片
+        var m = 0;//记录小按钮
+        
+        banner.style.left = -n * oneW + 'px';
+        //下一张的点击事件
+        next.onclick = render;
+        //下一张的点击事件
+        prev.onclick = function(){
+            if(banner['timer_left']) return;
+            //让banner向左运动
+            n--;
+            if(n<1){
+                n=lis.length-2;
+            }
+            mTween(banner,'left',-n*oneW,1000)
+        }
+        //自动轮播
+       var timer = setInterval (render,500);
+       //移入图片容器的时候清除timer
+       wrap.onmouseover = function(){
+           clearInterval(timer);
+       }
+       //移出图片容器重新添加timer,自动播放
+       wrap.onmouseout = function(){
+          timer = setInterval(render,500);
+       }
+        //给点击事件和自动轮播定时器使用
+        function render(){
+            //点击的时候，如果left已经有变化，阻止在开一个定时器
+            if(banner['timer_left']) return;
+            //让banner向左运动
+            n++;
+            if(n > lis.length-1){
+                // console.log(1111)
+                css(banner,'left',-1*oneW)
+               n = 2; 
+            } 
+            //调用运动函数，传入元素名称，属性，属性值，持续时间
+            mTween(banner,'left',-n*oneW,1000)
+        }
+
+
+    </script>
+</body>
+</html>

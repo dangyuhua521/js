@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+            #box {
+                height: 210px;
+                overflow: hidden;
+                position: relative;
+            }
+             #box > div {
+                float: left;
+                position: relative;
+                left: 0;
+                top: 0;
+             }
+            #box img {
+                display: block;
+            }
+            .dot{
+                transition: .5s;
+            }
+        </style>
+        <script>
+            
+        </script>
+    </head>
+
+    <body>
+        <div id="box">
+            <div class ="run">
+                <img src="./img/0.png">
+                <img src="./img/0.png">
+            </div>
+            <div class ="run">
+                <img src="./img/0.png">
+                <img src="./img/0.png">
+            </div>
+            <div class="dot">
+                <img src="./img/fuh.png">
+            </div>
+            <div class ="run">
+                <img src="./img/0.png">
+                <img src="./img/0.png">
+            </div>
+            <div class ="run">
+                <img src="./img/0.png">
+                <img src="./img/0.png">
+            </div>
+            <div class="dot">
+                <img src="./img/fuh.png">
+            </div>
+            <div class ="run">
+                <img src="./img/0.png">
+                <img src="./img/0.png">
+            </div>
+            <div class ="run">
+                <img src="./img/0.png">
+                <img src="./img/0.png">
+            </div>
+        </div>
+        <script src="../图片时钟/tools.js"></script>
+        <script>
+            function addZero(n){
+                return n < 10 ? '0' + n : n;
+            }
+            var runs = document.querySelectorAll('#box div');
+            //之前时间
+            var str ='00:00:00';
+            setInterval(function(){
+                var now = new Date();//获取日期
+                var h =now.getHours();//当前时间
+                var m = now.getMinutes();//获取当前分钟数
+                var s = now.getSeconds();//获取当前秒数
+                //现在时间
+                var nowStr = addZero(h)+':'+addZero(m)+':'+addZero(s);
+                // console.log(nowStr)
+                // console.log(str)
+                for(var i =0; i<nowStr.length;i++){
+                    var dot= document.querySelectorAll('#box .dot img');
+                    console.log(dot)
+                    //冒号
+                    for(var j = 0; j<dot.length;j++){
+                        dot[j].src ="./img/fuh.png"
+                        setTimeout(function(){
+                            for(var j =0; j<dot.length;j++){
+                                dot[j].src ="./img/nfh.png"
+                            }
+                        },500)
+                    }
+                //上一个时间点和最新的事件点对比，哪一个点发生变化
+                    if(nowStr[i]!==str[i]){
+                        console.log(nowStr[i]!==str[i])
+                        css(runs[i],'top',0)
+                        var imgs = runs[i].getElementsByTagName('img');
+                        imgs[0].src='./img/'+str[i]+'.png'
+                        imgs[1].src='./img/'+nowStr[i]+'.png'
+                        mTween({
+                            el: runs[i],
+                            attr: 'top',
+                            target: -210,
+                            duration: 500
+                        })
+                    }
+                }
+                str = nowStr;
+            },1000)
+        </script>
+    </body>
+</html>

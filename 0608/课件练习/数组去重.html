@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      var arr =[];
+      for(var i=0;i<100;i++){
+          var n =Math.round(Math.random()*(100-1)+1);
+          arr.push(n)
+      }  
+      console.time('miaov')
+
+
+      var newArr =[];
+      for(var i =0; i<arr.length;i++){
+          if(newArr.indexOf(arr[i])===-1){
+              newArr.push(arr[i])
+          }
+      }
+      console.log(newArr)
+      console.timeEnd('miaov')
+
+      console.time('miaov1')
+      var newArr1=[];
+      var obj ={};
+      for(var i =0; i<arr.length;i++){
+          if(!obj[arr[i]]){
+               obj[arr[i]]=true;
+          newArr1.push(arr[i])
+          }
+         
+      }
+      console.log(newArr1)
+      console.timeEnd('miaov1')
+    </script>
+</body>
+</html>

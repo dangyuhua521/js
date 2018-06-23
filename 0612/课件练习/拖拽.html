@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img{
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/1.jpg" alt=""> 
+   <script>
+       var img = document.querySelector('img');
+       var X= 0,Y=0;//记录鼠标到元素左边和上边的距离
+       img.onmousedown= function(ev){
+           X= ev.clientX-img.offsetLeft;
+           Y = ev.clientY-img.offsetTop;
+           document.onmousemove = function(ev){
+               img.style.left = ev.clientX-X+'px';
+               img.style.top= ev.clientY-Y+'px';
+           }
+           document.onmouseup = function(){
+               document.onmousemove = document.onmouseup= null;
+           }
+           
+       }
+
+   </script>
+</body>
+</html>

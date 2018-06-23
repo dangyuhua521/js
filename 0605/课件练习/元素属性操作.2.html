@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  	<!--行间属性 attribute-->
+      <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528182979248&di=bd2b47b2cb50258741726679bd236b34&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0155ec57690def0000012e7e554876.gif" _src="./1.jpg" id="imgs">
+      <button id="btn">按钮</button>
+      <ul id="miaov"></ul>
+      <script>
+         document.onclick  = function (){
+            var _src= imgs.getAttribute('_src');
+            if(_src){
+                imgs.src = imgs.getAttribute('_src');
+                imgs.removeAttribute('_src')
+            }
+          }
+      </script>
+</body>
+</html>

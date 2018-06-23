@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">存在的信息</button>
+
+  <script>
+      var hash = window.location.hash;
+      if(hash){
+          hash= hash.slice(1);
+      }
+      hash = hash.split('&');
+      var obj ={};
+
+      for(var i =0;i<hash.length;i++){
+          var arr = hash[i].split('=');
+          obj[arr[0]] =arr[1];
+
+      }
+      console.log(obj)
+      console.log(hash)
+      btn.onclick = function(){
+        /*window.location.hash = {
+					name: 'leo',
+					age:30,
+					height:190
+        }*/
+        
+        window.location.hash = 'name =leo&age=30&height =190'
+      }
+  </script>  
+</body>
+</html>

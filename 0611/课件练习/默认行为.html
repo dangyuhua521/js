@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #miaov {
+            width: 300px;
+            height: 300px;
+            background: red;
+        }
+
+        #miaov ul {
+            background: green;
+            padding: 30px;
+        }
+
+        #miaov ul li {
+            background: blue;
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="javascript:;">baidu</a>
+    <a href="http://www.baidu.com" id="baidu">baidu</a>
+    <div id="miaov">
+        hello,选中我呀
+    </div>
+    <script>
+        baidu.onclick = function(ev){
+            console.log('触发了');
+            ev.preventDefault();
+        }
+        document.onmousedown= function(ev){
+            return false;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 20px;
+            background: red;
+            /* transition: 1s; */
+        }
+    </style>
+</head>
+<body>
+    <button id="start">开始</button>
+    <button id="start2">开始</button>
+    <button id="stop">停止</button>
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        // target = 1000 begin = 100 count = 900
+			// duration = 1000ms
+        var target = 1000;//目标
+        var begin = 100;//开始
+        var count = target-begin;
+        var duration = 3000;//是毫秒数？
+        
+        //已过去时间所处的位置=起始位置+总距离/总时间*已过去时间
+        document.onclick = function(){
+            var start = Date.now();//时间戳 ms
+            var timer = setInterval (function(){
+                //每过10ms,div的width在那个位置？
+                //离开始时间，过去了多长时间？
+                var now =Date.now();
+                var time = now-start;//已过去时间
+                //当过去时间大于持续时间，清除定时器，直接等于持续时间
+                if(time>duration){
+                    time = duration;
+                    clearInterval(timer);
+                    
+                }
+                console.log(time)
+                var value = Tween.backOut(time,begin,count,duration)
+               div.style.width = value+'px';
+            })
+        }
+    </script>
+</body>
+</html>

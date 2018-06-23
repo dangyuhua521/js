@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        ul,
+        p {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            font-family: '微软雅黑';
+        }
+
+        .box {
+            width: 746px;
+            height: 600px;
+            background: url(../img/bg.png) center center;
+            margin: 0 auto;
+        }
+
+        .mian {
+            width: 480px;
+            height: 500px;
+            background-color: #000;
+            margin: auto;
+        }
+
+        .list {
+            padding: 25px 0 0 44px;
+        }
+
+        li {
+            margin-bottom: 18px;
+            font-size: 16px;
+            line-height: 36px;
+            color: #919191;
+        }
+
+        .btn {
+            width: 44px;
+            height: 36px;
+            border-radius: 6px;
+            outline: none;
+            border: 1px solid #d4d5d4;
+            background: #000;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        strong {
+            display: inline-block;
+            width: 44px;
+            height: 36px;
+            font-size: 16px;
+            line-height: 36px;
+            border: 1px solid #d4d5d4;
+            border-radius: 6px;
+            text-align: center;
+            background: #fff;
+            color: #000;
+            vertical-align: top;
+            margin-right: 6px;
+        }
+
+        li>em {
+            padding: 6px;
+        }
+
+        li>span {
+            padding: 6px;
+        }
+
+        p {
+
+            font-size: 16px;
+            line-height: 36px;
+            color: #919191;
+            margin-left: 42px;
+        }
+
+        span {
+            width: 44px;
+            height: 36px;
+        }
+
+        em {
+            font-size: 16px;
+            line-height: 36px;
+            color: #919191;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <section class="mian">
+            <ul class="list">
+                <li>
+                    <input type="button" class="btn" value="-">
+                    <strong class="str">0</strong>
+                    <input type="button" class="btn" value="+"> 单价：
+                    <em>12.5元</em>
+                    小计:
+                    <span>0元</span>
+                </li>
+                <li>
+                    <input type="button" class="btn" value="-">
+                    <strong class="str">0</strong>
+                    <input type="button" class="btn" value="+"> 单价：
+                    <em>10.5元</em>
+                    小计:
+                    <span>0元</span>
+                </li>
+                <li>
+                    <input type="button" class="btn" value="-">
+                    <strong class="str">0</strong>
+                    <input type="button" class="btn" value="+"> 单价：
+                    <em>8.5元</em>
+                    小计:
+                    <span>0元</span>
+                </li>
+                <li>
+                    <input type="button" class="btn" value="-">
+                    <strong class="str">0</strong>
+                    <input type="button" class="btn" value="+"> 单价：
+                    <em>8元</em>
+                    小计:
+                    <span>0元</span>
+                </li>
+                <li>
+                    <input type="button" class="btn" value="-">
+                    <strong class="str">0</strong>
+                    <input type="button" class="btn" value="+"> 单价：
+                    <em>14.5元</em>
+                    小计:
+                    <span>0元</span>
+                </li>
+            </ul>
+            <p>商品合计共：
+                <strong class="total">0</strong>件 共花费了：
+                <strong class="totalPriceEm">0</strong>元</p>
+            <br>
+            <p>其中最贵的商品单价是：
+                <strong class="zuigui">0</strong>元</p>
+        </section>
+    </div>
+    <script>
+        var lis = document.querySelectorAll('.list li');
+        var total = document.querySelector('.total')//统计总数
+        var totalPriceEm = document.querySelector('.totalPriceEm')//统计总价钱
+        var zuiguiEm = document.querySelector('.zuigui')//最贵单价
+        var str = document.querySelectorAll('.list li .str')//获取所有的str
+        var ems = document.querySelectorAll('.list li em')//获取所有的单价元素
+
+        var totalNum = 0;//用来记录购买的总数
+        var totalPrice = 0;//用来记录总价钱
+        var zuigui = 0;//记录最贵单价
+
+        total.innerHTML = totalNum;
+        totalPriceEm.innerHTML = totalPrice;
+
+
+        // console.log(lis)
+       for( var i = 0; i<lis.length; i++){
+            fn(lis[i])
+            // console.log(fn(lis[i]))
+       }
+        function fn(parent) {
+            var btn = parent.querySelectorAll('.btn')//获取+ - 按钮
+            var strg = parent.querySelectorAll('strong')//获取商品件数按钮
+            var shop= parent.querySelectorAll('em')//获取单价按钮
+            var spans= parent.querySelectorAll('span')//获取小计按钮
+            var num = Number(strg[0].innerHTML.trim())//商品个数
+            var price = parseFloat(shop[0].innerHTML.trim())//单价
+            //加
+            btn[1].onclick = function(){
+                num++;
+                strg[0].innerHTML= num;//购买数量
+                spans[0].innerHTML = num * price +'元'//小计
+
+                totalNum++;
+                total.innerHTML = totalNum;//统计总数
+                totalPrice += price;
+                totalPriceEm.innerHTML = totalPrice;//总价
+                // 当前点击购买商品，如果这个商品的单价，大于我记录的单价的值，就记录当前购买的这个商品的单价
+                if(price > zuigui){
+                    zuigui= price//记录单价
+                    zuiguiEm.innerHTML = zuigui;
+
+                }
+            }
+            //减
+            btn[0].onclick = function(){
+                if(num ===0){
+                    return
+                }
+                num--;
+                strg[0].innerHTML= num;//购买数量
+                spans[0].innerHTML = num * price +'元'//小计
+
+                totalNum--;
+                total.innerHTML = totalNum;//统计总数
+                totalPrice -=price;
+                totalPriceEm.innerHTML = totalPrice;//总价
+
+                //记录那些商品数量不为0的参与比较单价
+                var max =0;
+                for( var i = 0; i<str.length; i++){
+                    if(str[i].innerHTML.trim() !=="0"){
+                        if(parseFloat(ems[i].innerHTML)>max){
+                            max= parseFloat(ems[i].innerHTML)
+                        }
+                    }
+                }
+                zuiguiEm.innerHTML=max;
+                zuigui=max;//记录最贵的
+            }   
+       }
+       
+       
+
+    </script>
+</body>
+
+</html>

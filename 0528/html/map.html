@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn"><25岁的</button>
+   <ul id="list">
+       <!-- <li>
+           姓名：XXX
+           性别：xxx
+           年龄：xxx
+       </li>
+       <li>
+        姓名：XXX
+        性别：xxx
+        年龄：xxx
+    </li> -->
+   </ul> 
+   <script>
+       var list =document.getElementById('list');
+       var btn =document.getElementById('btn');
+       var arr =[
+           { name:'leo',
+           sex:'女',
+           age:'18'
+           
+       },
+       {
+           name:'leo1',
+           sex:'男',
+           age:'30'
+       },
+       {
+           name:'leo2',
+           sex:'女',
+           age:'20'
+       },
+       {
+           name:'leo3',
+           sex:'女',
+           age:'35'
+       }
+       ]
+       
+       function render(d){
+           list.innerHTML = d.map(function(item){
+        // console.log(item,index)
+        return "<li>\
+                    姓名:"+item.name+"\
+                    性别:"+item.sex+"\
+                    年龄："+item.age+"\
+                </li>"
+        }).join('');
+        
+       }
+       // 初始渲染arr的内容
+       render( arr)
+
+   
+    btn.onclick = function(){
+        var v = arr.filter(function(item){
+            return item.age < 25;
+        });
+        render(v)
+    }
+   </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        #box{
+            width: 200px;
+            height: 300px;
+            background: red;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+        .add{
+            width: 200px;
+            height: 200px;
+            background: yellow;
+            position: absolute;
+            top:0;
+            left: 0;
+
+        }
+    </style>
+</head>
+<body>
+  <div id="box"></div> 
+  <script>
+      box.onmousedown = function(e){
+          var disX = e.clientX-box.offsetLeft;
+          var disY = e.clientY- box.offsetTop;
+          var downDisX = e.clientX;
+          var downDisY = e.clientY;
+        //   var newDiv = document.createElement('div');
+        //   newDiv.classList.add('add');
+        //   newDiv.style.left = box.offsetLeft+'px';
+        //   newDiv.style.top = box.offsetTop+'px';
+        //   document.body.appendChild(newDiv);
+        //  newDiv.innerText ='选中了n条'
+            var newDiv = null;
+         document.onmousemove = function(e){
+             //判断10个像素
+             if((Math.abs(e.clientX - downDisX) > 10 || Math.abs(e.clientY - downDisY) > 10) && !newDiv){
+                newDiv = document.createElement('div');
+                newDiv.classList.add('add');
+                newDiv.style.left = box.offsetLeft+'px';
+                newDiv.style.top = box.offsetTop+'px';
+                document.body.appendChild(newDiv);  
+             }
+            if(newDiv){
+                newDiv.style.left = e.clientX-disX+'px';
+                newDiv.style.top = e.clientY-disY+'px';
+            }
+         } 
+         document.onmouseup = function(e){
+            document.onmousemove = document.onmouseup =null;
+           if(newDiv){
+            box.style.left = newDiv.offsetLeft+'px';
+            box.style.top = newDiv.offsetTop+'px';
+            newDiv.remove();
+           }
+         }
+      }
+  </script> 
+</body>
+</html>
