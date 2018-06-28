@@ -100,7 +100,7 @@
                     <span class="rn">重名</span>
                     <span class="sh">分享</span>
                 </div>
-                <div class="folders">
+                <div class="folders"> 
                     <!-- <div class="file-item">
                        <img src="img/folder-b.png" alt="">
                        <span class="file-name">js基础课程</span>
@@ -110,6 +110,7 @@
                 </div>
             </div>
         </section>
+        <div id="mask" style="width:100%;height:100%;z-index:22;display:none;position: fixed;background: #000;opacity: .5;left: 0;top:0;"></div>
         <div class="modal">
             <h3>选择储存位置</h3>
             <p class="folderName">我的文档</p>
@@ -117,8 +118,9 @@
 
             </div>
             <div class="footer">
-                <input type="button" class="ok" value="确定">
                 <input type="button" class="cancel" value="取消">
+                <input type="button" class="ok" value="确定">
+               
                 <p class="tip"></p>
             </div>
             <i class="icon_close"></i>
@@ -131,8 +133,8 @@
                     确定要删除文件吗？
                 </div>
                 <div class="conf-btn">
-                    <a href="javascript:;">确定</a>
-                    <a href="javascript:;">取消</a>
+                    <a href="javascript:;" class="ok">确定</a>
+                    <a href="javascript:;" class="cancel">取消</a>
                 </div>
             </div>
         </div>
@@ -145,11 +147,15 @@
             </span>
         </div>
     </div>
-
+    
     <script src="./js/data.js"></script>
+    <script src="./js/tools.js"></script>
     <script src="./js/index.1.js"></script>
     <script src="./js/content.js"></script>
-
+    <script src="./js/desing.js"></script>
+    <script src="./js/create.js"></script>
+    <script src="./js/set.js"></script>
+   
 </body>
 
 </html>

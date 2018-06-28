@@ -210,7 +210,7 @@ html,body{
 	width:56px;
 	height:14px;
 	background: #fff;
-	z-index: 10;
+	z-index: 2;
 	position: absolute;
 	bottom:-12px;
 	left:-1px;
@@ -229,7 +229,7 @@ html,body{
 	bottom:-121px;
 	border:1px solid #53aedb;
 	border-radius: 4px 0 4px 4px;
-	z-index: 1;
+	z-index: 3;
 	overflow: hidden;
 }
 .sort_mode ul li{
@@ -270,7 +270,7 @@ html,body{
 	line-height: 32px;
 	color: #66757f;
 	overflow: auto;
-	z-index: 10;
+	z-index:4;
 }
 .tree-title{
 	position: relative;
@@ -349,8 +349,6 @@ html,body{
 	float: left;
 	font-size: 14px;
 	line-height: 48px;
-	/* color: #55addd;
-	border-bottom: 2px solid #55addd; */
 	background: url(../img/br_jt.png) no-repeat right center;
 }
 
@@ -365,10 +363,13 @@ html,body{
 	border-bottom: 2px solid #55addd;
 }
 .pty{
-	width: 100%;
-	height: 100%;
+	width: 290px;
+	height: 241px;
+	position: absolute;
+	top: 40%;
+	left: 40%;
 	display: none;
-	background: url(../img/cover-bg.png) no-repeat 44% 40%;
+	background: url(../img/cover-bg.png) no-repeat rgb(245, 248, 249);
 }
 #tit{
 	position: absolute;
@@ -376,7 +377,7 @@ html,body{
 	height: 155px;
 	background: #fff;
 	border: 1px solid #ccc;
-	z-index: 3;
+	z-index: 5;
 	display: none;
 }
 #tit span{
@@ -403,6 +404,7 @@ html,body{
 	position: absolute;
 	background: rgba(0,133,188,0.1);
 	border:1px dotted #000;
+	z-index: 6;
 }
 .file-item{
 	float: left;
@@ -488,10 +490,11 @@ html,body{
 	border: 2px solid #55addb;
 	border-radius: 5px;
 	position: absolute;
-	left: 80%;
-	top:52%;
+	left: 40%;
+	top:58%;
 	background: #fff;
 	display: none;
+	z-index: 25;
 	margin: -208px 0 0 -203px;
 }
 .modal h3{
@@ -525,15 +528,15 @@ html,body{
 	background: url(../img/icon_close.png) no-repeat;
 }
 .footer p ,.footer input {
-	float:left;
-	outline: none;
+	float: right;;
+	margin: 0px 10px;
 }
-.ok{
+/* .ok{
 	margin-left:100px;
 }
 .cancel{
 	margin-left:30px;
-}
+} */
 .footer p {
 	margin: 0;
 	color: red;
@@ -608,6 +611,7 @@ html,body{
 	color: #ccc;
 	font:normal 16px/20px "微软雅黑";
 	cursor: pointer;
+	/* transform:  */
 	background: url(../img/icon_close.png) no-repeat center center;
 
 }
@@ -621,7 +625,7 @@ html,body{
 	height:155px;
 	background: #fff;
 	display: none;
-	z-index: 10000;
+	z-index: 7;
 	border: 1px solid #ccc;
 }
 #yj-list span{
@@ -639,7 +643,7 @@ html,body{
 .full-tip-box{
 	position: fixed;
     top: -32px;
-    z-index: 1001;
+    z-index: 8;
     text-align: center;
     width: 400px;
     left: 50%;
@@ -648,21 +652,21 @@ html,body{
 }
 .full-tip {
     display: inline-block;
-    border-radius: 0 0 3px 3px;
-    background: #fff;
+	border-radius: 0 0 3px 3px;
+	background: #fff;
 }
 
-.full-tip .inner {
+.full-tip .inner{
     position: relative;
     display: inline-block;
 }
 .full-tip .ico {
-    position: absolute;
+	position: absolute;
     left: 38px;
     top: 0;
     width: 24px;
     height: 32px;
-    background: url(../img/full-tip-w.png) no-repeat 0 4px ;
+    background: url(../img/full-tip-s.png) no-repeat 0 4px;
 }
 .full-tip .tip-text {
     display: inline-block;
@@ -673,9 +677,9 @@ html,body{
     text-align: left;
 }
 
-.err,.ok,.warn{
+/* .err,.ok,.warn{
     top:0;
-}
+} */
 
 .err .full-tip{
     background: red;
@@ -687,15 +691,15 @@ html,body{
     background: #75bc0f;
 }
 
-.ok .ico {
-   background: url(../img/full-tip-s.png) no-repeat 0 2px ;
+.ok .ico{
+   background: url(../img/full-tip-s.png) no-repeat 0 2px;
 }
 
-.warn .full-tip {
+.warn123 .full-tip {
     background: #f49918;
 }
-.warn .ico {
-     background: url(../img/full-tip-w.png) no-repeat 0 2px ;
+.warn123 .ico {
+    background: url(../img/full-tip-w.png) no-repeat 0 2px ;
 }
 .dragbox{
 	position: absolute;
