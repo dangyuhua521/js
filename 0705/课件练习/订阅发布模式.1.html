@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+      /*
+				售楼中心处
+					接待的人员
+
+					小明 去 售楼中心处 问 有没有房子 没有
+					小明 去 售楼中心处 问 有没有房子 没有
+					小明 去 售楼中心处 问 有没有房子 没有
+					小明 去 售楼中心处 问 有没有房子 没有
+					小明 去 售楼中心处 问 有没有房子 没有
+					小明 去 售楼中心处 问 有没有房子 没有
+
+					小红 去 售楼中心处 问 有没有房子 没有
+					小红 去 售楼中心处 问 有没有房子 没有
+					小红 去 售楼中心处 问 有没有房子 没有
+					小红 去 售楼中心处 问 有没有房子 没有
+					
+					不需要时时刻刻的盯着，留下电话号码，有房子，通知你
+						小明 186XXXX
+						小红 132XXXX
+
+					有房了
+						客服打电话通知小明 有房了 小明 借钱了
+						客服打电话通知小红 有房了 小红 全款
+
+            */
+          
+            function SalesCenter(){
+                this.tellBooks = {};
+            }
+            //提供一个方式，留下电话号码
+            SalesCenter.prototype.subscribe = function(square,fn){
+                //记录电话号码
+                if(!this.tellBooks[square]){
+                    this.tellBooks[square]=[];
+                }
+                this.tellBooks[square].push(fn);
+            }
+
+            SalesCenter.prototype.publish = function(square){
+                //记录电话号码
+                var squares = this.tellBooks[square];
+                if(squares){
+                    for(var i =0;i<squares.length;i++){
+                        squares[i]('有房了')
+                    }  
+                }
+                
+            }
+            //取消订阅
+            SalesCenter.prototype.off = function(square,fn){
+               //记录电话号码
+               var squares = this.tellBooks[square];
+               if(squares){
+                   for(var i =0; i<squares.length;i++){
+                       if(squares[i]===fn){
+                           squares.splice(i,1)
+                           break;
+                       }
+                   }
+               } 
+            }
+             var s = new SalesCenter()
+             function fn(message){
+                 console.log(message)
+                 console.log('小明借钱了')
+             }
+            //小明订阅
+            s.subscribe('300m',fn)
+            //小李订阅
+            s.subscribe('300m',function(message){
+                console.log(message);
+				console.log('小李和媳妇商量要不要买');
+            })
+
+             //小红
+            s.subscribe('50m',function(message){
+                console.log(message);
+				console.log('小红全款');
+            })
+            //小王
+            s.subscribe('50m',function(message){
+                console.log(message)
+                console.log('小王贷款')
+            })
+            setTimeout(function(){
+                s.off('300',fn)
+            },1000)
+            document.onclick = function(){
+                s.publish('300m')
+            }
+
+    </script>
+</body>
+</html>

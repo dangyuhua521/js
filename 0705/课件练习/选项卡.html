@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box div{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            display: none;
+        }
+        .yellow{
+            background: yellow;
+        }
+        .green{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+   <div id="box1">
+       <button>1</button>
+       <button>2</button>
+       <button>3</button>
+       <div>1</div>
+       <div>2</div>
+       <div>3</div>
+   </div> 
+   <script>
+   function tab(id){
+       this.box = document.querySelector(id);
+       this.buttons =this.box.querySelectorAll('button')
+       this.divs = this.box.querySelectorAll('div')
+       this.len = this.buttons.length;
+       this.initIndex = 0;
+       this.n = 0
+   }
+   </script>
+</body>
+</html>

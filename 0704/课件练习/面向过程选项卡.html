@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1 div,#box2 div{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            display: none;
+        }
+        .pink{
+            background: pink;
+        }
+        .green{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <button> 1</button>
+        <button>2</button>
+        <button>3</button>
+        <div>
+            1
+        </div>
+        <div>
+            2
+        </div>
+        <div>
+            3
+        </div>
+    </div>
+    <div id="box2">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <div>
+            1
+        </div>
+        <div>
+            2
+        </div>
+        <div>
+            3
+        </div>
+    </div>
+    <button id="btn1">让第一个自动切换</button>
+    <button id="btn2">让第2停止自动切换</button>
+    <button id="btn3">停止的播放，播放的停止</button>
+    <script>
+       function tab(id,isPlay,cls,initIndex){
+           var box = document.querySelector(id)
+           var buttons = box.querySelectorAll('button');
+           var divs = box.querySelectorAll('div');
+           
+           buttons[initIndex].classList.add(cls);
+           divs[initIndex].style.display ='block';
+           for(var i =0;i<buttons.length;i++){
+               buttons[i].index =i;
+               buttons[i].onclick = function(){
+                   change(this.index,cls)
+               }
+           }
+           //切换到指定的下标
+           function change(k,cls){
+               for(var j =0;j<buttons.length;j++){
+                   buttons[j].classList.remove(cls);
+                   divs[j].style.display = 'none'
+               }
+               buttons[k].classList.add(cls)
+               divs[k].style.display = 'block'
+           }
+           if(isPlay==='autoPlay'){//自动播放
+                var n =0;
+                box.timer = setInterval(function(){
+                    n++;
+                    if(n>buttons.length-1){
+                        n=0;
+                    }
+                    change(n)
+                },2000)
+           }
+       } 
+       tab('#box1',null,'green',2)
+       tab('#box2','autoPlay','pink',1)
+       tab('#box2',null,null,1)
+
+       //让第一个自动播放
+       btn1.onclick= function(){
+           tab('#box1','autoPlay')
+       }
+       //让第2个停止自动切换
+       var box2 = document.querySelector('#box2')
+        btn2.onclick = function (){
+            console.log(box2.timer);
+            clearInterval(box2.timer)	
+        }
+    </script>
+</body>
+</html>

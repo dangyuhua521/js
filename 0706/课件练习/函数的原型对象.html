@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            函数的原型对象在初始的时候，会有一个属性
+                constructor 指向拥有这个原型对象的函数
+
+
+            Array() { [native code] }
+                内置函数，不暴露源码
+        */
+
+        function Car(){
+            this.color = 'red'
+        }
+        console.log(Car.prototype);
+        console.log(Car.prototype.constructor);
+        console.log(Object.getOwnPropertyDescriptor(Car.prototype,'constructor'));
+        var c = new Car();
+        for(var attr in Car.prototype){
+            console.log(attr)
+        }
+        console.log(c.constructor)
+        var arr =[];
+        console.log(arr.constructor===Array);//true
+        console.log(arr.constructor===Object)//false
+    </script>
+</body>
+</html>

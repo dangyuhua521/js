@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       var o ={
+           miaov:1
+       }
+       o.miaov = 100;
+       console.log(o)
+       console.log(Object.getOwnPropertyDescriptor(o,'miaov'))
+       console.log(Object.getOwnPropertyDescriptor(o,'__proto__'))
+
+       //对这个属性进行哪些操作？删除 改变 遍历
+       function Car(){
+
+       }
+       Car.prototype.run= function(){
+
+       }
+       console.log(Car.prototype)
+       var c1 = new Car();
+       console.log(Object.getOwnPropertyDescriptor(Car.prototype,'run'));
+       console.log(Object.getOwnPropertyDescriptor(Car.prototype,'constructor'));
+       //遍历自身的属性和原型上的属性，constructor不被遍历，因为获取到的描述对象中enumerable为false，不可被遍历
+       for( var attr in c1){
+           console.log(attr)
+       }
+   </script>
+</body>
+</html>

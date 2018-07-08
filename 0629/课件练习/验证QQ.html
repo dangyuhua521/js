@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="" id="message" name="">
+    <span id="tip"></span>
+    <script>
+    var re =/^[1-9]\d{4,11}$/;
+    message.oninput = function(){
+        if(re.test(this.value.trim())){
+            tip.innerText = '是QQ'
+        }else{
+            tip.innerText = 'no'
+        }
+    }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       function createStudenInfo(name,age,height){
+           this.name = name;
+           this.age = age;
+           this.height = height;
+           //每个对象独有的方法
+           this.eat = function(){
+               console.log('吃饭')
+           }
+       }
+       createStudenInfo.prototype.coding = function(){
+           console.log('我会编程')
+       }
+       createStudenInfo.prototype.say = function(){
+           console.log('this为',this)
+           console.log('我叫:'+this.name);
+       }
+
+       var s1 = new createStudenInfo('小喵',18,180)
+       var s2 = new createStudenInfo('小猫咪',18,190)
+       console.log(s1.__proto__);//这个对象s1的_proto_指向的是创建s1的构造函数createStudenInfo的原型prototype
+
+       console.log(s1.__proto__===createStudenInfo.prototype);
+       console.log(s1);
+       var arr =[]
+       console.dir(arr)
+   </script> 
+</body>
+</html>

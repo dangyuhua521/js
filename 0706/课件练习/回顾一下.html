@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function Car(){
+        this.color= 'red'
+    }
+    Car.prototype.run = function(){
+        //怎么区分，是哪一个对象调用的呢？
+        console.log(this)
+    }
+    var c1 = new Car();
+    //通过__proto__找原型对象，s改写后，找的就是改写后的对象
+    //不要改写__proto__
+    c1.__proto__={run:1}
+    console.log(c1.run);
+    var arr1 = [];
+    var arr2 = [];
+
+    </script>
+</body>
+</html>

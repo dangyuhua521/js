@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+      /*
+				售楼中心处
+					接待的人员
+
+					小明 去 售楼中心处 问 有没有房子 没有
+					小明 去 售楼中心处 问 有没有房子 没有
+					小明 去 售楼中心处 问 有没有房子 没有
+					小明 去 售楼中心处 问 有没有房子 没有
+					小明 去 售楼中心处 问 有没有房子 没有
+					小明 去 售楼中心处 问 有没有房子 没有
+
+					小红 去 售楼中心处 问 有没有房子 没有
+					小红 去 售楼中心处 问 有没有房子 没有
+					小红 去 售楼中心处 问 有没有房子 没有
+					小红 去 售楼中心处 问 有没有房子 没有
+					
+					不需要时时刻刻的盯着，留下电话号码，有房子，通知你
+						小明 186XXXX
+						小红 132XXXX
+
+					有房了
+						客服打电话通知小明 有房了 小明 借钱了
+						客服打电话通知小红 有房了 小红 全款
+
+            */
+          
+            function SalesCenter(){
+                this.tellBooks = [];
+            }
+            //提供一个方式，留下电话号码
+            SalesCenter.prototype.subscribe = function(fn){
+                //记录电话号码
+                this.tellBooks.push(fn)
+            }
+            SalesCenter.prototype.publish = function(fn){
+                //记录电话号码
+                for(var i =0;i<this.tellBooks.length;i++){
+                    this.tellBooks[i]('有房了')
+                }
+            }
+
+            var s = new SalesCenter()
+            //小明订阅
+            s.subscribe(function(message){
+                console.log(message)
+                console.log('借钱了')
+            })
+            //小红
+            s.subscribe(function(message){
+                console.log(message);
+				console.log('全款');
+            })
+            document.onclick = function(){
+                s.publish()
+            }
+
+    </script>
+</body>
+</html>

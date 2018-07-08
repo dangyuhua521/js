@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原型链</title>
+</head>
+<body>
+    <script>
+        function creatStudenInfo(name,age,height){
+
+            this.name = name;
+            this.age = age;
+            this.height = height;
+
+            //每个对象独有的方法
+            this.eatFood = function(){
+                console.log('吃饭')
+            }
+           
+            
+        }
+      
+
+        creatStudenInfo.prototype.coding = function(){
+            console.log('我会编程')
+        }
+        creatStudenInfo.prototype.sayName = function(){
+            console.log('this为',this)
+            console.log('我叫:'+this.name)
+        }
+        console.dir(creatStudenInfo)
+        var s1 =new creatStudenInfo('小猫',18,180)
+        s1.blurs = '1000W' 
+        var s2 =new creatStudenInfo('小',18,180) 
+        s2.cao = '10元' 
+        console.log(s1)
+        console.log(s2)
+         
+        console.log(s1.coding())
+        console.log(s2.eatFood())
+    </script>
+</body>
+</html>

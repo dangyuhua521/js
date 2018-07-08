@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1 div,
+        #box2 div {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            display: none;
+        }
+
+        .pink {
+            background: pink;
+        }
+
+        .green {
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1">
+        <button> 1</button>
+        <button>2</button>
+        <button>3</button>
+        <div>
+            1
+        </div>
+        <div>
+            2
+        </div>
+        <div>
+            3
+        </div>
+    </div>
+    <div id="box2">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <div>
+            1
+        </div>
+        <div>
+            2
+        </div>
+        <div>
+            3
+        </div>
+    </div>
+    <button id="btn1">让第一个自动切换</button>
+    <button id="btn2">让第2停止自动切换</button>
+    <button id="btn3">停止的播放，播放的停止</button>
+    <script>
+        function Tab(id,initIndex) {
+            //var 声明的变量，是局部变量，只能在所声明的函数内部使用
+            this.box = document.querySelector(id)
+            this.buttons = this.box.querySelectorAll('button');
+            this.divs = this.box.querySelectorAll('div');
+
+            this.len = this.buttons.length; //要和初始所在位置保持一直
+            this.initIndex = initIndex ? initIndex : 0; //初始的下标对用的button加上class
+            this.n = 0; //在自动播放时候，记录播放到的button
+
+
+            // Tab.prototype.init = function(n){
+            //this=>调用这个函数的对象
+            //this.initIndex = n ? n : 0;
+            this.buttons[this.initIndex].classList.add('pink');
+            this.divs[this.initIndex].style.display = 'block';
+            this.n = this.initIndex; //要和初始所在位置保持同步
+
+            this.init();
+        }
+        Tab.prototype.init = function (n) {
+            var that = this;
+            for (var i = 0; i < this.len; i++) {
+                this.buttons[i].index = i;
+                this.buttons[i].onclick = function () {
+                    //this=>点击的button
+                    console.log(that)
+                    that.change(this.index)
+                }
+            }
+        }
+
+        // }
+        Tab.prototype.change = function (k) {
+            for (var j = 0; j < this.len; j++) {
+                this.buttons[j].classList.remove('pink');
+                this.divs[j].style.display = 'none'
+            }
+            this.buttons[k].classList.add('pink');
+            this.divs[k].style.display = 'block'
+        }
+        Tab.prototype.play = function () {
+            var that = this;
+            this.timer = setInterval(function () {
+                that.n++;
+                if (that.n > that.len - 1) {
+                    that.n = 0;
+                }
+                that.change(that.n)
+            }, 1000)
+        }
+        Tab.prototype.isPlay = function () {
+            return !!this.timer
+        }
+        Tab.prototype.stop = function () {
+            clearInterval(this.timer)
+            this.timer = null;
+        }
+        var tab1 = new Tab('#box1',2)
+        //tab1.init(2)
+        var tab2 = new Tab('#box2',1)
+        // tab2.init(1)
+         tab2.play()
+
+        // btn1.onclick = function () {
+        //     tab1.play();
+        // }
+        // btn2.onclick = function () {
+        //     if (tab2.isPlay()) {
+        //         tab2.stop();
+        //     }
+        // }
+        // // 停止的播放，播放的停止
+        // btn3.onclick = function () {
+        //     if (tab1.isPlay()) {
+        //         tab1.stop();
+        //     } else {
+        //         tab1.play();
+        //     }
+        //     if (tab2.isPlay()) {
+        //         tab2.stop();
+        //     } else {
+        //         tab2.play();
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

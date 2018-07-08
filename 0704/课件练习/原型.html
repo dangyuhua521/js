@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原型链</title>
+</head>
+<body>
+    <script>
+        function creatStudenInfo(name,age,height){
+            //1.隐式创建对象 var o =new Object()
+            //2.this指向新对象 this =o
+            //3.执行函数，通过this给对象添加属性
+            this.name = name;
+            this.age = age;
+            this.height = height;
+            this.eatFood = function(){
+                console.log('吃饭')
+            }
+            //4.返回创建的对象 return o;
+            
+        }
+        //creatStudenInfo(); 执行函数，不是创建对象
+        //使用new的方式，可以区分出创建的对象的不同类型
+        //s1称之为实例或对象或实例对象 
+
+        creatStudenInfo.prototype.coding = function(){
+            console.log('我会编程')
+        }
+        creatStudenInfo.prototype.sayName = function(){
+            console.log('this为',this)
+            console.log('我叫:'+this.name)
+        }
+        var s1 =new creatStudenInfo('小猫',18,180)
+        var s2 =new creatStudenInfo('小',18,180)   
+        console.log(s1.coding())
+        console.log(s2.eatFood())
+    </script>
+</body>
+</html>

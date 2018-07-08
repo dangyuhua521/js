@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = 'abf145hf45hfh234k8';
+        
+        var data =[];
+        for(var i =0;i<str.length;i++){
+            if(!isNaN(str.charAt(i))){
+                data.push(+str[i])
+            }
+        }
+        console.log(data)
+
+        var arr =[];
+        var nes ='';
+        for(var i =0;i<str.length;i++){
+            // if(str.charAt(i)<='8'&& str.charAt(i)>=0){
+            //     nes+=str.charAt(i)
+            // }
+            if(!isNaN(str[i])){//数字
+                nes+=str[i]
+            } else{//不是数字
+                if(nes){
+                    arr.push(nes)
+                    nes='';
+                }
+            }
+        }
+        if(nes){
+                arr.push(nes)
+            }
+        console.log(arr)
+          
+    </script>
+</body>
+</html>

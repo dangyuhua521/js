@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+    var str = 'a1ca2ca34+5ca555cac';
+    // 规则：a开始 c结束 中间是一个数字
+    console.log(str.match(/a\dc/g))
+    // 规则：a开始 c结束 中间至少是一个数字
+    console.log(str.match(/a\d{1,}c/g))
+    console.log(str.match(/a\d+c/g));
+    // 规则：a开始 c结束 中间是2~5个数字
+    console.log(str.match(/a\d{2,5}c/g))
+    // 规则：a开始 c结束 中间是0~1个数字
+    console.log(str.match(/a\d{0,1}c/g));
+    console.log(str.match(/a\d?c/g))
+    // 规则：a开始 c结束 中间是0~无限个数字
+    console.log(str.match(/a\d{0,}c/g));
+    console.log(str.match(/a\d*c/g))
+
+    // 规则 只匹配+号
+    console.log(str.match(/\+/g))
+  </script>  
+</body>
+</html>

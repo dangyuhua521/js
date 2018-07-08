@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       var o ={
+           a:1,
+           b:2,
+           c:[1,2,3,4,5]
+       }
+       //复制一份对象，和o对象一摸一样，拥有相同的属性和值
+       var newO = {}
+       //浅拷贝 值拷贝了o这个属性，没有拷贝属性对应的值
+       for( var attr in o){
+           if(o.hasOwnProperty(attr)){
+               //遇到是对象，就把对象拷贝一份
+               if(o[attr] instanceof Array){
+                   var newArr = [];//创建新数组
+                   //把要拷贝的数组的值赋值给新数组
+                   for(var i =0; i<o[attr].length;i++){
+                       newArr[i]= o[attr][i]
+
+                   }
+                   //把新数组挂载到新对象上
+                   //把两个对象的数组隔离了
+                   newO[attr]=newArr;
+               }else{
+                   newO[attr]=o[attr]
+               }
+           }
+       }
+       newO.c.push(1000)
+       console.log(o)
+       console.log(newO)
+
+
+       //赋值和赋址
+       var a = 1;
+       var b =a;//a赋值一份给b
+
+       var obj ={}
+       var obj2 = obj;//把obj存的对象的地址给obj2了
+   </script> 
+</body>
+</html>

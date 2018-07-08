@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    //父类 基类
+    function Person(name,age,height,weight){
+       this.name = name;
+       this.age = age;
+       this.height = height;
+       this.weight = weight; 
+    }
+    Person.prototype.say = function(){
+        console.log('我的名字叫：'+this.name);
+
+    }
+    //程序员，具备人类所有特征和功能
+    //子类
+    function Coder(money){
+        this.money = money;
+    }
+   Coder.prototype = new Person();
+   Coder.prototype.constructor = Coder;
+
+    Coder.prototype.coding = function(){
+        console.log('我会编程')
+    }
+    var c1 = new Coder('leo',30,180,10000);
+    console.log(c1.say());
+
+    console.log(c1);
+    </script>
+</body>
+</html>

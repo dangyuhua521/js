@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //父类 基类
+    function Person(name,age,height,weight){
+        this.name = name;
+        this,age = age;
+        this.height = height;
+        this.weight = weight;
+    }
+    Person.prototype.say= function(){
+        console.log('我的名字叫：'+this.name);
+    }
+    function Coder(name,age,height,weight,money){
+        Person.call(this,name,age,height,weight);
+        this.money = money
+    }
+    //没办法初始化父类构造函数中属性的值
+    //创建对象后拥有了父类函数中的属性了，和在构造数中属性重复了
+
+    Coder.prototype = new Person('momo');
+    Coder.prototype.constructor = Coder;
+    Coder.prototype.coding = function(){
+        console.log('我会编程')
+    }
+    var c1 = new Coder('leo',30,180,70,1000)
+    console.log(c1)
+    c1.say()
+    </script>
+</body>
+</html>

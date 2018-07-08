@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       //这个方法用来创建具有一类相同属性和方法的对象
+       function create(name,age,height){
+           var o = new Object();
+           o.name = name;
+           o.age = age;
+           o.height = height;
+           o.coding = function(){
+               console.log('我会编程')
+           }
+           return o;
+       }
+       var s1 = create('le',30,180)
+       console.log(s1.constructor)
+       function createCar(color,eat){
+           var o = new Object();
+           o.color = color;
+           o.eat = eat;
+           o.jions = function(){
+               console.log('我会加油的')
+           }
+           return o;
+       }
+       var c1 = createCar('red',5)
+       var c2 = createCar('blue',3)
+       console.log(c1.constructor);
+       
+   </script> 
+</body>
+</html>

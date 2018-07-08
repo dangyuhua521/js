@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+     //过滤敏感词
+     var str ='今天世界杯开始了，德国参加世界杯回家了，世界杯是一个激动的项目，世界杯中国出线。'
+     //今天***开始了，**参加***回家了，***是一个激动的项目，*****出线。
+
+    // 德国 世界杯 中国
+    var re = /德国|世界杯|中国/g;
+    str = str.replace(re,function(a){
+        return "*".repeat(a.length)
+    })
+    console.log(str)
+   </script> 
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function Car(){
+        this.color = 'red'
+    }
+    //把原型改写成另一个对象
+    //改写原型后，手动把constructor指回到构造函数
+    Car.prototype = {
+        construcor:Car,
+        run:function(){
+
+        }
+    };
+    //每次向原型添加属性，以下的写法太繁琐，所以改写prototype
+   /* Car.prototype.a =1;
+      Car.prototype.b = 1;
+      Car.prototype.c = 1;
+    */
+    console.log(Car.prototype);
+    var c = new Car();
+    console.log(c);
+    console.log(c.run);
+    console.log(c.construcor);
+    console.log(c.construcor===Car)
+    </script>
+</body>
+</html>

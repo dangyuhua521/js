@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Object.prototype.miaov = 1;
+        function Car(){
+            this.color1 = 'red' 
+        }
+        Car.prototype.run = function(){
+
+        }
+        var c1 = new Car
+        console.log(c1)
+        
+        var o = {
+            name:'leo',
+            age:30
+        }
+        //遍历对象上所有的属性
+        for(var i in o){
+            if(o.hasOwnProperty(i)){
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+      var str = 'abc45gh776ff';
+      var neWstr = str.replace('b',"*")
+      var neWstr2 = str.replace(/b/g,"----")
+       console.log(neWstr)
+       console.log(neWstr2)
+       
+       var neWstr3 = str.replace(/\d/g,function(a,index,input){
+        console.log(a,index,input);
+        return a>5? a:'+++'
+       })
+       console.log(neWstr3)
+   </script> 
+</body>
+</html>

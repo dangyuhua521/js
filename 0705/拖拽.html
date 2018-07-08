@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    
+    div {
+        width: 300px;
+        height: 300px;
+        background: yellow;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    #box2 {
+        background: green;
+        top: 300px;
+    }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div> 
+    <script src="./课件练习/jquery-3.3.1.js"></script>
+    <script>
+        // 在Drag中不同的事件触发阶段，发布一个自定义的事件出来
+			// 外面有需要，订阅这些自定义的事件。
+        function Drag(id){
+            this.dragElement = document.querySelector(id)
+            this.init()
+        }
+        Drag.prototype.init = function(){
+            //this=>实例对象
+            this.dragElement.addEventListener('mousedown',this.fnDown.bind(this))
+            
+        }
+        Drag.prototype.fnDown = function(e){
+            //this=>拖拽的元素 调用bind之后this=>实例对象
+            //需要this改成实例
+            console.log(this)
+            this.divsX = e.clientX-this.dragElement.offsetLeft;
+            this.divsY = e.clientY-this.dragElement.offsetTop;
+
+            //当使用bind之后改变了moveFn函数中this指向，指向了实例
+            //使用bind之后，返回值一个新的函数，给到事件，返回的新函数才是事件处理函数
+            this.Move2 = this.fnMove.bind(this);
+            this.MoveUp2 = this.fnUp.bind(this);
+            //发布一个定义的事件 c-down
+            $(this.dragElement).trigger('c-down')
+            document.addEventListener('mousemove',this.Move2)
+            document.addEventListener('mouseup',this.MoveUp2)
+            
+        }
+        Drag.prototype.fnMove = function(e){
+
+            this.l = e.clientX-this.divsX
+            this.t = e.clientY-this.divsY
+
+
+            $(this.dragElement).trigger('c-move')
+            $(this.dragElement).trigger('c-move1')
+
+            this.dragElement.style.left = this.l+'px';
+            this.dragElement.style.top =this.t+'px';
+        }
+        Drag.prototype.fnUp = function(){
+          $(this.dragElement).trigger('c-up')
+          document.removeEventListener('mousemove',this.Move2)
+          document.addEventListener('mouseup',this.MoveUp2)
+
+        }
+        //订阅发布模式
+         var b1 = new Drag('#box1');//拖拽过程中不能超过可视区
+        //订阅发布模式
+        $('#box1').on('c-move',function(){
+            console.log(1)
+            if(b1.l<0) b1.l=0;
+            if(b1.t<0) b1.t=0;
+        })
+        $('#box1').on('c-move1',function(){
+            console.log('c-move1')
+        })
+
+       var b2= new Drag('#box2')  // 在拖拽过程中不断打印100 console.log()
+       $('#box2').on('c-move',function(){
+           console.log(2)
+       })
+    </script>
+</body>
+</html>

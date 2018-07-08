@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       var str = 'fgh6789jhgv';
+       console.log(str.match('j'));//写普通的字符串，不是正则，只匹配一个
+       console.log(str.match(/j/ig));//全局搜索，从头一直到尾 返回的数组中就没有 index 和input
+       console.log(str.match(/a/ig));//没有匹配到指定的规则，返回的是null
+       
+   </script> 
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function createStudenInfo(name, age, height) {
+            this.name = name;
+            this.age = age;
+            this.height = height;
+            // 每个对象独有的方法
+            this.eatFood = function () {
+                console.log('花式吃饭');
+            }
+        }
+
+        createStudenInfo.prototype.coding = function () {
+            console.log('我会编程');
+        }
+        createStudenInfo.prototype.sayName = function () {
+            console.log('this为', this);
+            console.log('我叫：' + this.name);
+        }
+        var s1 = new createStudenInfo('leo1', 30, 190)
+        var s2 = new createStudenInfo('leo2', 30, 190)
+        var s3 = new createStudenInfo('leo3', 30, 190)
+        Object.prototype.abc = 1;
+        console.log( s1.__proto__.__proto__.__proto__);
+        
+
+        // 查找属性abc，先在s1对象上查，继续找对象的__proto__指向的原型对象上找，找创建这个原型对象的__proto__上找构造函数的原型
+        console.log(s1.abc);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function deepClone(obj){
+        if(!obj){
+            throw new TypeError('请输入要拷贝的内容')
+        }
+        var newObj;
+        if(obj instanceof Array){
+            newObj=[];
+            var i = obj.length;
+            while(i--){
+                newObj[i] = deepClone(obj[i]);
+            }
+            return newObj
+        }else if(obj instanceof Object){
+            newObj={};
+            for(var attr in obj){
+                if(obj.hasOwnProperty(attr)){
+                    newObj[attr] = deepClone(obj[attr]);
+                }
+            }
+            return newObj;
+        }else{
+            return obj;
+        }
+    }
+
+    // 父类 基类
+    function Person(name,age,height,weight){
+        // this => coder中的实例对象
+        this.name = name;	
+        this.age = age;	
+        this.height = height;	
+        this.weight = weight;	
+    }
+
+    Person.prototype.say = function (){
+        console.log('我的名字叫：'+this.name);	
+    }
+    // 程序员，具备人类所有特征和功能
+    // 子类
+    function Coder(name,age,height,weight,money){
+        // var o = {} this = o
+        Person.call(this,name,age,height,weight)
+        this.money = money;
+    }
+    // 把父类原型对象拷贝一份放在新的对象上
+    Coder.prototype = deepClone(Person.prototype);
+
+    Coder.prototype.constructor = Coder;
+
+    Coder.prototype.coding = function (){
+        console.log('我会编程');		
+    }
+
+    var c1 = new Coder('leo1',30,180,70,10000);
+
+    console.log(c1);
+    //c1.say();
+
+    // -------------Designer-------------
+    function Designer(name,age,height,weight,ps){
+        Person.call(this,name,age,height,weight)	
+        this.ps = ps;
+    }
+
+    Designer.prototype = Object.create(Person.prototype);
+    Designer.prototype.constructor = Designer;
+
+    Designer.prototype.draw = function (){
+        console.log('会ps');	
+    }
+
+    var d1  = new Designer('job1',30,180,180,'ps');
+    var d2  = new Designer('job2',30,180,180,'ps');
+    console.log(d1);
+    d1.say();
+
+    </script>
+</body>
+</html>
