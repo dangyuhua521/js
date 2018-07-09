@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>云盘</title>
+	<link rel="stylesheet" href="css/index.css" />
+	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/index.js"></script>
+</head>
+<body>
+	<div id="box">
+		<header id="head">
+			<h4 class="yp-title"></h4>
+			<div class="right-top">
+				<a href="javascript:;" class="user">
+					<span class="hp"></span>
+					<span class="drop-down"></span>
+				</a>
+				<span class="spe"></span>
+				<a href="javascript:;" class="set"></a>
+			</div>
+		</header>
+		<div id="main">
+			<div id="move">
+				<span class="move-title">选择储存位置</span>
+				<div id="move-nav"></div>
+				<div class="btn-area">
+					<a href="javascript:;" class="confirm">确定</a>
+					<a href="javascript:;" class="cancel">取消</a>
+				</div>
+			</div>
+			<div id="operation">
+				<div class="ope-left">
+					<a href="javascript:;" class="btn">
+						<span class="btn-ico"></span>
+						<span class="btn-text">下载</span>
+					</a>
+					<a href="javascript:;" class="btn">
+						<span class="btn-ico"></span>
+						<span class="btn-text">分享</span>
+					</a>
+					<a href="javascript:;" class="btn moveTo">
+						<span class="btn-ico"></span>
+						<span class="btn-text">移动到</span>
+					</a>
+					<a href="javascript:;" class="btn rename">
+						<span class="btn-ico"></span>
+						<span class="btn-text">重命名</span>
+					</a>
+					<a href="javascript:;" class="btn delete">
+						<span class="btn-ico"></span>
+						<span class="btn-text">删除</span>
+					</a>
+					<a href="javascript:;" class="btn create">
+						<span class="btn-ico"></span>
+						<span class="btn-text">新建文件夹</span>
+					</a>
+					<a href="javascript:;" class="btn">
+						<span class="btn-ico"></span>
+					</a>
+				</div>
+				<div class="ope-right">
+					<a href="javascript:;"></a>
+					<a href="javascript:;">
+						<span class="btn-ico"></span>
+						<span class="btn-drop"></span>
+					</a>
+				</div>
+			</div>
+			<div id="content">
+				<div id="nav">
+					<ul>
+						<li>
+							<a href="javascript:;">
+								<span class="jt jt-close"></span>
+								<span class="file-ico fi-close"></span>
+								<span class="file-name">微云</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div id="file-area">
+					<div id="head-area">
+						<a href="javascript:;" id="checkAll"></a>
+						<div id="position">
+							<a href="javascript:;" class="leader active" custome-id=1>微云</a>
+						</div>
+					</div>
+					<div id="folder">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="prompt">
+			<span id="prompt-content">
+				文件名重复
+			</span>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #box2 {
+            top: 500px;
+            background: green;
+        }
+    </style>
+    <script>
+        function Sales() {
+            this.books = {}; //记录不同事件下的函数
+        }
+        Sales.prototype = {
+            constructor: Sales,
+            on: function (custome, fn) {
+                if (!this.books.hasOwnProperty(custome)) {
+                    this.books[custome] = [];
+                }
+                this.books[custome].push(fn)
+            },
+            trigger: function (custome) {
+                var b = this.books[custome];
+                var arr = Array.prototype.slice.call(arguments, 1);
+                console.log(arr);
+                if (b) {
+                    for (var i = 0; i < b.length; i++) {
+                        //执行数组中的函数
+                        b[i].apply(null, arr)
+                    }
+                }
+            },
+            off: function (custome, fn) {
+                var b = this.books[custome];
+                if (b) {
+                    for (var i = 0; i < b.length; i++) {
+                        if (b[i] === fn) {
+                            b.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <script>
+        function Drag(id) {
+            Sales.call(this);
+
+            this.dragEle = document.querySelector(id);
+            this.init();
+        }
+
+        Drag.prototype = Object.create(Sales.prototype)
+
+
+        Drag.prototype = {
+            constructor: Drag,
+            init: function () {
+                this.dragEle.addEventListener('mousedown', this.downFn.bind(this))
+            },
+            downFn: function (e) {
+                this.disX = e.clientX - this.dragEle.offsetLeft;
+                this.disY = e.clientY - this.dragEle.offsetTop;
+
+                this.trigger('down')
+
+                this.down = this.moveFn.bind(this);
+                this.up = this.upFn.bind(this);
+                document.addEventListener('mousemove', this.down)
+                document.addEventListener('mouseup', this.up)
+            },
+            moveFn: function (e) {
+                this.dragEle.style.left = e.clientX - this.disX + 'px';
+                this.dragEle.style.top = e.clientY - this.disY + 'px';
+            },
+            upFn: function (e) {
+                document.removeEventListener('mousemove', this.down)
+                document.removeEventListener('mouseup', this.up)
+            }
+        }
+
+        var b1 = new Drag('#box1');
+        var b2 = new Drag('#box2');
+
+        b1.on('down', function () {
+            console.log('down');
+        })
+    </script>
+</body>
+
+</html>

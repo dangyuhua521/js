@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   /*     
+    class Car{}
+    var c1 =new Car();
+    console.log(c1)
+    */
+
+    /*class Car {
+        //在创建对象时候初始化一些数据，写constructor
+        //内部会默认调用这个函数
+        constructor(color){
+            this.color = color
+        }
+    }
+    var c1 = new Car('red');
+    console.log(c1);*/
+
+
+    class Car{
+        constructor(color){
+            this.color = color
+        }
+        //以下方法都会挂载原型上
+        run1(){
+            console.log('共享的方法')
+        }
+        run2(){
+            console.log('共享的方法')
+        }
+        run3(){
+            console.log('共享的方法')
+        }
+    }
+    class Zixingche extends Car{}
+    var z = new Zixingche()
+    console.log(z)
+    </script>
+</body>
+</html>
