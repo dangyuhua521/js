@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var n =10;
+        console.log(Object.prototype.toString.call(n))
+        var arr =[1,2,3,45,6]
+        console.log(Object.prototype.toString.call(arr));
+        function fn(){
+            console.log('hello');
+            console.log('hello')
+            var a = 10;
+            var b ={a:1}
+        }
+        console.log(Object.prototype.toString.call(fn));
+        var obj = {a:1,b:2};
+        console.log(obj.toString());
+    
+    //直接调用Object.prototype.toString
+
+    //可以自己定义的toString
+
+    var o ={
+        toString:function(){
+            return 123;
+        }
+    }
+
+    console.log(o.toString())
+    </script>
+</body>
+</html>

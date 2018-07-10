@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    // 这是纯面向对象的多态，根据参数个数不同，调用不同的函数
+    /*class Person {
+        run(a){}
+        run(a,b){}
+        run(a,b,c){}
+    }
+
+    var p = new Person;
+
+    p.run(1)
+    p.run(1,2)*/
+
+    function Person(name){
+        this.name = name;
+    }
+    Person.prototype.say = function(){
+        console.log('我的名字是'+this.name);
+    }
+    Person.prototype.say = function(){
+        console.log('我的名字是'+this.name)
+    }
+
+    function Coder(name,money){
+        //构造函数式继承
+        //Person.call(this,name)
+        this.money = money;
+    }
+    Coder.prototype = Object.create(Person.prototype);
+    Coder.prototype.constructor= Coder;
+    Coder.prototype.coding = function(){
+
+    }
+    //在子类上定义一个和父类同样的方法，这时候找方法的时候，就不会找到父类伤的方法了，
+    //这种形式"遮蔽"了父类的方法。
+
+
+    Coder.prototype.say = function(){
+        //既要在子类中做一些事情，又要执行父类的方法，使用call来调用
+        Person.prototype.say .call(this)
+        console.log('做一大堆的事情')
+        console.log('做一大堆的事情')
+        console.log('做一大堆的事情')
+    }
+
+    var c = new Coder('leo',1000)
+    c.say()
+    console.log(c)
+    console.log(Person.prototype)
+   </script> 
+</body>
+</html>

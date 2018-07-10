@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //一个类
+    function Car(){
+
+    }
+    //Car是个函数对象，可以执行的对象，可以添加属性
+    //挂载在函数上的属性，称之为静态属性
+    //挂载在函数上的函数，称之为静态方法
+    Car.abc=10;
+    Car.run = function(){
+        console.log('我是静态方法')
+    }
+    console.log(Car.run);
+    //Car.prototype 函数上的原型 函数原型
+    //Car.prototype= {}对应的值是一个对象 称之为原型对象
+    //挂载在原型对象的方法称之为原型方法
+    Car.prototype.run = function(){
+        console.log('我是原型上的方法')
+    }
+    //Car就是一个普通函数，此时使用new来调用，称之为构造函数
+    var c = new Car();
+    //创建了c对象，会有一个标记，就是对象伤的一个属性__proto__,指向创建这个对象的构造函数的原型。在查找属性的时候，可以去原型上查找。
+    //找true的时候，会找到原型上，不会找构造函数上的静态方法
+    console.log(c.run);
+    //Object 内置的对象 内置的构造函数 内置的函数
+    console.log(Object);
+
+    //伪代码
+    // Object.defineProperties(对象,属性,描述对象)
+    // {}.hasOwnProperty(属性值)
+    console.dir({})
+    </script>
+</body>
+</html>

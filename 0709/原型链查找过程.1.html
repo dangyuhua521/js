@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(name){
+            this.name = name;
+        }
+        Person.prototype.say = function(){
+            console.log('我的名字是'+this.name);
+        }
+        function Coder(name,money){}
+
+
+        //原来是Coder.prototype = {}(Object创建的)
+        // Coder.abc = 10;
+        // for(var attr in Coder){
+        //     console.log(attr)
+        // }
+
+        // prototype的描述对象
+            // writable true 说明可以被改写
+        	// console.log( Object.getOwnPropertyDescriptor(Coder,'prototype') );
+            
+
+
+
+        Coder.prototype = {
+            constructor:Coder,
+            say:function(){
+
+            },
+            coding:function(){
+
+            }
+        }
+        Coder.prototype.a = function(){
+
+        }
+        Coder.prototype.b = function(){
+            
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+      function Person(){}
+          Person.prototype.run = 10;
+          function Coder(){}
+          Coder.prototype = Object.create(Person.prototype)
+
+          var c = new  Coder();
+          console.log(c instanceof Person);
+          console.log(c instanceof Object);
+          console.log(c instanceof Coder);
+          console.log(c);
+          console.log([] instanceof Object)
+ 
+  </script>
+</body>
+</html>

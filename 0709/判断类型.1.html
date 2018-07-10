@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+     var class2type = {};
+        var toSting = class2type.toString;
+       
+       
+
+        function isArray(o) {
+            return class2type[toSting.call(o)] === 'array'
+        }
+
+        function isObject(o) {
+            return toSting.call(o) === '[object Object]'
+        }
+
+        console.log(isArray({}));
+        console.log(isArray(1));
+        console.log(isArray([]));
+
+        /*console.log( Object.prototype.toString.call([]) === '[object Array]' );
+        console.log( Object.prototype.toString.call([]) === '[object Object]' );*/
+
+        // 内置方法，来判断是否是数组
+        // ES6中函数
+        console.log(Array.isArray([]));
+  </script>
+</body>
+</html>

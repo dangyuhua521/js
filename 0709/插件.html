@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./src/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+    <script>
+       $.abc = function(){
+           console.log('我是扩展的静态方法')
+           console.log(this)
+       }
+       console.log($.isArray([]));
+       console.log($.abc([]));
+       $.fn.abc = function(){
+           console.log('我是原型方法')
+           console.log(this)
+       }
+       $(document).abc();
+    </script>
+</body>
+
+</html>

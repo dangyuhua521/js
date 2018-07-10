@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        (function(){
+           var 
+           version ='3.3.1',
+            Mquey = function(selector){
+                //在函数的内部实例化对象
+                //return new Mquey
+                return new Mquey.fn.init(selector);
+
+            }
+
+            Mquey.fn= Mquey.prototype= {
+                constructor:Mquey,
+                css:function(){
+                    console.log('我是css方法')
+                },
+                html:function(){
+
+                },
+                eq:function(){
+
+                }
+            }
+
+            //把构造函数挂载原型上
+            Mquey.fn.init = function(selector){
+                console.log('我才是真正的构造函数')
+            }
+            Mquey.fn.init.prototype = Mquey.prototype;
+            window.$ = window.Mquey = Mquey;
+        })();
+        console.log($)
+        console.log(Mquey);
+        console.log($('#app'))
+
+        // var o ={
+        //     f:function(){
+
+        //     }
+        // }
+        // new o.f();
+        // function Person(){
+
+        // }
+        // Person.prototype.abc = function (){
+            
+        // }
+
+        // var c = new Person();
+
+        // new c.abc();
+
+    </script>
+</body>
+
+</html>

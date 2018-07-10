@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(name){
+            this.name = name;
+        }
+        Person.prototype.say = function(){
+            console.log('我的名字是'+this.name);
+        }
+        function Coder(name,money){
+            //构造函数
+            Person.call(this.name)
+            this.money = money;
+        }
+
+
+        //问题：父类Person中需要初始化一些参数，没办法做到
+        //问题：原型上也有构造函数中属性，属性重复了
+        //Coder.prototype = new Person();
+        //问题：子类和父类用的是同一个原型对象，在子类的原型对象上添加属性，父类的原型对象也改了
+        //Coder.prototype = Person.prototype;
+
+        //1. 找一个中间的对象，让中间这个对象直接用父类的原型对象
+        // 原型式继承
+        
+        // function f(){}
+        // f.prototype = Person.prototype;
+        // Coder.prototype = new f;
+        // Coder.prototype = Object.create(Person.prototype);
+        
+        // Coder.prototype.constructor = Coder;
+        // Coder.prototype.coding = function(){}
+
+        //Coder.prototype=deepClone(Person.prototype)
+            var c = new Coder('leo0',1000)
+            console.log(c);
+            console.log(Person.prototype);   
+
+    </script>
+</body>
+</html>
