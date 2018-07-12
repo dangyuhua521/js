@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#list img{
+				width: 50px;
+			}
+		</style>
+		<script>
+			/*
+				https://developers.douban.com/wiki/?title=api_v2
+			*/
+		</script>
+	</head>
+
+	<body>
+		<input type="text" id="search" value="javascript" />
+		<p>1</p>
+		<p>2</p>
+		<p>3</p>
+		<p>4</p>
+		<ul id="list">
+			<li>
+				<img src="">
+				<p>标题</p>
+				<p>作者：</p>
+				<p>简介：</p>
+				<p>评分：</p>
+			</li>
+		</ul>
+		<script>
+			function miaov(d){
+				if(d.books){
+					list.innerHTML = d.books.map(function (item){
+						return `
+							<li>
+								<img src="${item.image}">
+								<p>${item.title}</p>
+								<p>作者：${item.author.join('<br/>')}</p>
+								<p>简介：${item.summary}</p>
+								<p>评分：${item.rating.average}</p>
+							</li>
+						`	
+					}).join('')
+				}
+			}
+			search.onblur = function (){
+				if(this.value.trim() === '') return;
+				var script = document.createElement('script');
+
+				script.src = `https://api.douban.com/v2/book/search?q=${this.value}&callback=miaov&start=10&count=5`;
+
+				document.body.appendChild(script)
+
+			}
+		</script>
+	</body>
+</html>

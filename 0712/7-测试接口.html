@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./src/jquery-3.3.1.js"></script>
+		<script type="text/miaov">
+			Ajax 名称而已  代表一种技术的集合 
+				html css js DOM XMLHttpRequest
+
+
+			XMLHttpRequest 重要的，和后端服务器进行通信
+
+			js提供了一个全局的对象、构造函数XMLHttpRequest
+
+			过程
+				实例化一个请求对象 var xhr = new XMLHttpRequest
+				初始化请求 xhr.open(method,url,async)
+					请求发出去之后，继续执行之后的代码，进行DOM渲染，绑定事件，使用异步
+					必须等到ajax回来了拿到数据才渲染页面，使用同步
+
+					第一个请求拿到数据之后，再进行第二个请求，可以选择使用同步
+					也可以使用异步，异步嵌套异步（推荐）
+
+				监听ajax的返回触发的事件
+					onreadystatechange
+						当readyState 改变的时候会触发的
+							readyState Ajax方法过程的状态，数字来表示
+							UNSENT	0
+							OPENED	1
+							HEADERS_RECEIVED	2
+							LOADING	3
+							DONE	4
+								
+						if(xhr.readyState === 4){
+							console.log('全部拿到数据');
+						}		
+								
+					接收数据完成触发
+						onload
+							是xhr.readyState === 4 触发
+				ajax请求和响应回来了，服务端那边是响应成功还是失败了？
+					status 存的是服务端返回的HTTP状态码
+						1
+						2
+						3
+						4
+						5
+
+					statusText	
+
+
+				拿到返回的数据
+					xhr.response
+					xhr.responseText					
+					xhr.responseXML					
+
+
+				发送请求 xhr.send()	
+					请求方法是 get 数据直接拼在url中 ?key1=value1&key2=value2
+						get默认就是application/x-www-form-urlencoded，只有这一种
+					请求方法是 post 数据要放在send中
+						xhr.setRequestHeader( 'Content-Type',
+						'application/x-www-form-urlencoded');
+						xhr.send(key1=value1&key2=value2)
+							_PSOT['key1']
+
+				昨天返回的是文本形式
+				{
+					code:0,
+					mes: '可以注册'
+				}
+
+				JSON
+					官网：http://json.org/
+
+					JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。
+
+					JSON是javascript的子集，有js的语法，但是和js还不同。
+
+					XML格式：http://feed.cnblogs.com/blog/u/411716/rss
+
+
+					JSON建构于两种结构：
+						“名称/值”对的集合。js中对象、
+						值的有序列表
+
+					
+
+		</script>
+	</head>
+	
+	<body>
+
+		用户名：<input type="text" name="user" id="user" /><span id="tip"></span><br/>
+		密码：<input type="text" id="password" /><br/>
+		<input type="button" value="提交" />
+		<script>
+
+			user.onblur = function (){
+				var xhr = new XMLHttpRequest;
+
+				xhr.open('get','http://kuapi.wykiss.cn/v2/movie/in_theaters',true)	
+
+				xhr.onload = function (){
+					console.log(typeof xhr.response);	
+					console.log(JSON.parse(xhr.response));
+
+					if(xhr.status >= 200 && xhr.status < 400){
+						console.log('成功');
+					}else {
+						console.log( xhr.status );
+						console.log( xhr.statusText );
+					}
+				}
+
+				xhr.setRequestHeader( 'Content-Type',
+						'application/x-www-form-urlencoded');
+
+				xhr.send('user=leo');
+			}
+
+		</script>
+	</body>
+</html>

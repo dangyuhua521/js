@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<!-- / 绝对路径 -->
+		<!-- /src 相对www目录来查找的 -->
+		<!-- <script src="/2018-07-11/src/jquery-3.3.1.js"></script> -->
+		<!-- ./相对本文件的路径 -->
+		<script src="./src/jquery-3.3.1.js"></script>
+	</head>
+
+	<body>
+		<!--
+			form 标签向后端提交数据
+				属性method提交方法 get post
+				action 提交的地址 没有写是提交到当前地址
+
+				向后端发送的数据的key值，写在input控件的name中
+
+
+				form表单每次提交都会跳转到提交的页面上，如果数据出错了，返回回来冲重新写，数据会丢失的
+
+				用户体验很不好
+		-->
+		<form method="get" action="http://localhost:3000/backend/php/get.php">
+			用户名：<input type="text" name="user" id="user" />
+			<input type="button" value="验证" id="btnUser" /><br/>
+			密码：<input type="text" /><br/>
+			<input type="submit" value="提交" />
+		</form>
+		<script>
+			btnUser.onclick = function (){
+				window.open('http://localhost:3000/backend/php/get.php?user='+user.value,"_blank");
+			}
+		</script>
+	</body>
+</html>

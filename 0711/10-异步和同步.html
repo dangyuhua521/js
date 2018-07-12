@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<!-- / 绝对路径 -->
+		<!-- /src 相对www目录来查找的 -->
+		<!-- <script src="/2018-07-11/src/jquery-3.3.1.js"></script> -->
+		<!-- ./相对本文件的路径 -->
+		<script src="./src/jquery-3.3.1.js"></script>
+		<script type="text/html">
+			AJAX即“Asynchronous JavaScript and XML”（异步的JavaScript与XML技术），指的是一套综合了多项技术的浏览器端网页开发技术。
+
+			html css js DOM
+
+			多项技术中最重要的是 XMLHttpRequest 对象
+
+			也就是说，当使用了 Ajax 后，可以在 不重新刷新页面的情况下与服务器通信  ，交换数据，更新页面， 这样能够快速地将数据更新呈现在用户界面上，这使得程序能够更快地回应用户的操作。
+
+			无刷新页面更新数据
+
+			可以利用 Ajax 的特性做如下事情：
+
+				在不重新加载页面的情况下发送请求给服务器
+				接受并使用从服务器响应的数据。
+
+
+			js制定了一个标准的对象 XMLHttpRequest
+	
+				发送的过程：
+					使用 JavaScript 创建一个请求对象实例，调用该实例下的方法，设置好请求的URL地址和请求数据，发送异步请求。发送后等待服务端响应，响应是以触发事件来通知，随后通过请求对象实例拿到HTTP状态以及响应的内容。
+
+
+				请求对象下的知识点：
+				readyState 属性
+					只读属性，xhr.readyState 记录了请求实例对象运行过程中所处的状态，使用数字来表示。以下是每个数字代表的含义：
+
+					值	状态	描述
+					0	UNSENT	请求对象已创建，尚未调用 open()方法
+					1	OPENED	open()方法已成功调用
+					2	HEADERS_RECEIVED	send() 方法已调用，可以获取到响应头信息
+					3	LOADING	正在接收部分响应内容
+					4	DONE	请求操作已经完成，响应的内容全部接受完成
+
+				status
+					只读属性。xhr.status存的是数字状态码，是标准的HTTP状态码。在请求完成前，status的值为0。如果请求出错，浏览器返回的 status 也为0。如果服务器响应中没有明确指定status码， status码将会默认为200。
+
+					使用ajax发送请求，都会发出请求的，服务端可能由于某原因出错了，返回一个HTTP状态码，ajax就会带回这个状态码。
+
+					HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从服务器传输超文本到本地浏览器的传输协议
+
+					HTTP状态码（HTTP Status Code）是用以表示服务器HTTP响应状态的3位数字代码。
+
+					用来表示服务器那边的响应的一个状态，失败 成功 没有权限 重定向
+
+					2开头的是 请求成功  200
+					3开头的是 重定向  304 本地缓存
+					4开头的是 请求错误 404 资源不存在 403拒绝访问
+					5开头的是 服务器错误 
+
+				statusText
+					状态短语
+
+
+				open() 方法
+					xhr.open(method，url,async) 方法初始化一个请求。
+
+					- method 要使用的HTTP方法。告诉浏览器对数据做什么样的操作
+						「GET」、「POST」、「PUT」、「DELETE」
+
+						在浏览器地址栏请求的都是get请求
+
+						浏览器实现了get和post
+
+						在应用方面的GET和POST发送数据的不同
+							指定的规范
+							客户端的实现
+
+						讨论浏览器的：
+							GET产生的URL地址可以被Bookmark，而POST不可以。
+							GET请求只能进行url编码，而POST支持多种编码方式。
+							GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。
+							GET请求在URL中传送的参数是有长度限制的，而POST么有。
+								GET请求的数据是写在地址栏的，由于浏览器会对地址栏长度做限制，所有如果写的get数据多的话，会被截断，导致后端接收数据不完整。
+								上传图片，上传文件，走post
+
+							GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。
+							GET参数通过URL传递，POST放在Request body中。
+
+				async
+					传入的参数是不是异步的
+						true 异步
+						false 同步
+
+					异步
+						所谓的异步就是，一个异步过程调用发出后，调用者不会立刻得到结果。而是在 调用 发出后，被调用者通过状态、通知来通知调用者，或通过回调函数处理这个调用
+						在没有得到后端返回的结果之前，异步操作之后的代码会继续执行。
+					
+						给DOM元素绑定事件
+						定时器你
+					同步
+						同步请求发出后，在没有得到结果之前，该调用就不返回。这就意味着，后续的代码不能被执行，只有等到同步调用结束后得到了结果，才能继续执行代码。
+		</script>
+	</head>
+
+	<body>
+
+		用户名：<input type="text" name="user" id="user" /><span id="tip"></span><br/>
+		密码：<input type="text" id="password" /><br/>
+		<input type="button" value="提交" />
+		<script>
+			var url = '';
+			user.onblur = function (){
+				// 1. 请求的对象
+				var xhr = new XMLHttpRequest;
+
+				xhr.open('get','http://localhost:3000/backend/php/get.php?user='+this.value,true);
+
+				xhr.onload = function (){
+					console.log('ajax回来了');	
+				}
+
+				xhr.send();
+
+				console.log('ajax没有回来，我先执行了');
+
+			}
+
+			password.onblur = function (){
+				// 1. 请求的对象
+				var xhr = new XMLHttpRequest;
+
+				xhr.open('post','http://localhost:3000/backend/php/post.php',false);
+
+				// 告诉后端编码格式，不是文本
+
+				xhr.setRequestHeader( 'Content-Type',
+			'application/x-www-form-urlencoded');
+
+				xhr.onload = function (){
+					console.log('ajax回来了');	
+				}
+
+
+				xhr.send('user='+this.value);	//'user=leo'
+
+				console.log('ajax没有回来，我必须等ajax结束后才执行');
+			}
+
+
+			// 调用了addEventListener就类似是操作了一个异步请求
+			// 等到点击了页面的document，触发这个事件。
+			document.addEventListener('click',function (){
+				console.log('document被点击了');	
+			})
+
+			// 调用这个函数就有一个异步操作，不会立马拿到结果的
+			// 而是等到规定时间后，异步完成，调用回到函数
+			setTimeout(function (){
+				console.log(1);	
+			},1000)
+		
+			console.log('事件没走，我先走了');
+			
+
+		</script>
+	</body>
+</html>

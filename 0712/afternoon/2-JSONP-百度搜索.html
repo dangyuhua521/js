@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<input type="text" id="search" />
+		<ul id="list">
+			<li>内容</li>
+		</ul>
+		<script>
+			function miaov(d){
+				console.log(d.s);
+
+				list.innerHTML = d.s.map(function (item){
+					return `<li><a href="https://www.baidu.com/s?word=${item}">${item}</a></li>`		
+				}).join('')
+			}
+			search.oninput = function (){
+				var script = document.createElement('script');
+				script.src = 'https://gsp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=miaov&wd='+this.value;
+
+				document.body.appendChild(script)
+			}
+		</script>
+	</body>
+</html>

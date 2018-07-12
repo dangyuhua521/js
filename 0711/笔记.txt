@@ -1,0 +1,66 @@
+Ajax的工作原理
+
+-------------------------------
+
+打开文件的方式：
+1. file:///F:/wamp/www/2018-07-11/1-Ajax%E5%AD%A6%E4%B9%A0.html
+	打开本地计算机磁盘路径的资源
+2. https://www.baidu.com/index.html
+	找远程服务器上的资源
+
+服务器环境
+	阿里云 腾讯云 买一个
+
+	把本机搭建成一个服务器
+
+	安装服务器软件或服务程序
+		服务器软件：Apache nginx IIS
+		服务程序： nodejs
+
+	推荐测试安装 wampServer
+	集成环境：Apache MySQL PHP解析器
+
+
+安装 wampServer
+	访问：http://localhost:端口 = http://localhost:3000
+	端口为默认为80，访问 http://localhost
+
+	localhost是本地预留一个域名 指向的IP是127.0.0.1
+
+	问题：1. 不是绿色的，端口有问题
+		该端口 打开httpd.conf有一个Listen 改为 3000 3001 ... 9999
+
+	问题：2. 使用localhost访问，可会出现权限不能访问出现 forbidden
+		改访问的要求 打开  httpd.conf 的配置 把127.0.01 都改写为Allow from all
+
+	改变配置，重启服务
+		点击小图标，重启服务
+
+
+	网站的根目录，默认是www目录下，把我们写的项目放在www目录下
+
+	访问的时候，如果目录下有index.html或者index.php 访问后面可以不用带index.html资源名字。
+
+访问后端接口
+---------------------------------------
+	请求地址：XXXXX
+	请求方法
+	请求数据
+
+	尝试访问
+		http://localhost:3000/backend/php/get.php
+
+
+请求过程
+------------------
+	输入在地址栏中请求一个页面
+	https://www.baidu.com/index.html
+
+	浏览器会有 DNS查找，查找域名对应的IP
+
+	委托给操作系统去找IP对应的主机，进行请求数据
+
+没有ajax
+------------------------
+
+

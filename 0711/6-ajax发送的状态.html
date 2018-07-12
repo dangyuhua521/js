@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<!-- / 绝对路径 -->
+		<!-- /src 相对www目录来查找的 -->
+		<!-- <script src="/2018-07-11/src/jquery-3.3.1.js"></script> -->
+		<!-- ./相对本文件的路径 -->
+		<script src="./src/jquery-3.3.1.js"></script>
+		<script type="text/html">
+			AJAX即“Asynchronous JavaScript and XML”（异步的JavaScript与XML技术），指的是一套综合了多项技术的浏览器端网页开发技术。
+
+			html css js DOM
+
+			多项技术中最重要的是 XMLHttpRequest 对象
+
+			也就是说，当使用了 Ajax 后，可以在 不重新刷新页面的情况下与服务器通信  ，交换数据，更新页面， 这样能够快速地将数据更新呈现在用户界面上，这使得程序能够更快地回应用户的操作。
+
+			无刷新页面更新数据
+
+			可以利用 Ajax 的特性做如下事情：
+
+				在不重新加载页面的情况下发送请求给服务器
+				接受并使用从服务器响应的数据。
+
+
+			js制定了一个标准的对象 XMLHttpRequest
+	
+				发送的过程：
+					使用 JavaScript 创建一个请求对象实例，调用该实例下的方法，设置好请求的URL地址和请求数据，发送异步请求。发送后等待服务端响应，响应是以触发事件来通知，随后通过请求对象实例拿到HTTP状态以及响应的内容。
+
+
+				请求对象下的知识点：
+				readyState 属性
+					只读属性，xhr.readyState 记录了请求实例对象运行过程中所处的状态，使用数字来表示。以下是每个数字代表的含义：
+
+		</script>
+	</head>
+
+	<body>
+
+		用户名：<input type="text" name="user" id="user" /><span id="tip"></span><br/>
+		密码：<input type="text" /><br/>
+		<input type="button" value="提交" />
+		<script>
+			var url = './网络是怎样连接的.pdf';
+			user.onblur = function (){
+				// 1. 请求的对象
+				var xhr = new XMLHttpRequest;
+
+				// 当readyState改变的时候触发这个事件
+				xhr.onreadystatechange = function (){
+					console.log('readyState',xhr.readyState);
+
+					if(xhr.readyState === 1){
+						console.log('获取到响应的头部',xhr.getAllResponseHeaders());
+						console.log('响应的内容',xhr.response);
+					}else if(xhr.readyState === 2) {
+						console.log('获取到响应的头部',xhr.getAllResponseHeaders());
+						console.log('响应的内容',xhr.response);
+					}else if(xhr.readyState === 3){
+						console.log('响应的内容');
+					}else if( xhr.readyState === 4){
+						console.log('响应的内容接收完成');
+					}
+				}
+
+				console.log(xhr.readyState);
+
+				console.log(xhr);
+
+				xhr.open('get',url,true);
+
+				console.log(xhr.readyState);
+
+				xhr.send();
+
+
+
+			}
+
+			
+
+			
+			
+
+			
+
+		</script>
+	</body>
+</html>

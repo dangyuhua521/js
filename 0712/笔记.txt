@@ -1,0 +1,48 @@
+JSON(JavaScript Object Notation) 是一种轻级的数据交换格式。JSON实际上是JavaScript的一个子集。但是和JavaScript的语法稍微有些不同，有属于JSON自己的语法。
+
+JSON构建于两种形式：
+
+无序的“‘名称/值’对”集合
+一个对象以“{”（左括号）开始，“}”（右括号）结束。每个“名称”后跟一个“:”（冒号）；“‘名称/值’ 对”之间使用“,”（逗号）分隔。
+值的有序列表
+一个数组以“[”（左中括号）开始，“]”（右中括号）结束。值之间使用“,”（逗号）分隔。
+在JSON中值支持以下几种数据类型：
+
+number：和JavaScript的number完全一致，在JSON中数字不能以0开头。
+boolean：JavaScript的true或false；
+string：JavaScript的string；
+null：JavaScript的null；
+array：JavaScript的Array表示方式——[]；在JSON中结尾不能有逗号。
+object：JavaScript的{ ... }表示方式。在JSON中结尾不能有逗号，key值必须加上双引号。
+在JavaScript中，可以直接使用JSON，JavaScript内置了JSON的解析。
+
+JSON 对象
+
+JSON对象定义在全局，该对象包含了两个方法，除了这两个方法, JSON这个对象本身并没有其他作用，也不能被调用或者作为构造函数调用。
+
+JSON.stringify()
+
+将 JavaScript 中的对象或数组序列化成JSON字符串。简单来说 JSON 是 JavaScript 对象的字符串表示法，它使用文本表示一个 JS 对象的信息，本质是一个字符串。
+
+序列化将对象的状态信息转换为可以存储或传输的形式的过程。
+例如在 JavaScript 中定义的对象：
+
+let obj = {a:1,b:2}
+
+
+此对象存在于内存中，并不能将期结构存储在cookie或localStorage或传递给后端。而此时就需要调用此方法序列换为一个 JSON 字符串。
+
+console.log(JSON.stringify(obj)); // {"a":1,"b":2}
+JSON.parse()
+
+将 JSON 字符串反序列化成 JavaScript 中的对象或数组。JSON 字符串本身只是一个字符串，不能通过属性名的方式获取对应的值。要转换为对象就可以使用 key 来取值。
+
+反序列化将可以存储或传输的形式转换为对象的过程。
+例如从后端拿到一个 JSON 字符串 ：
+
+let objStr = '{"a":1,"b":2}'
+此时不能使用 objStr.a 取到数值1，因为 objStr 本身只是一个字符串值，并不是对象。
+
+需要把JSON 字符串转成可用的对象：
+
+console.log(JSON.parse(objStr)); // {"a":1,"b":2}

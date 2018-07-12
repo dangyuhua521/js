@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				JSONP = JSON + padding
+					使用json数据格式
+
+					跨域的标签：img link script a
+
+					script 不关心后缀，关心的是内容是否能给js解析器解析执行
+
+				
+				原理，利用script标签可以跨域的特性，给一个请求的地址，返回一个文本形式的js代码，会被js解析器解析，后端返回的文本的js代码是一个函数执行，函数执行传入参数，在本地代码中需要定义一个全局的函数。
+
+					1. 本地函数定义全局的
+					2. 传给后端的callback要设置好函数名字
+			*/
+		</script>
+	</head>
+
+	<body>
+		<img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1531369148&di=975c81cefa0c93896b2a4a8844be575f&src=http://imgsrc.baidu.com/imgad/pic/item/bf096b63f6246b60553a62a0e1f81a4c510fa22a.jpg" />
+		<!-- <script src='./1.txt'></script>
+		<script src='http://localhost:3000/backend/php/jsonp.php'></script> -->
+		
+		<!-- <script src='./test.txt'></script> -->
+		<script>
+			function miaov(d){
+				console.log(d);
+			}
+			var a = "abc"
+			document.onclick  = function (){
+				
+				var script = document.createElement('script');
+				script.src = 'http://searchtip.kugou.com/getSearchTip?MusicTipCount=5&MVTipCount=2&albumcount=2&keyword=1&callback=miaov&_=1531369859264';
+				document.getElementsByTagName('head')[0].appendChild(script);
+				//console.log(arr);
+			}
+		</script>
+	</body>
+</html>

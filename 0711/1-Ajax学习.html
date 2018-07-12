@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<!-- / 绝对路径 -->
+		<!-- /src 相对www目录来查找的 -->
+		<!-- <script src="/2018-07-11/src/jquery-3.3.1.js"></script> -->
+		<!-- ./相对本文件的路径 -->
+		<script src="./src/jquery-3.3.1.js"></script>
+	</head>
+
+	<body>
+		hello
+		<script>
+			$.ajax({
+				url: 'http://localhost:3000/backend/php/get.php',
+				method: 'get',
+				data:{
+					user: 'leo'	
+				},
+				success:function (data){
+					console.log(data);
+				}
+			})
+		</script>
+	</body>
+</html>
