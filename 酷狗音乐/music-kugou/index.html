@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_691029_1z34222dd3z93sor.css">
+        <link rel="stylesheet" type="text/css" href="./music.css">
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="left">
+				<input class="search" type="" name="" />
+				<ul class="left-search-list">
+					<li>
+						<span>告白气球</span>
+					</li>
+					<li>
+						告白气球
+					</li>
+					<li>
+						告白气球
+					</li>
+				</ul>
+				<div class="left-song-box">
+					<p class="tip">搜索到 <span>“告白气球”</span> 相关歌曲</p>
+					<h2>歌曲</h2>
+					<ul class="left-song-list">
+						<li>
+							<span>告白气球</span>
+						</li>
+						<li>
+							告白气球
+						</li>
+						<li>
+							告白气球
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="right">
+				<div class="m-main">
+					<div class="bg-overlay"></div>
+					<div class="play-overlay"></div>
+					<div class="m-lyric-area">
+						<div class="m-lyric">
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p class="current">对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+							<p>对你我会毫不留情</p>
+						</div>
+					</div>
+					<div class="m-bottom">
+						
+						<div class="m-play-control">
+							<div class="m-play-btn m-play-prev-btn iconfont icon-audio_last_step"></div>
+							<div class="m-play-play-btn iconfont icon-play"></div>
+							<div class="m-play-btn iconfont icon-audio_next_step m-play-next-btn"></div>
+						</div>
+						<div class="m-progress-box">
+							
+							<div class="m-progress">
+								<div class="m-progress-line">
+									<div class="m-progress-lineed"></div>
+								</div>
+								<div class="m-progress-circle"></div>
+							</div>
+							<span class="current-time">00:00</span>
+							
+							<span class="fenge">/</span>
+							<span class="total-time">00:00</span>
+						</div>
+							<audio id="audio" controls src="http://fs.open.kugou.com/59310927cb5a0fa5c3c7f4ea1401ebdc/5b4453bf/G083/M01/09/13/84YBAFgrPWOAcVdpADWL7QKVQLU102.mp3">
+				您的浏览器不支持 audio 标签。
+			</audio>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../utils.js"></script>
+		<script src="./jquery-3.3.1.js"></script>
+		<script>
+			var duration = 400;
+			var currentTime = 400;
+
+			$('.current-time').text(sToM(currentTime))
+			$('.total-time').text(sToM(duration))
+
+			// 小球运动的最大和最小距离
+			var min = 0;
+			var max = $('.m-progress').width() - $('.m-progress-circle').width();
+			
+			// 一上来的时候，根据currentTime小球的位置
+			var l = currentTime/duration * max;
+			$('.m-progress-circle').css({
+				left: l
+			});
+			$('.m-progress-lineed').width(l);
+
+			$('.m-progress-circle').mousedown(function (e){
+				var disX = e.clientX - $(this).position().left;	
+
+				$(document).mousemove(function (e){
+					var l = e.clientX - disX;
+
+					if(l < min) l = 0;
+					if(l > max) l = max;
+					$('.m-progress-lineed').width(l);
+					$('.m-progress-circle').css({
+						left: l
+					});
+
+					// 计算应该播放到的时间
+
+					currentTime = l/max * duration;
+					$('.current-time').text(sToM(currentTime))
+
+				})
+				$(document).mouseup(function (e){
+					$(document).off('mousemove mouseup')
+				})
+
+				e.preventDefault();
+			})
+
+			$('.m-progress').click(function (e){
+				var l = e.clientX - $('.m-progress').offset().left - $('.m-progress-circle').width()/2;
+
+				
+				$('.m-progress-circle').css({
+					left: l
+				});
+			})
+		</script>
+	</body>
+</html>

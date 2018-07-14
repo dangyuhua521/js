@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_691029_1z34222dd3z93sor.css">
+        <link rel="stylesheet" type="text/css" href="./music.css">
+		<script>
+
+		</script>
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="left">
+				<input class="search" type="" name="" />
+				<p class="tip"></p>
+				<ul class="left-search-list">
+					<li>
+						<span>告白气球</span>
+					</li>
+					<li>
+						告白气球
+					</li>
+					<li>
+						告白气球
+					</li>
+				</ul>
+				<div class="left-song-box">
+					<p class="tip">搜索到 <span>“告白气球”</span> 相关歌曲</p>
+					<h2>歌曲</h2>
+					<ul class="left-song-list">
+						<li>
+							<span>告白气球</span>
+						</li>
+						<li>
+							告白气球
+						</li>
+						<li>
+							告白气球
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="right">
+				<div class="m-main">
+					<div class="bg-overlay"></div>
+					<div class="play-overlay"></div>
+					<div class="m-lyric-area">
+						<div class="m-lyric">
+							<p>歌词显示的</p>
+						</div>
+					</div>
+					<div class="m-bottom">
+						
+						<div class="m-play-control">
+							<div class="m-play-btn m-play-prev-btn iconfont icon-audio_last_step"></div>
+							<div class="m-play-play-btn iconfont icon-play"></div>
+							<div class="m-play-btn iconfont icon-audio_next_step m-play-next-btn"></div>
+						</div>
+						<div class="m-progress-box">
+							
+							<div class="m-progress">
+								<div class="m-progress-line">
+									<div class="m-progress-lineed"></div>
+								</div>
+								<div class="m-progress-circle"></div>
+							</div>
+							<span class="current-time">00:00</span>
+							
+							<span class="fenge">/</span>
+							<span class="total-time">00:00</span>
+						</div>
+							<audio id="audio" src="">
+				您的浏览器不支持 audio 标签。
+			</audio>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../utils.js"></script>
+		<script src="./jquery-3.3.1.js"></script>
+		<script>
+			// 控制小球拖拽 控制时间的进度
+			(function (){
+				var duration = 1;
+				var currentTime = 0;
+
+				var isMove = false;  // 记录是否在拖拽
+
+				// 监听音频加载完成后获取总时长和当前时间
+				$(document).on('time-update',function (e,data){
+					duration = data.duration;
+					currentTime = data.currentTime;
+					$('.current-time').text(sToM(currentTime))
+					$('.total-time').text(sToM(duration))
+
+					if(isMove) return; // 如果正在拖拽，不需要更新小球的位置
+
+					var l = currentTime/duration * max;
+					$('.m-progress-circle').css({
+						left: l
+					});
+					$('.m-progress-lineed').width(l);
+				})
+
+				// 小球运动的最大和最小距离
+				var min = 0;
+				var max = $('.m-progress').width() - $('.m-progress-circle').width();
+
+				$('.m-progress-circle').mousedown(function (e){
+					var disX = e.clientX - $(this).position().left;	
+
+					isMove = true;
+
+					$(document).mousemove(function (e){
+						var l = e.clientX - disX;
+						positionCircle(l);
+
+					})
+					$(document).mouseup(function (e){
+						$(document).off('mousemove mouseup');
+						// 向外发布事件，告诉小球的位置，已经计算除了当前所在时间
+						$(document).trigger('move-circle',{
+							currentTime: currentTime
+						})
+						isMove = false;
+					})
+
+					e.preventDefault();
+				})
+
+				$('.m-progress').click(function (e){
+					var l = e.clientX - $('.m-progress').offset().left - $('.m-progress-circle').width()/2;
+						positionCircle(l)
+						// 向外发布事件，告诉小球的位置，已经计算除了当前所在时间
+						$(document).trigger('move-circle',{
+							currentTime: currentTime
+						})
+				})
+
+				function positionCircle(l){
+					if(l < min) l = 0;
+					if(l > max) l = max;
+					$('.m-progress-lineed').width(l);
+					$('.m-progress-circle').css({
+						left: l
+					});
+
+					// 计算应该播放到的时间
+					currentTime = l/max * duration;
+					$('.current-time').text(sToM(currentTime))	
+
+					
+				}	
+			})();
+			// 控制歌词区域拖拽的
+			(function (){
+				var max = 0; // 最大距离
+				var min = 0;
+
+				var isMove = false;
+				var timer = null;
+				$('.m-lyric').css('cursor',"move").mousedown(function (e){
+					var disY = e.clientY - $('.m-lyric').position().top;
+					$('.m-lyric')[0].style.transition = 'none';
+					isMove = true;
+					clearTimeout(timer)	
+					$(document).mousemove(function (e){
+						var t = e.clientY - disY;
+
+						if(t > max) t = max;
+						if(t < min) t = min;
+
+						$('.m-lyric').css({
+							top: t
+						})	
+					})
+					$(document).mouseup(function (e){
+						$(document).off('mousemove mouseup');
+						$('.m-lyric')[0].style.transition = '.4s';
+						clearTimeout(timer)	
+						timer = setTimeout(function (){
+							isMove = false;	
+						},1000)
+					})
+
+					e.preventDefault();	
+				});
+
+				var rc = '';
+				var rcArr = [];
+
+				var currentTime = 0;
+
+				var currentIndex = 0;
+				$('.m-lyric p').eq(currentIndex).addClass('current');
+
+				var n = 0; // 运动几个p的高度
+
+				var m = Math.round(($('.m-lyric-area').height()/$('.m-lyric p').eq(0).height())/2) - 2;
+				$(document).on('time-update',function (e,data){
+					currentTime = data.currentTime;
+
+					$('.m-lyric p').eq(currentIndex).removeClass('current');
+					for( var i = 0; i < rcArr.length; i++ ){
+						if(currentTime > rcArr[i][0]){
+							currentIndex = i;
+						}else {
+							break;
+						}
+					}
+
+					if(currentIndex > m){
+						n = currentIndex - m;
+					}
+
+					$('.m-lyric p').eq(currentIndex).addClass('current');
+
+					if(isMove) return;
+					$('.m-lyric').css({
+						top: -n * $('.m-lyric p').eq(0).height()
+					})
+
+				})
+
+				$(document).on('audio-rc',function (e,data){
+					rc = data.rc;
+					rcArr = parseLyric(rc);
+					var html = '';
+
+					for( var i = 0; i < rcArr.length; i++ ){
+						html += `<p>${rcArr[i][1]}</p>`
+					}
+
+					$('.m-lyric').html(html);
+					// 歌词结构渲染完成，再获取height
+					min = -($('.m-lyric-area')[0].scrollHeight - $('.m-lyric-area').height()/2);	
+				})
+
+			})();
+			(function (){
+				$('.m-play-play-btn').click(function (){
+					if(audio.paused){
+						audio.play();
+					}else{
+						audio.pause();
+					}
+						
+				});
+				var audio = document.getElementById('audio');
+				audio.onloadedmetadata = function (){
+
+					$(document).trigger('time-update',{
+						duration: audio.duration,
+						currentTime: audio.currentTime
+					})
+
+					audio.play();
+				}
+
+				audio.ontimeupdate = function (){
+					$(document).trigger('time-update',{
+						duration: audio.duration,
+						currentTime: audio.currentTime
+					})		
+				}
+
+				$(document).on('move-circle',function (e,data){
+					audio.currentTime = data.currentTime;	
+				})	
+				$(document).on('audio-url',function (e,data){
+					audio.src = data.url;	
+				})
+			})();
+
+
+			// --------------------------------------
+
+			// 搜索
+			$('.search').on('input',function (){
+				var val = $(this).val().trim();
+				if(val === '') return;
+				$.getJSON(
+					`http://searchtip.kugou.com/getSearchTip?keyword=${val}&callback=?`,
+					function (data){
+						if(data.ErrorCode === 1){
+							$('.tip').show().text('你搜索的内容不存在');
+							return;
+						}
+						if(data && data.data[0] && data.data[0].RecordDatas){
+							$('.tip').hide().text('');
+							var arr = data.data[0].RecordDatas;
+							var html = arr.map(function (item){
+								return `<li>${item.HintInfo}</li>`	
+							}).join('');
+
+							$('.left-search-list').slideDown(100).html(html)
+						};
+					}
+				)	
+			}).on('blur',function (){
+				setTimeout(function (){
+					$('.left-search-list').slideUp(100)	
+				},100)	
+			})
+
+
+			$('.left-search-list').on('click','li',function (){
+				var text = $(this).text().trim();
+				$.getJSON(
+					`http://songsearch.kugou.com/song_search_v2?keyword=${text}&callback=?`,
+					function (data){
+						if(data.error_code === 1){
+							return;
+						}	
+
+						var lists = data.data.lists;
+
+						var html = lists.map(function (item){
+							return `<li hash="${item.FileHash}">${item.SongName}</li>`	
+						}).join('');
+
+						$('.left-song-list').html(html)
+					}
+				)
+			})
+
+			$('.left-song-list').on('click','li',function (){
+				var hash = $(this).attr('hash')	
+				var keyword = $(this).text().trim();
+
+				$.ajax({
+					url: `http://kuapi.wykiss.cn/api/app/i/getSongInfo.php`,
+					method: 'get',
+					data:{
+						hash:hash,
+						cmd: 'playInfo'
+					},
+					success:function (data){
+						data = JSON.parse(data);
+
+						$(document).trigger('audio-url',{
+							url: data.url
+						})
+					},
+					error:function (e){
+						console.log(e);	
+					}
+				})	
+
+				$.ajax({
+					url: ' http://kuapi.wykiss.cn/api/app/i/krc.php',
+					data:{
+						keyword: keyword,
+						hash: hash,
+						cmd:100,
+						timelength:2
+					},
+					success:function (data){
+						$(document).trigger('audio-rc',{
+							rc: data
+						})	
+					},
+					error:function (e){
+						console.log(e);	
+					}
+				})
+			})
+			
+		</script>
+	</body>
+</html>

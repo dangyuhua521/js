@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_691029_1z34222dd3z93sor.css">
+        <link rel="stylesheet" type="text/css" href="./music.css">
+		<script>
+			var rcString = `[00:00.50]周杰伦 - 退后
+[00:00.50]词：宋健彰
+[00:00.50]曲：周杰伦
+[00:22.98]天空灰得像哭过
+[00:27.52]离开你以后 并没有 更自由
+[00:34.79]酸酸的空气 嗅出我们的距离
+[00:41.03]一幕锥心的结局
+[00:44.63]像呼吸般无法停息
+[00:51.98]抽屉泛黄的日记
+[00:56.48]榨干了回忆
+[00:59.22]那笑容 是夏季
+[01:03.71]你我的过去被顺时针的忘记
+[01:10.11]缺氧过后的爱情
+[01:13.70]粗心的眼泪是多余
+[01:19.37]我知道你我都没有错
+[01:23.32]只是忘了怎么退后
+[01:26.92]信誓旦旦给了承诺
+[01:30.50]却被时间扑了空
+[01:34.02]我知道我们都没有错
+[01:37.84]只是放手会比较好过
+[01:44.75]最美的爱情 回忆里待续
+[02:04.78]天空灰得像哭过
+[02:09.21]离开你以后 并没有 更自由
+[02:16.56]酸酸的空气 嗅出我们的距离
+[02:22.90]一幕锥心的结局
+[02:26.42]像呼吸般无法停息
+[02:33.75]抽屉泛黄的日记
+[02:38.25]榨干了回忆
+[02:41.01]那笑容 是夏季
+[02:45.49]你我的过去被顺时针的忘记
+[02:51.89]缺氧过后的爱情
+[02:55.58]粗心的眼泪是多余
+[03:01.02]我知道你我都没有错
+[03:05.09]只是忘了怎么退后
+[03:08.70]信誓旦旦给了承诺
+[03:12.37]却被时间扑了空
+[03:15.81]我知道我们都没有错
+[03:19.67]只是放手会比较好过
+[03:26.55]最美的爱情 回忆里待续
+[03:30.66]我知道你我都没有错
+[03:34.19]只是忘了怎么退后
+[03:37.80]信誓旦旦给了承诺
+[03:41.46]却被时间扑了空
+[03:44.92]我知道我们都没有错
+[03:48.78]只是放手会比较好过
+[03:55.57]最美的爱情 回忆里待续
+`
+		</script>
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="left">
+				<input class="search" type="" name="" />
+				<ul class="left-search-list">
+					<li>
+						<span>告白气球</span>
+					</li>
+					<li>
+						告白气球
+					</li>
+					<li>
+						告白气球
+					</li>
+				</ul>
+				<div class="left-song-box">
+					<p class="tip">搜索到 <span>“告白气球”</span> 相关歌曲</p>
+					<h2>歌曲</h2>
+					<ul class="left-song-list">
+						<li>
+							<span>告白气球</span>
+						</li>
+						<li>
+							告白气球
+						</li>
+						<li>
+							告白气球
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="right">
+				<div class="m-main">
+					<div class="bg-overlay"></div>
+					<div class="play-overlay"></div>
+					<div class="m-lyric-area">
+						<div class="m-lyric">
+							<p>歌词显示的</p>
+						</div>
+					</div>
+					<div class="m-bottom">
+						
+						<div class="m-play-control">
+							<div class="m-play-btn m-play-prev-btn iconfont icon-audio_last_step"></div>
+							<div class="m-play-play-btn iconfont icon-play"></div>
+							<div class="m-play-btn iconfont icon-audio_next_step m-play-next-btn"></div>
+						</div>
+						<div class="m-progress-box">
+							
+							<div class="m-progress">
+								<div class="m-progress-line">
+									<div class="m-progress-lineed"></div>
+								</div>
+								<div class="m-progress-circle"></div>
+							</div>
+							<span class="current-time">00:00</span>
+							
+							<span class="fenge">/</span>
+							<span class="total-time">00:00</span>
+						</div>
+							<audio id="audio" src="http://fs.open.kugou.com/bc6b3b7e41489d13bae4a553cf06ed08/5b44725a/G005/M08/1C/1B/RQ0DAFS4N7SAZLTZAEA9YqVoOlc927.mp3">
+				您的浏览器不支持 audio 标签。
+			</audio>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../utils.js"></script>
+		<script src="./jquery-3.3.1.js"></script>
+		<script>
+			// 控制小球拖拽 控制时间的进度
+			(function (){
+				var duration = 1;
+				var currentTime = 0;
+
+				var isMove = false;  // 记录是否在拖拽
+
+				// 监听音频加载完成后获取总时长和当前时间
+				$(document).on('time-update',function (e,data){
+					duration = data.duration;
+					currentTime = data.currentTime;
+					$('.current-time').text(sToM(currentTime))
+					$('.total-time').text(sToM(duration))
+
+					if(isMove) return; // 如果正在拖拽，不需要更新小球的位置
+
+					var l = currentTime/duration * max;
+					$('.m-progress-circle').css({
+						left: l
+					});
+					$('.m-progress-lineed').width(l);
+				})
+
+				// 小球运动的最大和最小距离
+				var min = 0;
+				var max = $('.m-progress').width() - $('.m-progress-circle').width();
+
+				$('.m-progress-circle').mousedown(function (e){
+					var disX = e.clientX - $(this).position().left;	
+
+					isMove = true;
+
+					$(document).mousemove(function (e){
+						var l = e.clientX - disX;
+						positionCircle(l);
+
+					})
+					$(document).mouseup(function (e){
+						$(document).off('mousemove mouseup');
+						// 向外发布事件，告诉小球的位置，已经计算除了当前所在时间
+						$(document).trigger('move-circle',{
+							currentTime: currentTime
+						})
+						isMove = false;
+					})
+
+					e.preventDefault();
+				})
+
+				$('.m-progress').click(function (e){
+					var l = e.clientX - $('.m-progress').offset().left - $('.m-progress-circle').width()/2;
+						positionCircle(l)
+						// 向外发布事件，告诉小球的位置，已经计算除了当前所在时间
+						$(document).trigger('move-circle',{
+							currentTime: currentTime
+						})
+				})
+
+				function positionCircle(l){
+					if(l < min) l = 0;
+					if(l > max) l = max;
+					$('.m-progress-lineed').width(l);
+					$('.m-progress-circle').css({
+						left: l
+					});
+
+					// 计算应该播放到的时间
+					currentTime = l/max * duration;
+					$('.current-time').text(sToM(currentTime))	
+
+					
+				}	
+			})();
+			// 控制歌词区域拖拽的
+			(function (){
+				var max = 0; // 最大距离
+				
+
+				var isMove = false;
+				var timer = null;
+				$('.m-lyric').css('cursor',"move").mousedown(function (e){
+					var disY = e.clientY - $('.m-lyric').position().top;
+					$('.m-lyric')[0].style.transition = 'none';
+					isMove = true;
+					clearTimeout(timer)	
+					$(document).mousemove(function (e){
+						var t = e.clientY - disY;
+
+						if(t > max) t = max;
+						if(t < min) t = min;
+
+						$('.m-lyric').css({
+							top: t
+						})	
+					})
+					$(document).mouseup(function (e){
+						$(document).off('mousemove mouseup');
+						$('.m-lyric')[0].style.transition = '.4s';
+						clearTimeout(timer)	
+						timer = setTimeout(function (){
+							isMove = false;	
+						},1000)
+					})
+
+					e.preventDefault();	
+				});
+
+				var rc = rcString;
+				var currentTime = 0;
+
+				var rcArr = parseLyric(rc);
+
+				var html = '';
+
+				for( var i = 0; i < rcArr.length; i++ ){
+					html += `<p>${rcArr[i][1]}</p>`
+				}
+
+				$('.m-lyric').html(html);
+				// 歌词结构渲染完成，再获取height
+				var min = -($('.m-lyric-area')[0].scrollHeight - $('.m-lyric-area').height()/2);
+
+				var currentIndex = 0;
+				$('.m-lyric p').eq(currentIndex).addClass('current');
+
+				var n = 0; // 运动几个p的高度
+
+				var m = Math.round(($('.m-lyric-area').height()/$('.m-lyric p').eq(0).height())/2) - 2;
+				$(document).on('time-update',function (e,data){
+					currentTime = data.currentTime;
+
+					$('.m-lyric p').eq(currentIndex).removeClass('current');
+					for( var i = 0; i < rcArr.length; i++ ){
+						if(currentTime > rcArr[i][0]){
+							currentIndex = i;
+						}else {
+							break;
+						}
+					}
+
+					if(currentIndex > m){
+						n = currentIndex - m;
+					}
+
+					$('.m-lyric p').eq(currentIndex).addClass('current');
+
+					if(isMove) return;
+					$('.m-lyric').css({
+						top: -n * $('.m-lyric p').eq(0).height()
+					})
+
+				})
+
+			})();
+
+			$('.m-play-play-btn').click(function (){
+
+				console.dir(audio);
+				if(audio.paused){
+					audio.play();
+				}else{
+					audio.pause();
+				}
+					
+			})
+
+			var audio = document.getElementById('audio');
+
+			audio.onloadedmetadata = function (){
+				console.log( audio.duration );
+				console.log( audio.currentTime );
+
+				$(document).trigger('time-update',{
+					duration: audio.duration,
+					currentTime: audio.currentTime
+				})
+			}
+
+			audio.ontimeupdate = function (){
+				$(document).trigger('time-update',{
+					duration: audio.duration,
+					currentTime: audio.currentTime
+				})		
+			}
+
+			$(document).on('move-circle',function (e,data){
+				audio.currentTime = data.currentTime;	
+			})
+
+			
+		</script>
+	</body>
+</html>
