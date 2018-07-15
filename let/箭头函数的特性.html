@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    document.onclick = function(){
+       /*var that = this;
+        setTimeout(function (){
+            console.log(this);	
+            console.log(that);	
+        },1000)	*/ 
+        setTimeout(()=>{
+            console.log(this)
+        },1000)
+    }
+
+
+    /*let f = () => {
+        this.a = 10;
+    }
+
+    new f();*/ // Uncaught TypeError: f is not a constructor
+
+    /*let fn2 = () => {
+        console.log(arguments);
+    }
+
+    fn2(1,2,3,4,5);*/
+
+    let o={
+        f:()=>{
+            console.log(this)
+        }
+    }
+    console.log(o.f());
+    if(true){
+        console.log(this);
+        let f=()=>{
+            console.log(this)
+        }
+        f()
+    }
+
+    </script>
+</body>
+</html>

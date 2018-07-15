@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var arr = [1,2,3,4];
+    var arr2 = [4,5,6,...arr];// 两个数组连接起来
+
+    /*arr2 = arr2.concat(arr);
+    console.log(arr2);*/
+    // ([].push) 取push对应的函数
+    // apply 用来调用函数
+    // arr2 改变push的this执行，目的是在push的内部处理arr2
+    // arr 的每一项回传给push作为参数 push(1,2,3,4)
+    //([].push).apply(arr2,arr);  // push.apply(thisArg,[1,2,3])
+    arr2.push(...arr); // (1,2,3,4)
+    console.log(arr2);
+
+    var o = {a:1,b:2,d:{miaov:1}};
+    var o2 = {c:3,...o};
+    o2.d.miaov = 10000;
+    console.log( o );
+    console.log( o2 );
+
+
+    var arrNum = [1,2,2,4,5,5,100];
+
+    console.log(Math.max(...arrNum));
+
+    // 写在形参这个位置是把实参放在fn这个数组中
+    function fn(...fn){
+            
+    }
+
+    fn(1,2,3,4);
+
+
+    </script>
+</body>
+</html>

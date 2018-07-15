@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				rest参数
+					语法: ...变量名
+
+					 rest 参数（形式为...变量名），用于获取函数的多余参数，放在数组中可取代arguments	
+
+				函数参数默认值
+	
+
+			*/
+
+			// 结构赋值的形式
+			function add(
+				{
+					url,
+					method="get",
+					data,
+					succsss=function(){}
+				}
+			){
+				// 不能重复声明url变量
+				let url = '123';
+
+				console.log(url,method);
+			}
+			add({url:'httl::',method:'get'})
+			add({url:'httl::'})
+
+
+			// 默认的是defaults的值，不是methods的值
+			/*function add(defaults = {url:'',method:'get'}){
+				console.log(defaults);
+			}
+			console.log( add({url:'httl::',method:'get'}) );
+			console.log( add({url:'httl::'}) );*/
+
+			/*function add(a,b=10){
+				return a + b;	
+			}
+			console.log( add(1) );
+			console.log( add(1,0) );*/
+			
+			/*function add(a,b){
+				// b是选填项
+				// 如果传入的b有值，但是被解析为不成立，还是走默认值
+				b = b || 10; // 给选填的参数默认值
+				return a + b;	
+			}
+
+			console.log( add(1) );
+			console.log( add(1,0) );*/
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

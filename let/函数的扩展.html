@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+   //rest参数形式
+   function fn(a,...abc){
+       console.log(a);
+       console.log(abc);//把所有的实参放在数组中
+   }
+   fn(1,2,3,4)
+
+   let abc= (...m)=>{
+       console.log(m)
+   }
+   abc(1,2,3,4,5,5,67,8)
+   function fn1(){
+       console.log(arguments);
+       //转成数组[].slice.call(arguments)
+       console.log(Array.prototype.slice.call(arguments));
+
+   }
+   fn1(1,23,4,5)
+   </script> 
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr =[];
+       /*
+        第一次的时候，使用let声明一个i，赋值为0,条件成立，执行循坏体内容
+            形成了一个块级作用域
+            执行代码之后 i++ =1
+            
+        第2次的时候，使用let又声明一个i，赋值为上一次结束值为1，执行循环体内容
+					形成了一个块级作用域
+					执行代码之后 i++ = 2
+				第3次的时候，使用let又声明一个i，赋值为上一次结束值为2，执行循环体内容
+					形成了一个块级作用域
+					执行代码之后 i++ = 3
+
+				。。。。
+				第5次的时候，使用let又声明一个i，赋值为上一次结束值为4，执行循环体内容
+					形成了一个块级作用域
+					执行代码之后 i++ = 5    
+       */ 
+
+       for(let i =0; i<5;i++){
+           arr[i]= function(){
+               alert(i)
+           }
+       } 
+       {
+           let i =0;
+           arr[0] = function(){
+               alert(i)
+           }
+           i++;
+       }
+       {
+           let i =1;
+           arr[0] = function(){
+               alert(i);
+           }
+       }
+       arr[0]()
+       arr[4]()
+    </script>
+</body>
+</html>

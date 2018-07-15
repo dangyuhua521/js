@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let totalPage = 5; // 一页只能展示5条
+        // 声明变量之后可以改变变量存的值
+        totalPage = 10;
+        console.log(totalPage);
+        let TOTALPAGE = 5; // 约定看到全大写是不能更改的
+        const t = 10; // 常量，变量的存的值不可更改
+        console.log(t);
+        const miaov = {
+            a: 1
+        };
+        //miaov = {b:2};  // miaov这个常量存的址不可更改
+
+        miaov.a = 100000; // 通过miaov存的址找到对象可以更改对象的属性
+
+        console.log(miaov);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //虽然走不进去，miaov会变量提升的，全局就有miaov这个变量，只不过走不到if中所以未赋值
+
+    if(true){
+        let miaov =10;
+        let ketang = 30;
+        console.log(ketang)
+    }
+    //声明变量let.1.html:18 Uncaught ReferenceError: miaov is not defined
+     
+    // console.log(miaov);
+    // console.log(ketang);
+
+    //在声明之前使用了m，会报错。因为当前作用域使用了let声明了m，在声明之前m是不可用的
+    m =30;//声明变量let.1.html:24 Uncaught ReferenceError: m is not defined
+    
+    let m =30;
+    console.log(m)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="checkbox" name="" id="checkedAll" />
+    <ul id="list">
+        <li><input type="checkbox" />123</li>
+        <li><input type="checkbox" />123</li>
+        <li><input type="checkbox" />123</li>
+        <li><input type="checkbox" />123</li>
+    </ul>
+    <script>
+    
+    // console.log(Array.isArray([]));
+    // console.log(Array.isArray(123))
+
+    let arr =[1,2,3,4,5];
+    let bl = arr.every((item)=>{
+        return item >4
+
+    })
+    console.log(bl);
+    let checkboxs =  list.getElementsByTagName('input')
+    list.onclick= function(e){
+        if(e.target.tagName==='INPUT'){
+            checkedAll.checked = Array.from(checkboxs).every(item=>item.checked);
+        }
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+    let arr =[1,2,3,4];
+    //取出每一个数，存在变量
+    let [a,b,c,d,f]=arr;
+    console.log(a,b,c,d,f)
+    let tools ={
+        add(){//add:function(){}
+
+        },
+        isFunction(){},
+        abc(){},
+        miaov:1
+    }
+    let {isFunction,add,miaov}= tools;
+    console.log(add,isFunction,miaov);
+    */
+
+    let o ={a:1,b:2,c:3,d:90,p:'30.5元'};
+    // d = 10000 默认值
+	// p:price 是声明一个price变量，把p的值赋给这个变量，p不可用
+    let {a,b,d=1000,p:price='000元'}=o;
+    console.log(a,b,d,price);
+    let{floor,random}=Math;
+    console.log(floor(1.2));
+    console.log(random());
+    let [l,k,j]='MIAOV';
+    console.log(l,k,j)
+    </script>
+</body>
+</html>
