@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="/style/css.css">
+	</head>
+
+	<body>
+		<h1>这是首页</h1>
+		<button>请求酷狗音乐的接口</button>
+	
+		<script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
+		<script>
+			$('button').click(function (){
+				$.ajax({
+					url: '/miaov/rank/list?json=true'
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="/style/css.css">
+	</head>
+
+	<body>
+		<h1>这是首页</h1>
+		<div class="tip">
+			hello，我是前端开发的页面
+		</div>
+
+		<ul class="list"></ul>
+	
+		<script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
+		<!-- <script src="/js/index.js"></script> -->
+		<script>
+			// 前端处理数据，
+			// 页面加载猴需要请求接口拿数据，再渲染页面中
+			$.ajax({
+				url: '/api/users',
+				success(data){
+					$('.list')
+					.html(data.data.map(item => `<li>${item.name}</li>`).join(''))
+				}
+			})
+		</script>
+
+	</body>
+</html>
